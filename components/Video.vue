@@ -35,11 +35,11 @@ export default {
       this.$refs.myVideo.currentTime = value;
     },
     createNote() {
-      let startTime;
-      let stopTime;
+      let startWritingTime; // First timestamp of the keystroke
+      let writtenNote = this.$refs.note.value; // The note, should clear when enter has been pressed
 
       // this.timestamps.push(this.$refs.note);
-      console.log(this.$refs.note);
+      console.log(writtenNote);
       this.timestamps.push(this.$refs.myVideo.currentTime);
     }
   },

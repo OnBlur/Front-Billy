@@ -1,7 +1,5 @@
 <template>
-  <section class="container">
-    <div>Index page</div>
-  </section>
+  <Video/>
 </template>
 
 <script>
@@ -14,5 +12,5 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>
