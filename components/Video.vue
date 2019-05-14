@@ -15,7 +15,7 @@
         >
           <div class="timestamp">@{{item.timestamp}} sec.</div>
           <div class="note" v-text="item.note"></div>
-          <div class="removeItem">
+          <div class="removeItem" @click="deleteNote(index)">
             <div class="icon">x</div>
           </div>
         </div>
@@ -49,6 +49,10 @@ export default {
         timestamp: this.$refs.myVideo.currentTime,
         note: this.inputNote
       });
+    },
+    deleteNote(position) {
+      this.timestamps.splice(position, 1);
+      console.log(position);
     }
   },
   components: {}
@@ -63,12 +67,7 @@ export default {
   .notes {
     width: 400px;
     margin-left: 10px;
-    input {
-      width: 400px;
-      margin-top: 10px;
-    }
   }
-
   .timestamps {
     height: 337px;
     overflow-y: scroll;
@@ -87,6 +86,13 @@ export default {
         letter-spacing: 1px;
         line-height: 14px;
       }
+    }
+  }
+  form {
+    display: flex;
+    margin-top: 10px;
+    input {
+      width: 400px;
     }
   }
   .removeItem {
