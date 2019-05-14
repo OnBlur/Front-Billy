@@ -1,0 +1,90 @@
+/* Apply the site font to body and form elements */
+body {
+  font-family: "Avenir-Roman";
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+[class*="col-"] {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+select {
+  border: 0;
+  background: none;
+}
+
+input {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+  }
+  &:focus,
+  textarea:focus {
+    background-color: none;
+    outline: none;
+  }
+}
+
+.nav-circle-inner {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.fr-box {
+  color: #666666;
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+li {
+  margin: 0px;
+}
+
+a {
+  color: #666666;
+  text-decoration-color: #555555;
+}
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Custom underline for links
+.underline {
+  border-bottom: 1px solid #666666;
+  display: inline-block;
+  line-height: 1;
+}
+
+// Custom Froala tooltip
+.fr-toolbar{
+  border-top: none !important;
+  background: #bdab9b !important;
+}
+.fr-arrow{
+  border-bottom: 5px solid #bdab9b !important;
+  top: -5px !important;
+}
+.fr-command:hover{
+  background: #B5A494 !important;
+}
+.fr-options:hover{
+  border-left: none !important;
+}
