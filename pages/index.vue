@@ -5,13 +5,6 @@
 </template>
 
 <script>
-import Video from "@/components/Video.vue";
-
-export default {
-  components: {
-    Video
-  }
-};
 </script>
 
 <style>

@@ -11,6 +11,9 @@
       <li>
         <nuxt-link to="/about">About</nuxt-link>
       </li>
+      <li>
+        <nuxt-link to="/video">Video</nuxt-link>
+      </li>
     </ul>
   </header>
 </template>
