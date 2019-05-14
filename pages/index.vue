@@ -1,22 +1,17 @@
 <template>
-  <div>
-    <h1>welcome to billy</h1>
-  </div>
+  <section class="container">
+    <div>
+      <Video/>
+    </div>
+  </section>
 </template>
 
 <script>
+import Video from "@/components/Video.vue";
+
 export default {
-  head() {
-    return {
-      title: "Billy projects",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "test app billy"
-        }
-      ]
-    };
+  components: {
+    Video
   }
 };
 </script>

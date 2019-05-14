@@ -1,0 +1,44 @@
+/*
+ Use the grid mixin by calling @include breakpoint with
+ one of the sizes that are defined below: e.a. 'sm'
+ example: @include breakpoint('sm')
+*/
+$breakpoints: (
+  "sm": (
+    min-width: $tablet-portrait
+  ),
+  "md": (
+    min-width: $desktop-small
+  ),
+  "lg": (
+    min-width: $desktop-large
+  ),
+  "xl": (
+    min-width: $desktop-xlarge
+  )
+);
+
+/*
+ Responsive breakpoint manager
+ @access public
+ @param {String} $breakpoint - Breakpoint
+ @requires $breakpoints
+*/
+@mixin breakpoint($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
