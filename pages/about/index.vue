@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>welcome to billy</h1>
+    <h1>About Billy</h1>
+    <p>testje</p>
   </div>
 </template>
 
@@ -8,7 +9,7 @@
 export default {
   head() {
     return {
-      title: "Billy projects",
+      title: "about us",
       meta: [
         {
           hid: "description",
