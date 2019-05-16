@@ -9,7 +9,7 @@
       <div class="timestamps">
         <div
           class="item"
-          v-for="(item, index) in timestamps"
+          v-for="(item, index) in allNotes"
           :key="index"
           @click="goToTimestamp(item.timestamp)"
         >
@@ -31,21 +31,35 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "Video",
+  props: {
+    allNotes: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
-      inputNote: "",
-      timestamps: []
+      inputNote: ""
+      // timestamps: []
     };
   },
   methods: {
     // Save timestamp and note onsubmit, clear the input field and resume the video
     addNote() {
-      this.timestamps.push({
+      // this.timestamps.push({
+      //   timestamp: this.$refs.myVideo.currentTime,
+      //   note: this.inputNote
+      // });
+
+      this.$store.commit("todos/addNote", {
         timestamp: this.$refs.myVideo.currentTime,
         note: this.inputNote
       });
+
       this.inputNote = "";
       this.playVideo();
     },
@@ -55,7 +69,8 @@ export default {
       this.pauseVideo();
     },
     deleteNote(position) {
-      this.timestamps.splice(position, 1);
+      // this.timestamps.splice(position, 1);
+      this.$store.commit("todos/deleteNote", position);
     },
     playVideo() {
       this.$refs.myVideo.play();
