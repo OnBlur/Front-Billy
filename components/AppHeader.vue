@@ -1,18 +1,18 @@
 <template>
   <header>
-    <h1 class="title">Jokes</h1>
+    <h1 class="title">Insights</h1>
     <ul>
       <li>
         <nuxt-link to="/">Home</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/jokes">Jokes</nuxt-link>
       </li>
       <li>
         <nuxt-link to="/about">About</nuxt-link>
       </li>
       <li>
         <nuxt-link to="/video">Video</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/livesearch">Live Search</nuxt-link>
       </li>
     </ul>
   </header>
