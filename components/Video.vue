@@ -44,17 +44,11 @@ export default {
   data() {
     return {
       inputNote: ""
-      // timestamps: []
     };
   },
   methods: {
     // Save timestamp and note onsubmit, clear the input field and resume the video
     addNote() {
-      // this.timestamps.push({
-      //   timestamp: this.$refs.myVideo.currentTime,
-      //   note: this.inputNote
-      // });
-
       this.$store.commit("todos/addNote", {
         timestamp: this.$refs.myVideo.currentTime,
         note: this.inputNote
@@ -69,7 +63,6 @@ export default {
       this.pauseVideo();
     },
     deleteNote(position) {
-      // this.timestamps.splice(position, 1);
       this.$store.commit("todos/deleteNote", position);
     },
     playVideo() {

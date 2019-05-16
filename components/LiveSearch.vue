@@ -6,11 +6,11 @@
     </header>
     <main>
       <div class="insights-overview">
-        <div v-for="item in filteredItems" class="insigts-item">
-          <label class="insigths-item-name">{{item.name}}</label>
+        <div v-for="(item, index) in filteredItems" :key="index" class="insigts-item">  
+          <label class="insigths-item-name" v-text="item.name"></label>
         </div>
         <label
-          v-if="this.countFilteredItems == 0"
+          v-if="countFilteredItems == 0"
           class="insigths-not-found"
         >Er zijn geen resultaten gevonden.</label>
       </div>
