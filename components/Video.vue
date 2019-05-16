@@ -9,19 +9,21 @@
       <div class="timestamps">
         <div
           class="item"
-          v-for="(item, index) in timestamps"
+          v-for="(item, index) in allNotes"
           :key="index"
           @click="goToTimestamp(item.timestamp)"
         >
-          <div class="timestamp">@{{item.timestamp}} sec.</div>
-          <div class="note" v-text="item.note"></div>
-          <div class="removeItem">
-            <div class="icon">x</div>
+          <div class="note-header">
+            <div class="timestamp">@{{item.timestamp}} sec.</div>
+            <div class="removeItem" @click="deleteNote(index)">
+              <div class="delete">delete</div>
+            </div>
           </div>
+          <div class="note" v-text="item.note"></div>
         </div>
       </div>
       <form v-on:submit.prevent="addNote">
-        <input v-model="inputNote" v-on:keydown="pauseOnKeydown" type="text" ref="note">
+        <input v-model="inputNote" v-on:keydown="pauseVideo" type="text" ref="note">
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -29,26 +31,52 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "Video",
+  props: {
+    allNotes: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
-      inputNote: "",
-      timestamps: []
+      inputNote: ""
+      // timestamps: []
     };
   },
   methods: {
-    goToTimestamp(value) {
-      this.$refs.myVideo.currentTime = value;
-    },
-    pauseOnKeydown() {
-      this.$refs.myVideo.pause();
-    },
+    // Save timestamp and note onsubmit, clear the input field and resume the video
     addNote() {
-      this.timestamps.push({
+      // this.timestamps.push({
+      //   timestamp: this.$refs.myVideo.currentTime,
+      //   note: this.inputNote
+      // });
+
+      this.$store.commit("todos/addNote", {
         timestamp: this.$refs.myVideo.currentTime,
         note: this.inputNote
       });
+
+      this.inputNote = "";
+      this.playVideo();
+    },
+    // Retreive current time from video DOM element
+    goToTimestamp(value) {
+      this.$refs.myVideo.currentTime = value;
+      this.pauseVideo();
+    },
+    deleteNote(position) {
+      // this.timestamps.splice(position, 1);
+      this.$store.commit("todos/deleteNote", position);
+    },
+    playVideo() {
+      this.$refs.myVideo.play();
+    },
+    pauseVideo() {
+      this.$refs.myVideo.pause();
     }
   },
   components: {}
@@ -63,48 +91,53 @@ export default {
   .notes {
     width: 400px;
     margin-left: 10px;
-    input {
-      width: 400px;
-      margin-top: 10px;
-    }
-  }
 
-  .timestamps {
-    height: 337px;
-    overflow-y: scroll;
-    background-color: #e0e0e0;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    .item {
-      cursor: pointer;
-      margin: 5px;
-      padding: 5px;
-      background-color: white;
-      color: #4e4e4e;
-      .timestamp {
-        font-size: 10px;
-        letter-spacing: 1px;
-        line-height: 14px;
+    .timestamps {
+      height: 337px;
+      overflow-y: scroll;
+      background-color: #e0e0e0;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .item {
+        cursor: pointer;
+        margin: 5px;
+        padding: 5px;
+        background-color: white;
+        color: #4e4e4e;
+        .note-header {
+          display: flex;
+          justify-content: space-between;
+          .timestamp {
+            font-size: 10px;
+            letter-spacing: 1px;
+            line-height: 14px;
+          }
+          .removeItem {
+            /* float: right; */
+            background-color: red;
+            height: 20px;
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin-top: -30px; */
+            cursor: pointer;
+            .delete {
+              font-size: 10px;
+              color: white;
+              font-weight: bold;
+            }
+          }
+        }
       }
     }
-  }
-  .removeItem {
-    float: right;
-    background-color: red;
-    border-radius: 50%;
-    height: 20px;
-    width: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -30px;
-    cursor: pointer;
-    .icon {
-      right: 32px;
-      width: 8px;
-      height: 29px;
-      color: white;
+    form {
+      display: flex;
+      margin-top: 10px;
+      input {
+        width: 400px;
+      }
     }
   }
 }
