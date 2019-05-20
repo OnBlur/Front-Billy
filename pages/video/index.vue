@@ -1,7 +1,6 @@
 <template>
   <div class="hoi">
     <Video :allNotes="todos"/>
-    <div v-for="(item, index) in todos" :key="index" v-text="item"></div>
   </div>
 </template>
 
