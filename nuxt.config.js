@@ -53,6 +53,7 @@ export default {
     '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
     'nuxt-sass-resources-loader',
+    'nuxt-vue-material', 
   ],
 
   // Definieer het pad naar je bestand met je globale mixins/ variables
