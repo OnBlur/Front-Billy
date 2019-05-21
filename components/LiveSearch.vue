@@ -2,7 +2,9 @@
   <div class="wrapper-container">
     <header>
       <h1>Live Search</h1>
-      <input type="text" v-model="searchWord" class="search-box" placeholder="Zoeken">
+      <div class="md-field">
+      <input type="text" v-model="searchWord" class="search-box md-input" placeholder="Zoeken">
+      </div>
     </header>
     <main>
       <div class="insights-overview">

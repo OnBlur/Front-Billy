@@ -12,8 +12,12 @@ export const mutations = {
 
 export const actions = {
   test(vuexContext, context) {
+    const requestOptions = {
+      method: "GET",
+      //   headers: authHeader()
+    };
     return axios
-      .get(process.env.baseUrl + "/roles")
+      .get(process.env.baseUrl + "/videos", requestOptions)
       .then(res => {
         vuexContext.commit("setNote", res.data);
       })

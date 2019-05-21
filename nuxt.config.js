@@ -1,39 +1,42 @@
-import pkg from './package'
-const webpack = require('webpack')
+import pkg from "./package";
+const webpack = require("webpack");
 
 export default {
-  mode: 'universal',
+  mode: "universal",
 
   /*
    ** Headers of the page
    */
   head: {
     title: pkg.name,
-    meta: [{
-        charset: 'utf-8'
+    meta: [
+      {
+        charset: "utf-8"
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        name: "viewport",
+        content: "width=device-width, initial-scale=1"
       },
       {
-        hid: 'description',
-        name: 'description',
+        hid: "description",
+        name: "description",
         content: pkg.description
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/favicon.ico"
+      }
+    ]
   },
 
   /*
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#fff'
+    color: "#fff"
   },
 
   /*
@@ -50,21 +53,19 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    '@nuxtjs/axios',
-    'bootstrap-vue/nuxt',
-    'nuxt-sass-resources-loader',
+    "@nuxtjs/axios",
+    "bootstrap-vue/nuxt",
+    "nuxt-sass-resources-loader"
   ],
 
   // Definieer het pad naar je bestand met je globale mixins/ variables
-  sassResources: [
-    '~/assets/css/index.scss',
-  ],
+  sassResources: ["~/assets/css/index.scss"],
 
   /*
    ** Build configuration
    */
   env: {
-    baseUrl: process.env.BASE_URL || "http://localhost:4000/api"
+    baseUrl: process.env.BASE_URL || "http://localhost.local/api"
   },
 
   /*
@@ -73,13 +74,13 @@ export default {
   build: {
     plugins: [
       new webpack.ProvidePlugin({
-        '$': 'jquery',
-        '_': 'lodash'
+        $: "jquery",
+        _: "lodash"
       })
     ],
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    extend(config, ctx) {}
   }
-}
+};
