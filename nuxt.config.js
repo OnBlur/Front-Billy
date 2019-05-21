@@ -9,8 +9,7 @@ export default {
    */
   head: {
     title: pkg.name,
-    meta: [
-      {
+    meta: [{
         charset: "utf-8"
       },
       {
@@ -23,13 +22,11 @@ export default {
         content: pkg.description
       }
     ],
-    link: [
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/favicon.ico"
-      }
-    ]
+    link: [{
+      rel: "icon",
+      type: "image/x-icon",
+      href: "/favicon.ico"
+    }]
   },
 
   /*
@@ -55,7 +52,8 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "bootstrap-vue/nuxt",
-    "nuxt-sass-resources-loader"
+    "nuxt-sass-resources-loader",
+    'nuxt-vue-material'
   ],
 
   // Definieer het pad naar je bestand met je globale mixins/ variables
