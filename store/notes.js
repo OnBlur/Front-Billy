@@ -5,25 +5,25 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setNote(state, value) {
+  setData(state, value) {
     state.data = value;
   }
 }
 
 export const actions = {
-  test(vuexContext, context) {
+  getAllInit(vuexContext, context) {
     const requestOptions = {
       method: "GET",
       //   headers: authHeader()
     };
     return axios
-      .get(process.env.baseUrl + "/videos", requestOptions)
+      .get(process.env.baseUrl + "/get-all-video-notes", requestOptions)
       .then(res => {
-        vuexContext.commit("setNote", res.data);
+        vuexContext.commit("setData", res.data.data);
       })
       .catch(e => {
-        console.log("nothing found")
-        // context.error(e);
+        // console.log("nothing found")
+        context.error(e);
       });
   }
 }
