@@ -1,3 +1,10 @@
+// Config
+@import "config";
+
 // Default scss
 @import "default/reset";
+@import "default/grid";
+@import "default/breakpoints";
+@import "default/base";
 @import "default/colors";
+@import "fonts";
