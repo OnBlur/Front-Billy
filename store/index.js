@@ -16,3 +16,5 @@ export const actions = {
     await dispatch('notes/getAllInit')
   }
 }
+
+export const strict = false

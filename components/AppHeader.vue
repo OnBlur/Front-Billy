@@ -1,29 +1,29 @@
 <template>
-<body>
-  <nav class="navbar">
-    <span class="open-slide">
-      <a href="#" @click="openSlideMenu">
-        <img src="~/assets/img/hamburger.png" alt="Menu" height="25px" width="25px">
-      </a>
-    </span>
-  </nav>
+  <div>
+    <nav class="navbar">
+      <span class="open-slide">
+        <a href="#" @click="openSlideMenu">
+          <img src="~/assets/img/hamburger.png" alt="Menu" height="25px" width="25px">
+        </a>
+      </span>
+    </nav>
 
-  <div id="side-menu" class="side-nav" ref="sideMenu">
-    <a href="#" class="btn-close" @click="closeSlideMenu">&times;</a>
-    <li>
-      <nuxt-link to="/">Home</nuxt-link>
-    </li>
-    <li>
-      <nuxt-link to="/about">About</nuxt-link>
-    </li>
-    <li>
-      <nuxt-link to="/video">Video</nuxt-link>
-    </li>
-    <li>
-      <nuxt-link to="/livesearch">Live Search</nuxt-link>
-    </li>
+    <div id="side-menu" class="side-nav" ref="sideMenu">
+      <a href="#" class="btn-close" @click="closeSlideMenu">&times;</a>
+      <li>
+        <nuxt-link to="/">Home</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/about">About</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/video">Video</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/livesearch">Live Search</nuxt-link>
+      </li>
+    </div>
   </div>
-</body>
 </template>
 
 <script>
@@ -33,23 +33,17 @@ export default {
   methods: {
     openSlideMenu() {
       this.$refs.sideMenu.style.width = "250px";
-      this.$refs.mainContainer.style.width = "250px";
-
+      this.$store.state.stateStore.sidebarElement = true;
     },
     closeSlideMenu() {
       this.$refs.sideMenu.style.width = "0";
+      this.$store.state.stateStore.sidebarElement = false;
     }
   }
 };
 </script>
 
-<style>
-body {
-  font-family: "Arial", Serif;
-  background-color: #f4f4f4;
-  overflow-x: hidden;
-}
-
+<style scoped>
 .navbar {
   background-color: #3b5998;
   overflow: hidden;

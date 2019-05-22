@@ -1,7 +1,5 @@
 <template>
-  <section class="container">
-    <div>Index page</div>
-  </section>
+  <div>Index page</div>
 </template>
 
 <script>

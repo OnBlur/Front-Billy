@@ -9,16 +9,27 @@
 import AppHeader from "../components/AppHeader";
 
 export default {
-  components: {
-    AppHeader,
-  },
   computed: {
     getRefFromStore() {
-    this.$store.commit("state/setData", this.$refs.mainContainer)
+      // return this.$store.getters["stateStore/getSidebarStatus"];
+      return this.$store.state.stateStore.sidebarElement;
     }
+  },
+  watch: {
+    getRefFromStore() {
+      if (this.$store.state.stateStore.sidebarElement) {
+        this.$refs.mainContainer.style.marginLeft = "250px";
+      } else {
+        this.$refs.mainContainer.style.marginLeft = "0px";
+      }
+    }
+  },
+  components: {
+    AppHeader
   }
 };
 </script>
+
 <style scoped>
 * {
   box-sizing: border-box;
@@ -39,7 +50,6 @@ ul {
   list-style: none;
 }
 .container {
-
   margin: 2rem auto;
   overflow: hidden;
   padding: 1rem 2rem;

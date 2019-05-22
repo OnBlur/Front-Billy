@@ -1,33 +1,24 @@
 {
-  "name": "Billy",
+  "name": "Front-Billy",
   "version": "1.0.0",
-  "description": "My pioneering Nuxt.js project",
+  "description": "My excellent Nuxt.js project",
   "author": "De Boekemantsjes",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.4.2",
-    "babel-runtime": "^6.26.0",
-    "bootstrap": "^4.1.3",
-    "bootstrap-vue": "^2.0.0-rc.20",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.7.1",
-    "nuxt-sass-resources-loader": "^2.0.5"
+    "nuxt": "^2.4.0",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "bootstrap": "^4.1.3",
+    "@nuxtjs/axios": "^5.3.6"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "cross-env": "^5.0.1",
-    "eslint": "^5.9.0",
-    "eslint-loader": "^2.1.1",
-    "eslint-plugin-vue": "^4.0.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "nodemon": "^1.18.9",
     "sass-loader": "^7.1.0"
   }

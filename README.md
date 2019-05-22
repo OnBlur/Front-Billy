@@ -1,6 +1,6 @@
-# Billy
+# Front-Billy
 
-> My pioneering Nuxt.js project
+> My excellent Nuxt.js project
 
 ## Build Setup
 

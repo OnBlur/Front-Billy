@@ -1,6 +1,6 @@
 /* Apply the site font to body and form elements */
 body {
-  font-family: "Avenir-Roman";
+  // font-family: "Avenir-Roman";
 }
 
 .row {
@@ -19,6 +19,7 @@ select {
 }
 
 input {
+
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
@@ -26,6 +27,7 @@ input {
     -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
     -webkit-transition-delay: 9999s;
   }
+
   &:focus,
   textarea:focus {
     background-color: none;
@@ -74,17 +76,20 @@ a {
 }
 
 // Custom Froala tooltip
-.fr-toolbar{
+.fr-toolbar {
   border-top: none !important;
   background: #bdab9b !important;
 }
-.fr-arrow{
+
+.fr-arrow {
   border-bottom: 5px solid #bdab9b !important;
   top: -5px !important;
 }
-.fr-command:hover{
+
+.fr-command:hover {
   background: #B5A494 !important;
 }
-.fr-options:hover{
+
+.fr-options:hover {
   border-left: none !important;
 }
