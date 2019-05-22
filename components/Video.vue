@@ -39,6 +39,14 @@ export default {
     allNotes: {
       type: Array,
       required: true
+    },
+    notes: {
+      type: Array,
+      required: true
+    },
+    videos: {
+      type: Array,
+      required: true
     }
   },
   data() {

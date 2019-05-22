@@ -33,7 +33,11 @@ export default {
    ** Customize the progress-bar color
    */
   loading: {
-    color: "#fff"
+    color: "#FFFFFF"
+  },
+  loadingIndicator: {
+    name: "circle",
+    color: "#fa92f"
   },
 
   /*
@@ -56,18 +60,15 @@ export default {
   ],
 
   // Definieer het pad naar je bestand met je globale mixins/ variables
-  sassResources: ["~/assets/css/index.scss"],
+  sassResources: ["~/assets/css/transition.scss", "~/assets/css/index.scss"],
 
   /*
    ** Build configuration
    */
   env: {
-    baseUrl: process.env.BASE_URL || "http://localhost.local/api"
+    baseUrl: process.env.BASE_URL || "https://1b1553e6.ngrok.io/api"
   },
 
-  /*
-   ** Build configuration
-   */
   build: {
     plugins: [
       new webpack.ProvidePlugin({
@@ -75,9 +76,24 @@ export default {
         _: "lodash"
       })
     ],
+
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: "pre",
+          test: /\.(js|vue)$/,
+          loader: "eslint-loader",
+          exclude: /(node_modules)/
+        });
+      }
+    },
+    transition: {
+      name: "page",
+      mode: "out-in"
+    }
   }
 };
