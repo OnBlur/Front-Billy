@@ -10,7 +10,12 @@ import AppHeader from "../components/AppHeader";
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
+  },
+  computed: {
+    getRefFromStore() {
+    this.$store.commit("state/setData", this.$refs.mainContainer)
+    }
   }
 };
 </script>

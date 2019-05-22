@@ -34,6 +34,7 @@ export default {
     openSlideMenu() {
       this.$refs.sideMenu.style.width = "250px";
       this.$refs.mainContainer.style.width = "250px";
+
     },
     closeSlideMenu() {
       this.$refs.sideMenu.style.width = "0";
