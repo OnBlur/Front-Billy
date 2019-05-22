@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" ref="mainContainer">
     <AppHeader/>
     <nuxt/>
   </div>
@@ -34,7 +34,7 @@ ul {
   list-style: none;
 }
 .container {
-  max-width: 800px;
+
   margin: 2rem auto;
   overflow: hidden;
   padding: 1rem 2rem;
