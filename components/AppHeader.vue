@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 .navbar {
-  background-color: #3b5998;
+  background-color: #fff;
   overflow: hidden;
   height: 63px;
 }
