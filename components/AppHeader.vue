@@ -9,19 +9,11 @@
     </nav>
 
     <div id="side-menu" class="side-nav" ref="sideMenu">
-      <a href="#" class="btn-close" @click="closeSlideMenu">&times;</a>
-      <li>
-        <nuxt-link to="/">Home</nuxt-link>
-      </li>
-      <li>
+      <a href="#" class="btn-close" @click="closeSlideMenu">&times;</a> 
+        <nuxt-link to="/"><img src="~/assets/img/factore.png" alt="" width="100px" height="100px"></nuxt-link>
         <nuxt-link to="/about">About</nuxt-link>
-      </li>
-      <li>
         <nuxt-link to="/video">Video</nuxt-link>
-      </li>
-      <li>
         <nuxt-link to="/livesearch">Live Search</nuxt-link>
-      </li>
     </div>
   </div>
 </template>
@@ -77,7 +69,7 @@ export default {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: rgb(255, 255, 255);
   opacity: 0.9;
   overflow-x: hidden;
   padding-top: 60px;
