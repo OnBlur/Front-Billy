@@ -8,7 +8,6 @@
 import Video from "@/components/Video.vue";
 
 export default {
-  
   computed: {
     todos() {
       return this.$store.state.todos.notes;
