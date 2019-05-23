@@ -22,14 +22,28 @@
 export default {
   name: "AppHeader",
 
+  computed: {
+    sidebarStatus() {
+      return this.$store.state.stateStore.sidebarStatus;
+    }
+  },
   methods: {
     openSlideMenu() {
       this.$refs.sideMenu.style.width = "250px";
-      this.$store.state.stateStore.sidebarElement = true;
+      this.$store.state.stateStore.sidebarStatus = true;
     },
     closeSlideMenu() {
       this.$refs.sideMenu.style.width = "0";
-      this.$store.state.stateStore.sidebarElement = false;
+      this.$store.state.stateStore.sidebarStatus = false;
+    }
+  },
+  watch: {
+    sidebarStatus() {
+      if (this.$store.state.stateStore.sidebarStatus) {
+        this.openSlideMenu();
+      } else {
+        this.closeSlideMenu();
+      }
     }
   }
 };
