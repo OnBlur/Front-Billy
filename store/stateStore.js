@@ -1,10 +1,10 @@
 export const state = () => ({
-  sidebarElement: false
+  sidebarStatus: false
 })
 
 export const mutations = {
   setData(state, value) {
-    state.sidebarElement = value;
+    state.sidebarStatus = value;
   }
 }
 

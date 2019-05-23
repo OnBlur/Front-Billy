@@ -12,12 +12,12 @@ export default {
   computed: {
     getRefFromStore() {
       // return this.$store.getters["stateStore/getSidebarStatus"];
-      return this.$store.state.stateStore.sidebarElement;
+      return this.$store.state.stateStore.sidebarStatus;
     }
   },
   watch: {
     getRefFromStore() {
-      if (this.$store.state.stateStore.sidebarElement) {
+      if (this.$store.state.stateStore.sidebarStatus) {
         this.$refs.mainContainer.style.marginLeft = "250px";
       } else {
         this.$refs.mainContainer.style.marginLeft = "0px";
