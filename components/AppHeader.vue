@@ -2,7 +2,7 @@
   <div class="main-nav">
     <span class="open-slide">
       <a href="#" @click="openSlideMenu">
-        <img src="~/assets/img/hamburger.png" alt="Menu" height="25px" width="25px">
+        <img src="~/assets/img/hamburger.png" alt="Menu" height="25px" width="25px" ref="menuIcon">
       </a>
     </span>
     <div id="side-menu" class="side-nav" ref="sideMenu">
@@ -30,10 +30,12 @@ export default {
     openSlideMenu() {
       this.$refs.sideMenu.style.width = "250px";
       this.$store.state.stateStore.sidebarStatus = true;
+      this.$refs.menuIcon.style.display = "none";
     },
     closeSlideMenu() {
       this.$refs.sideMenu.style.width = "0";
       this.$store.state.stateStore.sidebarStatus = false;
+      this.$refs.menuIcon.style.display = "unset";
     }
   },
   watch: {
