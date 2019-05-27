@@ -8,7 +8,7 @@
     <div id="side-menu" class="side-nav" ref="sideMenu">
       <a href="#" class="btn-close" @click="closeSlideMenu">&times;</a>
       <nuxt-link to="/">
-        <img src="~/assets/img/factore.png" alt width="100px" height="100px">
+        <img src="~/assets/img/factore.png" alt width="75px" height="75px">
       </nuxt-link>
       <nuxt-link to="/about">About</nuxt-link>
       <nuxt-link to="/video">Video</nuxt-link>
