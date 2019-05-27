@@ -29,30 +29,11 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  background: #f4f4f4;
-}
-a {
-  color: #666;
-  text-decoration: none;
-}
-ul {
-  list-style: none;
-}
+<style lang="scss" scoped>
 .container {
   margin: 2rem auto;
   overflow: hidden;
   padding: 1rem 2rem;
-  background: #fff;
+  background: #F1F9FF;
 }
 </style>
