@@ -31,7 +31,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container {
-  margin: 2rem auto;
   overflow: hidden;
   padding: 1rem 2rem;
   background: #c9c9c9;

@@ -28,8 +28,12 @@
         <img src="~/assets/img/settings.png" alt>Instellingen
       </nuxt-link>
       <h1 class="quick">Quick Links</h1>
-      <nuxt-link to="/video">Video</nuxt-link>
-      <nuxt-link to="/livesearch">Live Search</nuxt-link>
+      <nuxt-link to="/video">
+        <img src="~/assets/img/folder.png" alt>Video
+      </nuxt-link>
+      <nuxt-link to="/livesearch">
+        <img src="~/assets/img/folder.png" alt>Live Search
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -81,6 +85,7 @@ export default {
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
+    border-right: 1px solid #4a4a4a;
 
     a {
       padding: 10px 10px 10px 30px;
