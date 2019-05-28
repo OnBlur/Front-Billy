@@ -8,9 +8,26 @@
     <div id="side-menu" class="side-nav" ref="sideMenu">
       <a href="#" class="btn-close" @click="closeSlideMenu">&times;</a>
       <nuxt-link to="/">
-        <img src="~/assets/img/factore.png" alt width="75px" height="75px">
+        <img src="~/assets/img/factore.jpg" alt width="185px" height="105px">
       </nuxt-link>
-      <nuxt-link to="/about">About</nuxt-link>
+      <div class="profile">
+        <img src="~/assets/img/profile.png" alt width="50px" height="50px">John Doe
+      </div>
+      <h1>Bestanden</h1>
+
+      <nuxt-link to="#">
+        <img src="~/assets/img/folder.png" alt>Alle bestanden
+      </nuxt-link>
+      <nuxt-link to="#">
+        <img src="~/assets/img/share.png" alt>Delen
+      </nuxt-link>
+      <nuxt-link to="#">
+        <img src="~/assets/img/garbage.png" alt>Prullenbak
+      </nuxt-link>
+      <nuxt-link to="#">
+        <img src="~/assets/img/settings.png" alt>Instellingen
+      </nuxt-link>
+      <h1 class="quick">Quick Links</h1>
       <nuxt-link to="/video">Video</nuxt-link>
       <nuxt-link to="/livesearch">Live Search</nuxt-link>
     </div>
@@ -28,7 +45,7 @@ export default {
   },
   methods: {
     openSlideMenu() {
-      this.$refs.sideMenu.style.width = "250px";
+      this.$refs.sideMenu.style.width = "300px";
       this.$store.state.stateStore.sidebarStatus = true;
       this.$refs.menuIcon.style.display = "none";
     },
@@ -68,14 +85,42 @@ export default {
     a {
       padding: 10px 10px 10px 30px;
       text-decoration: none;
-      font-size: 22px;
-      color: #ccc;
+      font-size: 17px;
+      color: #6d6d6d;
       display: block;
       transition: 0.3s;
 
       &:hover {
         color: rgb(128, 126, 126);
       }
+
+      img {
+        margin-right: 10px;
+      }
+    }
+    .profile {
+      padding: 10px 10px 10px 30px;
+      font-weight: bold;
+      font-size: 17px;
+      color: #6d6d6d;
+      display: block;
+      transition: 0.3s;
+      margin-bottom: 25px;
+
+      img {
+        margin-right: 10px;
+      }
+    }
+    h1 {
+      padding: 10px 10px 10px 30px;
+      text-decoration: none;
+      font-size: 22px;
+      color: #6d6d6d;
+      display: block;
+      transition: 0.3s;
+    }
+    .quick {
+      margin-top: 25px;
     }
   }
 

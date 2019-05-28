@@ -18,7 +18,7 @@ export default {
   watch: {
     getRefFromStore() {
       if (this.$store.state.stateStore.sidebarStatus) {
-        this.$refs.mainContainer.style.marginLeft = "250px";
+        this.$refs.mainContainer.style.marginLeft = "300px";
       } else {
         this.$refs.mainContainer.style.marginLeft = "0px";
       }
@@ -34,6 +34,6 @@ export default {
   margin: 2rem auto;
   overflow: hidden;
   padding: 1rem 2rem;
-  background: #F1F9FF;
+  background: #c9c9c9;
 }
 </style>
