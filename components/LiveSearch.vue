@@ -3,7 +3,7 @@
     <header>
       <h1>Live Search</h1>
       <div class="md-field">
-      <input type="text" v-model="searchWord" class="search-box md-input" placeholder="Zoeken">
+        <input type="text" v-model="searchWord" class="search-box md-input" placeholder="Zoeken">
       </div>
     </header>
     <main>
@@ -55,6 +55,7 @@ export default {
 .wrapper-container {
   display: flex;
   flex-direction: column;
+  text-align: center;
 
   .insights-overview {
     margin-top: 2em;

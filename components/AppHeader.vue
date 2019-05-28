@@ -34,6 +34,7 @@
       <nuxt-link to="/livesearch">
         <img src="~/assets/img/folder.png" alt>Live Search
       </nuxt-link>
+      <nuxt-link to="/#" class="logout">Uitloggen</nuxt-link>
     </div>
   </div>
 </template>
@@ -127,8 +128,16 @@ export default {
     .quick {
       margin-top: 25px;
     }
+    .logout {
+      position: absolute;
+      bottom: 10px;
+    }
   }
 
+  .open-slide img {
+    margin-top: 10px;
+    position: absolute;
+  }
   .side-nav .btn-close {
     position: absolute;
     top: 0;
