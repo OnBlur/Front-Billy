@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const state = () => ({
   data: []
-})
+});
 
 export const mutations = {
   setData(state, value) {
@@ -12,22 +12,18 @@ export const mutations = {
     state.data.push(value);
   },
   editData(state, value) {
-    const videoIndex = state.data.findIndex(
-      video => video.id === value.id
-    );
+    const videoIndex = state.data.findIndex(video => video.id === value.id);
     state.data[videoIndex] = value;
   },
   deleteData(state, value) {
-    state.data = state.data.filter(
-      video => video.id !== value
-    );
+    state.data = state.data.filter(video => video.id !== value);
   }
-}
+};
 
 export const actions = {
   getAllInit(vuexContext, context) {
     const requestOptions = {
-      method: "GET",
+      method: "GET"
       //   headers: authHeader()
     };
     return axios
@@ -36,7 +32,6 @@ export const actions = {
         vuexContext.commit("setData", res.data.data);
       })
       .catch(e => {
-        // console.log("nothing found")
         context.error(e);
       });
   },
@@ -48,24 +43,18 @@ export const actions = {
           ...value,
           id: result.data.data.id
         });
-        console.log(result.data.data.videoId);
       })
       .catch(e => console.log(e));
   },
   editVideo(vuexContext, value) {
     const requestOptions = {
       // method: "PATCH",
-      data: {
-        project_id: value.project_id,
-        name: value.name,
-        link: value.link
-      }
-      //   headers: authHeader()
+      project_id: value.project_id,
+      name: value.name,
+      link: value.link
     };
     return axios
-      .post(
-        process.env.baseUrl + "/update-video/" + value.id, requestOptions
-      )
+      .patch(process.env.baseUrl + "/update-video/" + value.id, requestOptions)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
@@ -79,7 +68,7 @@ export const actions = {
       })
       .catch(e => alert(e.response.data.message));
   }
-}
+};
 
 export const getters = {
   allData(state) {
@@ -88,4 +77,4 @@ export const getters = {
   getVideo: state => id => {
     return state.data.find(item => item.id === id);
   }
-}
+};
