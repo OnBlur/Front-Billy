@@ -1,46 +1,47 @@
-import pkg from './package'
+import pkg from "./package";
 
 export default {
-  mode: 'universal',
+  mode: "universal",
 
   /*
    ** Headers of the page
    */
   head: {
     title: pkg.name,
-    meta: [{
-        charset: 'utf-8'
+    meta: [
+      {
+        charset: "utf-8"
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        name: "viewport",
+        content: "width=device-width, initial-scale=1"
       },
       {
-        hid: 'description',
-        name: 'description',
+        hid: "description",
+        name: "description",
         content: pkg.description
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/favicon.ico"
+      }
+    ]
   },
 
   /*
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#fff'
+    color: "#fff"
   },
 
   /*
    ** Global CSS
    */
-  css: [
-    '~/assets/css/index.scss'
-  ],
+  css: ["~/assets/css/index.scss"],
 
   /*
    ** Plugins to load before mounting the App
@@ -52,10 +53,10 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    "@nuxtjs/axios",
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt',
-    'nuxt-fontawesome',
+    "bootstrap-vue/nuxt",
+    "nuxt-fontawesome"
   ],
   /*
    ** Axios module configuration
@@ -65,7 +66,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || "http://729b6940.eu.ngrok.io/api"
+    baseUrl: process.env.BASE_URL || "http://77399318.eu.ngrok.io/api"
   },
 
   /*
@@ -77,4 +78,4 @@ export default {
      */
     extend(config, ctx) {}
   }
-}
+};
