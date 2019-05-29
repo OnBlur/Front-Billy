@@ -1,5 +1,5 @@
 <template>
-  <div>Index page</div>
+  <div class="wrapper-container"></div>
 </template>
 
 <script>

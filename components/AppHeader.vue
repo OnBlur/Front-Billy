@@ -15,11 +15,8 @@
       </div>
       <h1>Bestanden</h1>
 
-      <nuxt-link to="#">
+      <nuxt-link to="/">
         <img src="~/assets/img/folder.png" alt>Alle bestanden
-      </nuxt-link>
-      <nuxt-link to="#">
-        <img src="~/assets/img/share.png" alt>Delen
       </nuxt-link>
       <nuxt-link to="#">
         <img src="~/assets/img/garbage.png" alt>Prullenbak

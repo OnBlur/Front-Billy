@@ -1,11 +1,13 @@
 <template>
   <div class="wrapper-container">
-    <header>
-      <h1>Live Search</h1>
       <div class="md-field">
-        <input type="text" v-model="searchWord" class="search-box md-input" placeholder="Zoeken">
+        <input type="text" v-model="searchWord" class="search-box md-input" placeholder="Zoeken" list="insights">
+          <datalist id="insights">
+            <option v-for="(item, index) in filteredItems" :key="index" v-text="item.name"></option>
+            <option v-if="countFilteredItems == 0" >Er zijn geen resultaten gevonden.</option> 
+          </datalist>
       </div>
-    </header>
+
     <main>
       <div class="insights-overview">
         <div v-for="(item, index) in filteredItems" :key="index" class="insigts-item">

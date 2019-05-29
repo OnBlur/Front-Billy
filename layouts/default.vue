@@ -1,12 +1,14 @@
 <template>
   <div class="container" ref="mainContainer">
     <AppHeader/>
+    <LiveSearch/>
     <nuxt/>
   </div>
 </template>
 
 <script>
 import AppHeader from "../components/AppHeader";
+import LiveSearch from "@/components/LiveSearch.vue";
 
 export default {
   computed: {
@@ -25,7 +27,8 @@ export default {
     }
   },
   components: {
-    AppHeader
+    AppHeader,
+    LiveSearch
   }
 };
 </script>
@@ -33,6 +36,6 @@ export default {
 .container {
   overflow: hidden;
   padding: 1rem 2rem;
-  background: #c9c9c9;
+  background: #eaecec;
 }
 </style>
