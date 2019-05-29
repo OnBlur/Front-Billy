@@ -1,8 +1,12 @@
 <template>
-  <div class="container" ref="mainContainer">
-    <AppHeader/>
-    <LiveSearch/>
-    <nuxt/>
+  <div class="content">
+    <div class="header" ref="mainHeader">
+      <AppHeader/>
+      <LiveSearch/>
+    </div>
+    <div class="container" ref="container">
+      <nuxt/>
+    </div>
   </div>
 </template>
 
@@ -20,10 +24,12 @@ export default {
   watch: {
     getRefFromStore() {
       if (this.$store.state.stateStore.sidebarStatus) {
-        this.$refs.mainContainer.style.width = "calc(100% - 300px)";
-        this.$refs.mainContainer.style.float = "right";
+        this.$refs.mainHeader.style.width = "calc(100% - 300px)";
+        this.$refs.container.style.width = "calc(100% - 300px)";
+        this.$refs.mainHeader.style.float = "right";
       } else {
-        this.$refs.mainContainer.style.width = "100%";
+        this.$refs.mainHeader.style.width = "100%";
+        this.$refs.container.style.width = "100%";
       }
     }
   },
@@ -34,9 +40,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.container {
-  overflow: hidden;
-  padding: 1rem 2rem;
-  background: #eaecec;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  .header {
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    background: #eaecec;
+
+    // width: calc(100% - 300px);
+    /* float: right; */
+    /* justify-content: end; */
+    /* display: flex; */
+  }
 }
 </style>

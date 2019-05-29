@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper-container">ga voor goud!!</div>
+  <div>ga voor goud!!</div>
 </template>
 
 <script>
