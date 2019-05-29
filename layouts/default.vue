@@ -20,9 +20,10 @@ export default {
   watch: {
     getRefFromStore() {
       if (this.$store.state.stateStore.sidebarStatus) {
-        this.$refs.mainContainer.style.marginLeft = "300px";
+        this.$refs.mainContainer.style.width = "calc(100% - 300px)";
+        this.$refs.mainContainer.style.float = "right";
       } else {
-        this.$refs.mainContainer.style.marginLeft = "0px";
+        this.$refs.mainContainer.style.width = "100%";
       }
     }
   },

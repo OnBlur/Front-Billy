@@ -1,12 +1,11 @@
 <template>
   <div class="wrapper-container">
-      <div class="md-field">
-        <input type="text" v-model="searchWord" class="search-box md-input" placeholder="Zoeken" list="insights">
+     
+        <input type="text" v-model="searchWord" class="search-box" placeholder="Zoeken" list="insights">
           <datalist id="insights">
             <option v-for="(item, index) in filteredItems" :key="index" v-text="item.name"></option>
             <option v-if="countFilteredItems == 0" >Er zijn geen resultaten gevonden.</option> 
           </datalist>
-      </div>
 
     <main>
       <div class="insights-overview">
@@ -55,12 +54,29 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper-container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+
+   
 
   .insights-overview {
     margin-top: 2em;
+    display: none;
   }
+  input {
+    width: 20%;
+    border: none;
+    height: 40px;
+    margin: 10px 0;
+    background-color: white;
+    border-radius: 8px;
+    padding-left: 10px;
+    box-shadow: 0px 0px 17px white;
+    outline: none;
+    transition: 1s;
+    float: right;
+  }
+
+    datalist {
+      background-color: white;
+    }
 }
 </style>

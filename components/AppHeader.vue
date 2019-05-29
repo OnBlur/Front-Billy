@@ -78,8 +78,7 @@ export default {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgb(255, 255, 255);
-    opacity: 0.9;
+    background-color: #ffffff;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
@@ -92,6 +91,7 @@ export default {
       color: #6d6d6d;
       display: block;
       transition: 0.3s;
+      
 
       &:hover {
         color: rgb(128, 126, 126);
@@ -132,7 +132,7 @@ export default {
   }
 
   .open-slide img {
-    margin-top: 10px;
+    margin-top: 20px;
     position: absolute;
   }
   .side-nav .btn-close {
