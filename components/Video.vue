@@ -1,5 +1,80 @@
 <template>
-  <div class="wrapper-container">
+  <div class="container">
+    <div class="left">
+      <div class="header">
+        <div class="icon-back">Arrow Left</div>
+        <div
+          class="beadcrumbs"
+        >Company folders > 3 Roots > Projects > UMCG-44350 > Recording website 3 Roots</div>
+      </div>
+      <div class="divider"></div>
+      <div class="info">
+        <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
+        <div class="date">January 22, 2018</div>
+      </div>
+      <div class="video-player">
+        <video class="video" width="600" ref="myVideo" controls>
+          <source src="~/assets/bassie.mp4" type="video/mp4">
+        </video>
+        <div class="navigation">
+          <div class="pause">PAUSE</div>
+          <div class="video-timestamp">1:40 / 4:50</div>
+        </div>
+        <div class="timeline"></div>
+      </div>
+      <div class="tags-wrapper">
+        <div class="tags-title">Tags:</div>
+        <div class="tags">
+          <div class="tag">#Amsterdam</div>
+          <div class="tag">#16 to 20 years</div>
+          <div class="tag custom">+ Add a tag here</div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="comments">
+        <div class="notes-header">
+          <div>Notes (30)</div>
+          <div class="arrow-down-icon">^</div>
+        </div>
+        <div class="notes">
+          <div class="note note-active">
+            <div class="note-timestamp">1:40</div>
+            <div class="note-divider note-divider-active"></div>
+            <div class="note-text">De testpersoon komt gelukkig over.</div>
+          </div>
+          <div class="note" v-for="item in data" :key="item.id">
+            <div class="note-timestamp">{{item.timestamp}}</div>
+            <div class="note-divider"></div>
+            <div class="note-text">{{item.note}}</div>
+          </div>
+        </div>
+        <div class="findings-header">
+          <div>Findings (13)</div>
+          <div class="arrow-down-icon">^</div>
+        </div>
+        <div class="quotes-header">
+          <div>Quotes (5)</div>
+          <div class="arrow-down-icon">^</div>
+        </div>
+      </div>
+      <div class="text-input">
+        <div class="emoji">:)</div>
+        <form v-on:submit.prevent="addNote">
+          <input
+            v-model="inputNote"
+            v-on:keydown="pauseVideo"
+            type="text"
+            ref="note"
+            placeholder="Write your note, findings or a quote here.."
+          >
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="text-input-divider"></div>
+    </div>
+  </div>
+  <!-- <div class="wrapper-container">
     <div class="video-container">
       <video class="video" width="600" ref="myVideo" controls>
         <source src="~/assets/bassie.mp4" type="video/mp4">
@@ -27,7 +102,7 @@
         <button type="submit">Submit</button>
       </form>
     </div>
-  </div>
+  </div>-->
 </template>
 
 <script>
@@ -51,7 +126,24 @@ export default {
   },
   data() {
     return {
-      inputNote: ""
+      inputNote: "",
+      data: [
+        { id: 1, timestamp: 1.4, note: "De testpersoon komt gelukkig over." },
+        {
+          id: 2,
+          timestamp: 1.55,
+          note: "Inschrijven vak weergeven in het midden van de website."
+        },
+        { id: 3, timestamp: 2.1, note: "De testpersoon komt gelukkig over." },
+        {
+          id: 4,
+          timestamp: 2.3,
+          note: "Inschrijven vak weergeven in het midden van de website."
+        },
+        { id: 5, timestamp: 3.1, note: "De testpersoon komt gelukkig over." },
+        { id: 6, timestamp: 3.4, note: "De testpersoon komt gelukkig over." },
+        { id: 7, timestamp: 4.4, note: "De testpersoon komt gelukkig over." }
+      ]
     };
   },
   methods: {
@@ -85,61 +177,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper-container {
-  display: flex;
-  flex-direction: row;
-
-  .notes {
-    width: 400px;
-    margin-left: 10px;
-
-    .timestamps {
-      height: 337px;
-      overflow-y: scroll;
-      background-color: #e0e0e0;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      .item {
-        cursor: pointer;
-        margin: 5px;
-        padding: 5px;
-        background-color: white;
-        color: #4e4e4e;
-        .note-header {
-          display: flex;
-          justify-content: space-between;
-          .timestamp {
-            font-size: 10px;
-            letter-spacing: 1px;
-            line-height: 14px;
-          }
-          .removeItem {
-            /* float: right; */
-            background-color: red;
-            height: 20px;
-            width: 35px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* margin-top: -30px; */
-            cursor: pointer;
-            .delete {
-              font-size: 10px;
-              color: white;
-              font-weight: bold;
-            }
-          }
-        }
-      }
-    }
-    form {
-      display: flex;
-      margin-top: 10px;
-      input {
-        width: 400px;
-      }
-    }
-  }
-}
 </style>

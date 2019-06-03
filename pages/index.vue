@@ -6,7 +6,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm module mid">
+      <Folder :allData="data"/>
+      <!-- <div class="col-sm module mid">
         <h2>Puur schoonheid</h2>
       </div>
       <div class="col-sm module mid">
@@ -17,12 +18,22 @@
       </div>
       <div class="col-sm module mid">
         <h2>Puur schoonheid</h2>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
 
 <script>
+import Folder from "@/components/Folder";
+
+export default {
+  data() {
+    return {
+      data: [{ id: 1, name: "Puur schoonheid", img: "random" }]
+    };
+  },
+  components: { Folder }
+};
 </script>
 
 <style lang="scss" scoped>
