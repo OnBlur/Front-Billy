@@ -1,11 +1,10 @@
 <template>
   <div class="wrapper-container">
-     
-        <input type="text" v-model="searchWord" class="search-box" placeholder="Zoeken" list="insights">
-          <datalist id="insights">
-            <option v-for="(item, index) in filteredItems" :key="index" v-text="item.name"></option>
-            <option v-if="countFilteredItems == 0" >Er zijn geen resultaten gevonden.</option> 
-          </datalist>
+    <input type="text" v-model="searchWord" class="search-box" placeholder="Zoeken" list="insights">
+    <datalist id="insights">
+      <option v-for="(item, index) in filteredItems" :key="index" v-text="item.name"></option>
+      <option v-if="countFilteredItems == 0">Er zijn geen resultaten gevonden.</option>
+    </datalist>
 
     <main>
       <div class="insights-overview">
@@ -54,13 +53,12 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper-container {
-
   .insights-overview {
     margin-top: 2em;
     display: none;
   }
   input {
-    width: 20em;
+    width: 40rem;
     border: none;
     height: 40px;
     margin: 10px 0;
@@ -70,11 +68,13 @@ export default {
     box-shadow: 0px 0px 17px white;
     outline: none;
     transition: 1s;
-    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
 
-    datalist {
-      background-color: white;
-    }
+  datalist {
+    background-color: white;
+  }
 }
 </style>
