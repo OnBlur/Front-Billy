@@ -55,14 +55,12 @@ export default {
 <style lang="scss" scoped>
 .wrapper-container {
 
-   
-
   .insights-overview {
     margin-top: 2em;
     display: none;
   }
   input {
-    width: 20%;
+    width: 20em;
     border: none;
     height: 40px;
     margin: 10px 0;

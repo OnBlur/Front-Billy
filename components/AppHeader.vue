@@ -8,7 +8,7 @@
     <div id="side-menu" class="side-nav" ref="sideMenu">
       <a href="#" class="btn-close" @click="closeSlideMenu">&times;</a>
       <nuxt-link to="/">
-        <img src="~/assets/img/factore.jpg" alt width="185px" height="105px">
+        <img src="~/assets/img/factore.png" alt width="185px" height="105px">
       </nuxt-link>
       <div class="profile">
         <img src="~/assets/img/profile.png" alt width="50px" height="50px">John Doe
@@ -78,23 +78,22 @@ export default {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #ffffff;
+    background-color: #424242;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
-    border-right: 1px solid #4a4a4a;
+    border-right: 1px solid #ffffff;
 
     a {
       padding: 10px 10px 10px 30px;
       text-decoration: none;
       font-size: 17px;
-      color: #6d6d6d;
+      color: #ffffff;
       display: block;
       transition: 0.3s;
-      
 
       &:hover {
-        color: rgb(128, 126, 126);
+        color: #d3d0cc;
       }
 
       img {
@@ -105,7 +104,7 @@ export default {
       padding: 10px 10px 10px 30px;
       font-weight: bold;
       font-size: 17px;
-      color: #6d6d6d;
+      color: #ffffff;
       display: block;
       transition: 0.3s;
       margin-bottom: 25px;
@@ -118,7 +117,7 @@ export default {
       padding: 10px 10px 10px 30px;
       text-decoration: none;
       font-size: 22px;
-      color: #6d6d6d;
+      color: #ffffff;
       display: block;
       transition: 0.3s;
     }
