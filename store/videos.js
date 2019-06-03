@@ -54,7 +54,7 @@ export const actions = {
       link: value.link
     };
     return axios
-      .patch(process.env.baseUrl + "/update-video/" + value.id, requestOptions)
+      .post(process.env.baseUrl + "/update-video/" + value.id, requestOptions)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })

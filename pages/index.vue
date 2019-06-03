@@ -6,6 +6,7 @@
       </div>
     </div>
     <div class="row">
+      <!-- <Folder :note="inputNote"> -->
       <div class="col-sm recent-folder">One of three columns</div>
       <div class="col-sm recent-folder">One of three columns</div>
       <div class="col-sm recent-folder">One of three columns</div>
@@ -14,6 +15,16 @@
 </template>
 
 <script>
+// import Folder from "~/components/Folder";
+
+// export default {
+//   data() {
+//     return {
+//       inputNote: "asdasdada"
+//     };
+//   },
+//   components: {Folder}
+// };
 </script>
 
 <style lang="scss" scoped>
