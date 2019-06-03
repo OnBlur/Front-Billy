@@ -5,9 +5,9 @@
         <h1>Recent toegevoegd</h1>
       </div>
     </div>
-    <div class="row">
-      <Folder :allData="data"/>
-      <!-- <div class="col-sm module mid">
+    <!-- <div class="row"> -->
+    <Folder :allData="data"/>
+    <!-- <div class="col-sm module mid">
         <h2>Puur schoonheid</h2>
       </div>
       <div class="col-sm module mid">
@@ -18,8 +18,8 @@
       </div>
       <div class="col-sm module mid">
         <h2>Puur schoonheid</h2>
-      </div>-->
-    </div>
+    </div>-->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -29,7 +29,15 @@ import Folder from "@/components/Folder";
 export default {
   data() {
     return {
-      data: [{ id: 1, name: "Puur schoonheid", img: "random" }]
+      data: [
+        { id: 1, name: "Puur schoonheid", img: "random" },
+        { id: 2, name: "dwqdqwdwqdqw", img: "random" },
+        { id: 3, name: " dqwdwqd", img: "random" },
+        { id: 4, name: " dqwdwqd", img: "random" },
+        { id: 5, name: " dqwdwqd", img: "random" },
+        { id: 6, name: " dqwdwqd", img: "random" },
+        { id: 7, name: " dqwdwqd", img: "random" }
+      ]
     };
   },
   components: { Folder }

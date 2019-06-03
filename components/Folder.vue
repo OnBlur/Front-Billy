@@ -1,6 +1,8 @@
 <template>
-  <div class="col-sm module mid">
-    <h2>{{allData}}</h2>
+  <div class="row">
+    <div class="col-sm module mid" v-for="item in allData.slice(0, 4)" :key="item.id">
+      <h2>{{item.name}}</h2>
+    </div>
   </div>
   <!-- <div>{{allData}}</div> -->
 </template>

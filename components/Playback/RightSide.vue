@@ -1,78 +1,45 @@
 <template>
-  <div class="container">
-    <div class="left">
-      <div class="header">
-        <div class="icon-back">Arrow Left</div>
-        <div
-          class="beadcrumbs"
-        >Company folders > 3 Roots > Projects > UMCG-44350 > Recording website 3 Roots</div>
+  <div class="right">
+    <div class="comments">
+      <div class="notes-header">
+        <div>Notes (30)</div>
+        <div class="arrow-down-icon">^</div>
       </div>
-      <div class="divider"></div>
-      <div class="info">
-        <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
-        <div class="date">January 22, 2018</div>
-      </div>
-      <div class="video-player">
-        <video class="video" width="600" ref="myVideo" controls>
-          <source src="~/assets/bassie.mp4" type="video/mp4">
-        </video>
-        <div class="navigation">
-          <div class="pause">PAUSE</div>
-          <div class="video-timestamp">1:40 / 4:50</div>
+      <div class="notes">
+        <div class="note note-active">
+          <div class="note-timestamp">1:40</div>
+          <div class="note-divider note-divider-active"></div>
+          <div class="note-text">De testpersoon komt gelukkig over.</div>
         </div>
-        <div class="timeline"></div>
-      </div>
-      <div class="tags-wrapper">
-        <div class="tags-title">Tags:</div>
-        <div class="tags">
-          <div class="tag">#Amsterdam</div>
-          <div class="tag">#16 to 20 years</div>
-          <div class="tag custom">+ Add a tag here</div>
+        <div class="note" v-for="item in data" :key="item.id">
+          <div class="note-timestamp">{{item.timestamp}}</div>
+          <div class="note-divider"></div>
+          <div class="note-text">{{item.note}}</div>
         </div>
+      </div>
+      <div class="findings-header">
+        <div>Findings (13)</div>
+        <div class="arrow-down-icon">^</div>
+      </div>
+      <div class="quotes-header">
+        <div>Quotes (5)</div>
+        <div class="arrow-down-icon">^</div>
       </div>
     </div>
-    <div class="right">
-      <div class="comments">
-        <div class="notes-header">
-          <div>Notes (30)</div>
-          <div class="arrow-down-icon">^</div>
-        </div>
-        <div class="notes">
-          <div class="note note-active">
-            <div class="note-timestamp">1:40</div>
-            <div class="note-divider note-divider-active"></div>
-            <div class="note-text">De testpersoon komt gelukkig over.</div>
-          </div>
-          <div class="note" v-for="item in data" :key="item.id">
-            <div class="note-timestamp">{{item.timestamp}}</div>
-            <div class="note-divider"></div>
-            <div class="note-text">{{item.note}}</div>
-          </div>
-        </div>
-        <div class="findings-header">
-          <div>Findings (13)</div>
-          <div class="arrow-down-icon">^</div>
-        </div>
-        <div class="quotes-header">
-          <div>Quotes (5)</div>
-          <div class="arrow-down-icon">^</div>
-        </div>
-      </div>
-      <div class="text-input">
-        <div class="emoji">:)</div>
-        <form v-on:submit.prevent="addNote">
-          <input
-            v-model="inputNote"
-            v-on:keydown="pauseVideo"
-            type="text"
-            ref="note"
-            placeholder="Write your note, findings or a quote here.."
-          >
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-      <div class="text-input-divider"></div>
+    <div class="text-input">
+      <div class="emoji">:)</div>
+      <form v-on:submit.prevent="addNote">
+        <input
+          v-model="inputNote"
+          v-on:keydown="pauseVideo"
+          type="text"
+          ref="note"
+          placeholder="Write your note, findings or a quote here.."
+        >
+        <button type="submit">Submit</button>
+      </form>
     </div>
+    <div class="text-input-divider"></div>
   </div>
   <!-- <div class="wrapper-container">
     <div class="video-container">
@@ -170,6 +137,15 @@ export default {
     },
     pauseVideo() {
       this.$refs.myVideo.pause();
+    },
+    addVideo() {
+      this.$store.dispatch("videos/addVideo", this.newVideoData);
+    },
+    editVideo(item) {
+      this.$store.dispatch("videos/editVideo", item);
+    },
+    deleteVideo(id) {
+      this.$store.dispatch("videos/deleteVideo", id);
     }
   },
   components: {}
