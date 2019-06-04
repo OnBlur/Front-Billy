@@ -3,7 +3,7 @@
     <!-- LEFT -->
     <b-col>
       <div class="header">
-        <div class="icon-back">Arrow Left</div>
+        <img class="icon-back" src="~/static/icons/right-arrow.svg" alt="Back">
         <div class="back-text">Terug</div>
       </div>
       <div class="divider"></div>
@@ -22,43 +22,49 @@
         <div class="date">January 22, 2018</div>
       </div>
       <div class="tags-wrapper">
-        <div class="tags">
-          <div class="tag">#Amsterdam</div>
-          <div class="tag">#16 to 20 years</div>
-          <div class="tag custom">+ Add a tag here</div>
-        </div>
+        <Tag :tags="tags"/>
       </div>
     </b-col>
+    <b-col cols="1"></b-col>
     <!-- RIGHT -->
     <b-col>
       <div class="comments">
         <div class="notes-header">
           <div class="notes-header-text">Notes (30)</div>
-          <div class="arrow-down-icon">^</div>
+          <img class="icon-down" src="~/static/icons/next.svg" alt="Close">
         </div>
         <div class="notes">
-          <div class="note note-active">
-            <div class="note-timestamp">1:40</div>
-            <div class="note-divider note-divider-active"></div>
-            <div class="note-text">De testpersoon komt gelukkig over.</div>
-          </div>
-          <div class="note" v-for="item in data" :key="item.id">
+          <Note
+            v-for="item in data"
+            :key="item.id"
+            :active="item.id === activeNote"
+            :timestamp="item.timestamp"
+            :note="item.note"
+            @click.native="activeNote = item.id"
+          />
+          <!-- <div
+            class="note"
+            :class="{ 'active': item.id === activeNote }"
+            v-for="item in data"
+            :key="item.id"
+            @click="activeNote = item.id"
+          >
             <div class="note-timestamp">{{item.timestamp}}</div>
-            <div class="note-divider"></div>
+            <div class="note-divider" :class="{ 'active': item.id === activeNote }"></div>
             <div class="note-text">{{item.note}}</div>
-          </div>
+          </div>-->
         </div>
         <div class="findings-header">
           <div class="findings-header-text">Findings (13)</div>
-          <div class="arrow-down-icon">^</div>
+          <img class="icon-right" src="~/static/icons/next_2.svg" alt="Open">
         </div>
         <div class="quotes-header">
           <div class="quotes-header-text">Quotes (5)</div>
-          <div class="arrow-down-icon">^</div>
+          <img class="icon-right" src="~/static/icons/next_2.svg" alt="Open">
         </div>
       </div>
       <div class="text-input">
-        <div class="emoji">:)</div>
+        <img class="emoji" src="~/static/icons/happy.svg" alt="Emoji's">
         <form v-on:submit.prevent="addNote">
           <input
             v-model="inputNote"
@@ -77,17 +83,22 @@
 
 <script>
 import { mapMutations } from "vuex";
+import Tag from "@/components/AppTag";
+import Note from "@/components/AppNote";
 
 export default {
   name: "Playback",
+  layout: "playback",
   data() {
     return {
       inputNote: "",
+      activeNote: 1,
+      tags: [{ id: 1, title: "Amsterdam" }, { id: 2, title: "16 to 20 years" }],
       data: [
         { id: 1, timestamp: 1.4, note: "De testpersoon komt gelukkig over." },
         {
           id: 2,
-          timestamp: 1.55,
+          timestamp: 1.5,
           note: "Inschrijven vak weergeven in het midden van de website."
         },
         { id: 3, timestamp: 2.1, note: "De testpersoon komt gelukkig over." },
@@ -148,17 +159,18 @@ export default {
       this.$store.dispatch("videos/deleteVideo", id);
     }
   },
-  components: {}
+  components: { Tag, Note }
 };
 </script>
 
 <style lang="scss" scoped>
 .header {
   display: flex;
-  // justify-content: space-between;
   .icon-back {
+    cursor: pointer;
   }
   .back-text {
+    margin-left: 10px;
     font-size: 16px;
     font-weight: bold;
     color: #424242;
@@ -198,7 +210,7 @@ export default {
   }
 }
 .info {
-  margin-top: 30px;
+  margin-top: 45px;
   height: 50px;
   display: flex;
   flex-direction: column;
@@ -214,26 +226,12 @@ export default {
   }
 }
 .tags-wrapper {
-  margin-top: 30px;
+  margin-top: 64px;
   height: 80px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .tags {
-    display: flex;
-    .tag {
-      background-color: white;
-      padding: 12px;
-      margin-right: 10px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
-    }
-    .custom {
-      background-color: #424242;
-      color: white;
-    }
-  }
 }
 
 .comments {
@@ -252,17 +250,29 @@ export default {
       font-weight: bold;
       color: #424242;
     }
-    .arrow-down-icon {
+    .icon-down {
+      cursor: pointer;
     }
   }
   .notes {
     margin-top: 5px;
     max-height: 470px;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #424242;
+      border-radius: 0px;
+    }
     .note {
+      cursor: pointer;
       padding: 25px;
       display: flex;
       align-items: center;
+      &.active {
+        box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.08);
+      }
       .note-timestamp {
       }
       .note-divider {
@@ -271,9 +281,9 @@ export default {
         margin-left: 10px;
         margin-right: 10px;
         background-color: #f1f1f1;
-      }
-      .note-divider-active {
-        background-color: #daedf5;
+        &.active {
+          background-color: #daedf5;
+        }
       }
       .note-text {
       }
@@ -290,12 +300,14 @@ export default {
     padding: 25px;
     padding-top: 20px;
     padding-bottom: 20px;
+    box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
     .findings-header-text {
       font-size: 16px;
       font-weight: bold;
       color: #424242;
     }
-    .arrow-down-icon {
+    .icon-right {
+      cursor: pointer;
     }
   }
   .quotes-header {
@@ -312,7 +324,8 @@ export default {
       font-weight: bold;
       color: #424242;
     }
-    .arrow-down-icon {
+    .icon-right {
+      cursor: pointer;
     }
   }
 }
@@ -321,8 +334,10 @@ export default {
   display: flex;
   .emoji {
     margin-right: 30px;
+    cursor: pointer;
   }
   form {
+    width: 100%;
     input {
       background-color: transparent;
       border-radius: 0;
