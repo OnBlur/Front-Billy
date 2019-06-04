@@ -25,7 +25,7 @@
         <img src="~/assets/img/settings.png" alt>Instellingen
       </nuxt-link>
       <h1 class="quick">Quick Links</h1>
-      <nuxt-link to="/video">
+      <nuxt-link to="/playback">
         <img src="~/assets/img/folder.png" alt>Video
       </nuxt-link>
       <nuxt-link to="/livesearch">

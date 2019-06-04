@@ -4,9 +4,9 @@
       <AppHeader/>
       <LiveSearch/>
     </div>
-    <div class="container" ref="container">
+    <b-container ref="container">
       <nuxt/>
-    </div>
+    </b-container>
   </div>
 </template>
 
