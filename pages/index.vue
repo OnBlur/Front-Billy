@@ -1,25 +1,11 @@
 <template>
-  <div class="container">
+  <div class="contents">
     <div class="row">
       <div class="col-sm">
         <h1>Recent toegevoegd</h1>
       </div>
     </div>
-    <!-- <div class="row"> -->
     <Folder :allData="data"/>
-    <!-- <div class="col-sm module mid">
-        <h2>Puur schoonheid</h2>
-      </div>
-      <div class="col-sm module mid">
-        <h2>3 Roots</h2>
-      </div>
-      <div class="col-sm module mid">
-        <h2>A&B meester schilders</h2>
-      </div>
-      <div class="col-sm module mid">
-        <h2>Puur schoonheid</h2>
-    </div>-->
-    <!-- </div> -->
   </div>
 </template>
 
@@ -30,10 +16,10 @@ export default {
   data() {
     return {
       data: [
-        { id: 1, name: "Puur schoonheid", img: "random" },
-        { id: 2, name: "dwqdqwdwqdqw", img: "random" },
-        { id: 3, name: " dqwdwqd", img: "random" },
-        { id: 4, name: " dqwdwqd", img: "random" },
+        { id: 1, name: "Puur Schoonheid", img: "random" },
+        { id: 2, name: "3 roots", img: "random" },
+        { id: 3, name: "A&B Meester Schilders", img: "random" },
+        { id: 4, name: " Puur Schoonheid", img: "random" },
         { id: 5, name: " dqwdwqd", img: "random" },
         { id: 6, name: " dqwdwqd", img: "random" },
         { id: 7, name: " dqwdwqd", img: "random" }
@@ -45,35 +31,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.contents {
   background-color: #ececec;
 
   h1 {
     font-family: OpenSans;
     font-weight: bold;
     color: #424242;
-  }
-
-  .module {
-    background: url("~assets/img/recent-folder.png");
-    background-size: cover;
-    width: 150px;
-    height: 75px;
-    margin: 75px 75px 75px 75px;
-    position: relative;
-  }
-
-  .mid h2 {
-    font-family: "Roboto", sans-serif;
-    font-weight: 900;
-    color: white;
-    text-transform: uppercase;
-    margin-top: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 1rem;
-    transform: translate(-50%, -50%);
   }
 }
 </style>
