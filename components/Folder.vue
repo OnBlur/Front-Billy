@@ -3,25 +3,12 @@
     <div class="col-sm module mid" v-for="item in allData.slice(0, 4)" :key="item.id">
       <svg class="crop-shapes">
         <defs>
-          <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="650">
-            <image
-              class="twombly"
-              xlink:href="@/assets/img/screen.png"
-              x="-30"
-              y="-30"
-              width="380"
-              height="267"
-            ></image>
+          <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
+            <image xlink:href="@/assets/img/screen.png" x="-30" y="-30" width="380" height="267"></image>
           </pattern>
         </defs>
 
-        <svg
-          width="475.082px"
-          height="475.082px"
-          viewBox="0 0 475.082 475.082"
-          fill="url(#img1)"
-          style="enable-background:new 0 0 475.082 475.082;"
-        >
+        <svg viewBox="0 0 475 475" fill="url(#img1)">
           <g>
             <path
               d="M456.239,128.475c-12.56-12.562-27.597-18.842-45.11-18.842h-191.86v-9.136c0-17.511-6.283-32.548-18.843-45.107
@@ -50,9 +37,10 @@ export default {
 
 <style lang="scss" scoped>
 .module {
-  margin: 75px 75px 75px 75px;
-  position: relative;
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .mid h2 {
