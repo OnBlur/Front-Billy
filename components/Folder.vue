@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm module mid" v-for="item in allData.slice(0, 4)" :key="item.id">
+    <b-col class="recent-col" v-for="item in allData.slice(0, 4)" :key="item.id">
       <svg class="crop-shapes">
         <defs>
           <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
@@ -17,8 +17,8 @@
           </g>
         </svg>
       </svg>
-      <h2>{{item.name}}</h2>
-    </div>
+      <h2 class="item-name">{{item.name}}</h2>
+    </b-col>
   </div>
 </template>
 
@@ -34,33 +34,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.module {
+.recent-col {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-}
 
-.mid h2 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-top: 50px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 1rem;
-  transform: translate(-50%, -50%);
+  .item-name {
+    width: 150px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    // margin-top: 50px;
+    position: absolute;
+    // top: 50%;
+    // left: 50%;
+    font-size: 1rem;
+    // transform: translate(-50%, -50%);
+
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 .crop-shapes {
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+  width: 100%;
+  // position: absolute;
+  // right: 0;
+  // left: 0;
+  // top: 0;
+  // bottom: 0;
+  // margin: auto;
 }
 </style>
 
