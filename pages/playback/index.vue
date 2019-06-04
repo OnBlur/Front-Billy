@@ -4,15 +4,9 @@
     <b-col>
       <div class="header">
         <div class="icon-back">Arrow Left</div>
-        <div
-          class="beadcrumbs"
-        >Company folders > 3 Roots > Projects > UMCG-44350 > Recording website 3 Roots</div>
+        <div class="back-text">Terug</div>
       </div>
       <div class="divider"></div>
-      <div class="info">
-        <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
-        <div class="date">January 22, 2018</div>
-      </div>
       <div class="video-player">
         <video class="video" width="100%" ref="myVideo" controls>
           <source src="~/assets/bassie.mp4" type="video/mp4">
@@ -23,8 +17,11 @@
         </div>
         <div class="timeline"></div>
       </div>
+      <div class="info">
+        <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
+        <div class="date">January 22, 2018</div>
+      </div>
       <div class="tags-wrapper">
-        <div class="tags-title">Tags:</div>
         <div class="tags">
           <div class="tag">#Amsterdam</div>
           <div class="tag">#16 to 20 years</div>
@@ -36,7 +33,7 @@
     <b-col>
       <div class="comments">
         <div class="notes-header">
-          <div>Notes (30)</div>
+          <div class="notes-header-text">Notes (30)</div>
           <div class="arrow-down-icon">^</div>
         </div>
         <div class="notes">
@@ -52,11 +49,11 @@
           </div>
         </div>
         <div class="findings-header">
-          <div>Findings (13)</div>
+          <div class="findings-header-text">Findings (13)</div>
           <div class="arrow-down-icon">^</div>
         </div>
         <div class="quotes-header">
-          <div>Quotes (5)</div>
+          <div class="quotes-header-text">Quotes (5)</div>
           <div class="arrow-down-icon">^</div>
         </div>
       </div>
@@ -158,10 +155,13 @@ export default {
 <style lang="scss" scoped>
 .header {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   .icon-back {
   }
-  .beadcrumbs {
+  .back-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #424242;
   }
 }
 .divider {
@@ -169,28 +169,14 @@ export default {
   background-color: #e7e7e7;
   margin-top: 20px;
 }
-.info {
-  margin-top: 30px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  .title {
-  }
-  .date {
-  }
-}
 .video-player {
   margin-top: 30px;
   background-color: white;
   background-color: transparent;
   .video {
-    // height: 400px;
-    // width: 650px;
-    // background-image: url("../img/website.png");
-    // background-size: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   }
   .navigation {
     padding: 17px;
@@ -211,6 +197,22 @@ export default {
     border-bottom-right-radius: 10px;
   }
 }
+.info {
+  margin-top: 30px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #424242;
+  }
+  .date {
+    font-size: 16px;
+    color: #424242;
+  }
+}
 .tags-wrapper {
   margin-top: 30px;
   height: 80px;
@@ -218,8 +220,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .tags-title {
-  }
   .tags {
     display: flex;
     .tag {
@@ -227,6 +227,7 @@ export default {
       padding: 12px;
       margin-right: 10px;
       border-radius: 10px;
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
     }
     .custom {
       background-color: #424242;
@@ -239,12 +240,18 @@ export default {
   // width: 550px;
   background-color: #fbfbfb;
   border-radius: 10px;
+  box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   .notes-header {
     display: flex;
     justify-content: space-between;
     padding: 25px;
     padding-top: 20px;
     padding-bottom: 20px;
+    .notes-header-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #424242;
+    }
     .arrow-down-icon {
     }
   }
@@ -283,6 +290,11 @@ export default {
     padding: 25px;
     padding-top: 20px;
     padding-bottom: 20px;
+    .findings-header-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #424242;
+    }
     .arrow-down-icon {
     }
   }
@@ -295,6 +307,11 @@ export default {
     padding-bottom: 20px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    .quotes-header-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #424242;
+    }
     .arrow-down-icon {
     }
   }

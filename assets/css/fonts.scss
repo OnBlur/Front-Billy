@@ -2,66 +2,38 @@
 /*		                                  FONT - AVENIR							         		            		   */
 /*===============================================================================================*/
 
-$avenir-font-dir: "~static/fonts/avenir/";
-$karla-font-dir: "~static/fonts/karla/";
-$norquay-font-dir: "~static/fonts/norquay/";
+$openSans-font-dir: "~static/fonts/openSans/";
 $icon-dir: "~static/icons/";
 
+// @font-face {
+//   font-family: "Avenir-Oblique";
+//   src: url($avenir-font-dir+"Avenir-Oblique.eot");
+//   src: url($avenir-font-dir+"Avenir-Oblique.eot?#iefix")
+//       format("embedded-opentype"),
+//     url($avenir-font-dir+"Avenir-Oblique.woff") format("woff"),
+//     url($avenir-font-dir+"Avenir-Oblique.ttf") format("truetype");
+//   font-weight: normal;
+//   font-style: italic;
+// }
+
+// @font-face {
+//   font-family: "Avenir-Heavy";
+//   src: url($avenir-font-dir+"Avenir-Heavy.eot");
+//   src: url($avenir-font-dir+"Avenir-Heavy.eot?#iefix")
+//       format("embedded-opentype"),
+//     url($avenir-font-dir+"Avenir-Heavy.woff") format("woff"),
+//     url($avenir-font-dir+"Avenir-Heavy.ttf") format("truetype");
+//   font-weight: 900;
+//   font-style: normal;
+// }
+
 @font-face {
-  font-family: "Avenir-Oblique";
-  src: url($avenir-font-dir+"Avenir-Oblique.eot");
-  src: url($avenir-font-dir+"Avenir-Oblique.eot?#iefix")
-      format("embedded-opentype"),
-    url($avenir-font-dir+"Avenir-Oblique.woff") format("woff"),
-    url($avenir-font-dir+"Avenir-Oblique.ttf") format("truetype");
+  font-family: "OpenSans";
+  // src: url($avenir-font-dir+"OpenSans-Regular.eot");
+  // src: url($avenir-font-dir+"OpenSans-Regular.eot?#iefix") format("embedded-opentype");
+  // src: url($avenir-font-dir+"OpenSans-Regular.woff") format("woff");
+  src: url($openSans-font-dir+"OpenSans-Regular.ttf") format("truetype");
   font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Avenir-Heavy";
-  src: url($avenir-font-dir+"Avenir-Heavy.eot");
-  src: url($avenir-font-dir+"Avenir-Heavy.eot?#iefix")
-      format("embedded-opentype"),
-    url($avenir-font-dir+"Avenir-Heavy.woff") format("woff"),
-    url($avenir-font-dir+"Avenir-Heavy.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Avenir-Roman";
-  src: url($avenir-font-dir+"Avenir-Roman.eot");
-  src: url($avenir-font-dir+"Avenir-Roman.eot?#iefix")
-      format("embedded-opentype"),
-    url($avenir-font-dir+"Avenir-Roman.woff") format("woff"),
-    url($avenir-font-dir+"Avenir-Roman.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-/*===============================================================================================*/
-/*		                                  FONT - NORQUAY							         		              	 */
-/*===============================================================================================*/
-
-@font-face {
-  font-family: "Norquay";
-  src: url($norquay-font-dir+"Norquay.eot");
-  src: url($norquay-font-dir+"Norquay.eot?#iefix") format("embedded-opentype"),
-    url($norquay-font-dir+"Norquay.woff") format("woff"),
-    url($norquay-font-dir+"Norquay.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Norquay-bold";
-  src: url($norquay-font-dir+"Norquay-bold.eot");
-  src: url($norquay-font-dir+"Norquay-bold.eot?#iefix")
-      format("embedded-opentype"),
-    url($norquay-font-dir+"Norquay-bold.woff") format("woff"),
-    url($norquay-font-dir+"Norquay-bold.ttf") format("truetype");
-  font-weight: 900;
   font-style: normal;
 }
 
@@ -71,15 +43,15 @@ $icon-dir: "~static/icons/";
 
 /* Default icons, arrows and such */
 
-@font-face {
-  font-family: "icons";
-  src: url($icon-dir+"platform-zelfontwikkeling.eot");
-  src: url($icon-dir+"platform-zelfontwikkeling.eot?#iefix")
-      format("embedded-opentype"),
-    url($icon-dir+"platform-zelfontwikkeling.woff") format("woff"),
-    url($icon-dir+"platform-zelfontwikkeling.ttf") format("truetype"),
-    url($icon-dir+"platform-zelfontwikkeling.svg#platform-zelfontwikkeling")
-      format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: "icons";
+//   src: url($icon-dir+"platform-zelfontwikkeling.eot");
+//   src: url($icon-dir+"platform-zelfontwikkeling.eot?#iefix")
+//       format("embedded-opentype"),
+//     url($icon-dir+"platform-zelfontwikkeling.woff") format("woff"),
+//     url($icon-dir+"platform-zelfontwikkeling.ttf") format("truetype"),
+//     url($icon-dir+"platform-zelfontwikkeling.svg#platform-zelfontwikkeling")
+//       format("svg");
+//   font-weight: normal;
+//   font-style: normal;
+// }
