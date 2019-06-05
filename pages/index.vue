@@ -1,12 +1,18 @@
 <template>
-  <div class="contents">
-    <div class="row">
-      <div class="col-sm">
-        <h1>Recent toegevoegd</h1>
-      </div>
-    </div>
-    <Folder :allData="data"/>
-  </div>
+  <b-container>
+    <b-row>
+      <b-col>
+        <div class="header">
+          <div class="recent-text">Recent folders</div>
+        </div>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="header">
+        <Folder :allData="data"/>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -31,11 +37,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contents {
-  background-color: #ececec;
+.header {
+  display: flex;
+  flex-wrap: wrap;
 
-  h1 {
-    font-family: OpenSans;
+  .recent-text {
+    margin-left: 10px;
+    font-size: 16px;
     font-weight: bold;
     color: #424242;
   }
