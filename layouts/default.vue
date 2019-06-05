@@ -4,9 +4,7 @@
       <AppHeader/>
       <LiveSearch/>
     </div>
-    <b-container ref="container">
-      <nuxt/>
-    </b-container>
+    <nuxt/>
   </div>
 </template>
 
@@ -39,6 +37,7 @@ export default {
   }
 };
 </script>
+
 <style lang="scss" scoped>
 .content {
   display: flex;

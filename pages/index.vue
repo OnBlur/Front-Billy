@@ -1,17 +1,11 @@
 <template>
-  <b-container>
+  <b-container ref="container">
     <b-row>
       <b-col>
-        <div class="header">
           <div class="recent-text">Recent folders</div>
-        </div>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col class="header">
-        <Folder :allData="data"/>
-      </b-col>
-    </b-row>
+    <Folder :allData="data"/>
   </b-container>
 </template>
 

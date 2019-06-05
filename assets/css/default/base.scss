@@ -1,4 +1,8 @@
 /* Apply the site font to body and form elements */
+*{
+  outline: 1px solid red;
+}
+
 body {
   background-color: #ececec;
   font-family: OpenSans;
