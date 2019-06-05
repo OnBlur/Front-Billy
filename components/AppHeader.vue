@@ -47,12 +47,12 @@ export default {
   },
   methods: {
     openSlideMenu() {
-      this.$refs.sideMenu.style.width = "300px";
+      this.$refs.sideMenu.style.left = "0px";
       this.$store.state.stateStore.sidebarStatus = true;
       this.$refs.menuIcon.style.display = "none";
     },
     closeSlideMenu() {
-      this.$refs.sideMenu.style.width = "0";
+      this.$refs.sideMenu.style.left = "-300px";
       this.$store.state.stateStore.sidebarStatus = false;
       this.$refs.menuIcon.style.display = "unset";
     }
@@ -73,11 +73,11 @@ export default {
 .main-nav {
   .side-nav {
     height: 100%;
-    width: 0;
+    width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    left: -300px;
     background-color: #424242;
     overflow-x: hidden;
     padding-top: 60px;
