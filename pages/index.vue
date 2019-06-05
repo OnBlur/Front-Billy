@@ -13,6 +13,20 @@
 import Folder from "@/components/Folder";
 
 export default {
+  computed: {
+    getRefFromStore() {
+      return this.$store.state.stateStore.sidebarStatus;
+    }
+  },
+  watch: {
+    getRefFromStore() {
+      if (this.$store.state.stateStore.sidebarStatus) {
+        this.$refs.container.style.width = "calc(100% - 300px)";
+      } else {
+        this.$refs.container.style.width = "100%";
+      }
+    }
+  },
   data() {
     return {
       data: [

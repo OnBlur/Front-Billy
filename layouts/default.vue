@@ -15,7 +15,6 @@ import LiveSearch from "@/components/LiveSearch.vue";
 export default {
   computed: {
     getRefFromStore() {
-      // return this.$store.getters["stateStore/getSidebarStatus"];
       return this.$store.state.stateStore.sidebarStatus;
     }
   },
@@ -23,11 +22,9 @@ export default {
     getRefFromStore() {
       if (this.$store.state.stateStore.sidebarStatus) {
         this.$refs.mainHeader.style.width = "calc(100% - 300px)";
-        this.$refs.container.style.width = "calc(100% - 300px)";
         this.$refs.mainHeader.style.float = "right";
       } else {
         this.$refs.mainHeader.style.width = "100%";
-        this.$refs.container.style.width = "100%";
       }
     }
   },
