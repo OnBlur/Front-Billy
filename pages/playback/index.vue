@@ -17,7 +17,7 @@
         </div>-->
         <div class="timeline">
           <!-- <div class="progress" :style="{ width: activeColor, fontSize: fontSize + 'px' }"></div> -->
-          <div class="progress"></div>
+          <div class="progress" ref="progressBar"></div>
           <div
             class="timeline-item"
             v-for="item in notes"
@@ -27,7 +27,7 @@
             <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
           </div>
         </div>
-        <p>{{currentTimestamp}}</p>
+        <!-- <p>{{currentTimestamp}}</p> -->
       </div>
       <div class="info">
         <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
@@ -124,10 +124,13 @@ export default {
   layout: "playback",
   data() {
     return {
+      currentTimestamp: 0,
+      progressBarTimestamp: 0,
+
       inputNote: "",
       activeNote: 1,
       activeHeader: 1,
-      currentTimestamp: 0,
+
       tags: [{ id: 1, title: "Amsterdam" }, { id: 2, title: "16 to 20 years" }],
       notes: [
         {
@@ -187,7 +190,6 @@ export default {
   mounted() {
     this.$refs.myVideo.ontimeupdate = event => {
       this.currentTimestamp = this.$refs.myVideo.currentTime;
-      console.log("The currentTime attribute has been updated. Again.");
     };
   },
   computed: {
@@ -243,7 +245,23 @@ export default {
       this.activeHeader = id;
     }
   },
-  watch: {},
+  watch: {
+    currentTimestamp() {
+      let durationVideo = this.$refs.myVideo.duration;
+      let increaseBarBy = 25 / +durationVideo;
+
+      this.progressBarTimestamp = this.progressBarTimestamp + increaseBarBy;
+      console.log(this.progressBarTimestamp);
+
+      // this.$refs.progressBar.style.width = this.progressBarTimestamp + "%";
+
+      if (this.progressBarTimestamp >= 100) {
+        this.$refs.progressBar.style.width = this.progressBarTimestamp + "%";
+        this.$refs.progressBar.style.borderBottomRightRadius = "10px";
+      } else
+        this.$refs.progressBar.style.width = this.progressBarTimestamp + "%";
+    }
+  },
   components: { Tag, Note }
 };
 </script>
@@ -274,24 +292,12 @@ export default {
   max-width: 826px;
   background-color: white;
   background-color: transparent;
+  box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   .video {
+    outline: none;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   }
-  // .navigation {
-  //   padding: 17px;
-  //   margin-top: -5px;
-  //   background-color: white;
-
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: space-between;
-  //   .pause {
-  //   }
-  //   .video-timestamp {
-  //   }
-  // }
   .timeline {
     margin-top: -5px;
     height: 50px;
@@ -300,20 +306,22 @@ export default {
     border-bottom-right-radius: 10px;
 
     display: flex;
-    justify-content: flex-end;
+    // justify-content: flex-end;
     // justify-content: center;
     align-items: center;
     .progress {
       height: 50px;
       background-color: #808080;
-      position: absolute;
-      left: 0;
-      width: 157px;
-      margin-left: 10px;
+      // position: absolute;
+      // left: 0;
+      // width: 157px;
+      // margin-left: 10px;
       border-radius: 0px;
       border-bottom-left-radius: 10px;
+      // border-bottom-right-radius: 10px;
     }
     .timeline-item {
+      position: absolute;
       cursor: pointer;
       width: 35px;
       height: 35px;
