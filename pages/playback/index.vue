@@ -11,11 +11,12 @@
         <video class="video" width="100%" ref="myVideo" controls>
           <source src="~/assets/bassie.mp4" type="video/mp4">
         </video>
-        <div class="navigation">
+        <!-- <div class="navigation">
           <div class="pause">PAUSE</div>
           <div class="video-timestamp">1:40 / 4:50</div>
-        </div>
+        </div>-->
         <div class="timeline">
+          <!-- <div class="progress" :style="{ width: activeColor, fontSize: fontSize + 'px' }"></div> -->
           <div class="progress"></div>
           <div
             class="timeline-item"
@@ -23,9 +24,10 @@
             :key="item.id"
             @click="selectComment(item)"
           >
-            <!-- <img class="icon-down" :src="'~/static/icons/' + item.item + '.svg'"> -->
+            <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
           </div>
         </div>
+        <p>{{currentTimestamp}}</p>
       </div>
       <div class="info">
         <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
@@ -125,30 +127,41 @@ export default {
       inputNote: "",
       activeNote: 1,
       activeHeader: 1,
+      currentTimestamp: 0,
       tags: [{ id: 1, title: "Amsterdam" }, { id: 2, title: "16 to 20 years" }],
       notes: [
         {
           id: 1,
+          iconClass: "quote-left",
+          characterClass: "l",
           timestamp: 1.4,
           note: "De testpersoon komt gelukkig over."
         },
         {
           id: 2,
+          iconClass: "bulb",
+          characterClass: "k",
           timestamp: 1.5,
           note: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 3,
+          iconClass: "quote-left",
+          characterClass: "l",
           timestamp: 2.1,
           note: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 4,
+          iconClass: "quote-left",
+          characterClass: "l",
           timestamp: 2.3,
           note: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 5,
+          iconClass: "bulb",
+          characterClass: "k",
           timestamp: 3.1,
           note: "Inschrijven vak weergeven in het midden van de website."
         }
@@ -169,6 +182,12 @@ export default {
         },
         { id: 2, timestamp: 1.4, note: "De testpersoon komt gelukkig over." }
       ]
+    };
+  },
+  mounted() {
+    this.$refs.myVideo.ontimeupdate = event => {
+      this.currentTimestamp = this.$refs.myVideo.currentTime;
+      console.log("The currentTime attribute has been updated. Again.");
     };
   },
   computed: {
@@ -224,6 +243,7 @@ export default {
       this.activeHeader = id;
     }
   },
+  watch: {},
   components: { Tag, Note }
 };
 </script>
@@ -259,20 +279,21 @@ export default {
     border-top-right-radius: 10px;
     box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   }
-  .navigation {
-    padding: 17px;
-    margin-top: -5px;
-    background-color: white;
+  // .navigation {
+  //   padding: 17px;
+  //   margin-top: -5px;
+  //   background-color: white;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .pause {
-    }
-    .video-timestamp {
-    }
-  }
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  //   .pause {
+  //   }
+  //   .video-timestamp {
+  //   }
+  // }
   .timeline {
+    margin-top: -5px;
     height: 50px;
     background-color: #424242;
     border-bottom-left-radius: 10px;
@@ -302,6 +323,9 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      .icon {
+        font-family: "icons";
+      }
     }
   }
 }

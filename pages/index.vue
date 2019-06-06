@@ -23,33 +23,33 @@
       </div>
     </div>
     <div class="row">
-      <!-- <div class="scrollable"> -->
-      <table width="100%">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Bedrijf</th>
-            <th>Projecten</th>
-            <th></th>
-            <th>Laatst bewerkt</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in data" :key="item.id" class="companyfolders">
-            <td>
-              <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
-            </td>
-            <td>{{item.name}}</td>
-            <td>{{item.projects}}</td>
-            <td>{{item.members}}</td>
-            <td>
-              <div class="lastedit">{{item.lastEdit}}</div>
-              <div class="editby">{{item.editBy}}</div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- </div> -->
+      <div class="col">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Bedrijf</th>
+              <th>Projecten</th>
+              <th></th>
+              <th>Laatst bewerkt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in data" :key="item.id" class="companyfolders">
+              <td>
+                <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
+              </td>
+              <td>{{item.name}}</td>
+              <td>{{item.projects}}</td>
+              <td>{{item.members}}</td>
+              <td>
+                <div class="lastedit">{{item.lastEdit}}</div>
+                <div class="editby">{{item.editBy}}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <!-- <Folder :allData="data"/> -->
   </div>
@@ -183,6 +183,7 @@ export default {
   }
 
   table {
+    width: 100%;
     color: #424242;
     thead {
     }
