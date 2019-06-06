@@ -9,11 +9,9 @@ export const mutations = {
 };
 
 export const actions = {
-  async nuxtServerInit({
-    dispatch
-  }) {
-    // await dispatch("videos/getAllInit");
-    // await dispatch("notes/getAllInit");
+  async nuxtServerInit({ dispatch }) {
+    await dispatch("videos/getAllInit");
+    await dispatch("notes/getAllInit");
   }
 };
 

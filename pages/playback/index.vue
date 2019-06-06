@@ -3,7 +3,7 @@
     <!-- LEFT -->
     <b-col md="5">
       <div class="header">
-        <img class="icon-back" src="~/static/icons/right-arrow.svg" alt="Back">
+        <div class="icon arrow-left">o</div>
         <div class="back-text">Terug</div>
       </div>
       <div class="divider"></div>
@@ -23,7 +23,7 @@
             :key="item.id"
             @click="selectComment(item)"
           >
-            <img class="icon-down" :src="'~/static/icons/' + item.item + '.svg'">
+            <!-- <img class="icon-down" :src="'~/static/icons/' + item.item + '.svg'"> -->
           </div>
         </div>
       </div>
@@ -41,7 +41,13 @@
     <!-- RIGHT -->
     <b-col md="4">
       <div class="comments">
-        <button class="notes-header" @click="changeActiveCommentHeader(1)">Notes ({{notes.length}})</button>
+        <button class="notes-header" @click="changeActiveCommentHeader(1)">
+          Notes ({{notes.length}})
+          <i
+            class="icon chevron-left"
+            :class="{ 'active': activeHeader === 1 }"
+          >n</i>
+        </button>
         <div class="notes" v-if="activeHeader === 1">
           <Note
             v-for="item in notes"
@@ -52,10 +58,13 @@
             @click.native="selectComment(item)"
           />
         </div>
-        <button
-          class="findings-header"
-          @click="changeActiveCommentHeader(2)"
-        >Findings ({{findings.length}})</button>
+        <button class="findings-header" @click="changeActiveCommentHeader(2)">
+          Findings ({{findings.length}})
+          <i
+            class="icon chevron-left"
+            :class="{ 'active': activeHeader === 2 }"
+          >n</i>
+        </button>
         <div class="notes" v-if="activeHeader === 2">
           <Note
             v-for="item in findings"
@@ -66,10 +75,13 @@
             @click.native="selectComment(item)"
           />
         </div>
-        <button
-          class="quotes-header"
-          @click="changeActiveCommentHeader(3)"
-        >Quotes ({{quotes.length}})</button>
+        <button class="quotes-header" @click="changeActiveCommentHeader(3)">
+          Quotes ({{quotes.length}})
+          <i
+            class="icon chevron-left"
+            :class="{ 'active': activeHeader === 3 }"
+          >n</i>
+        </button>
         <div class="notes" v-if="activeHeader === 3">
           <Note
             v-for="item in quotes"
@@ -82,7 +94,8 @@
         </div>
       </div>
       <div class="text-input">
-        <img class="emoji" src="~/static/icons/happy.svg" alt="Emoji's">
+        <div class="icon smile-o">p</div>
+        <!-- <img class="emoji" src="~/static/icons/happy.svg" alt="Emoji's"> -->
         <form v-on:submit.prevent="addNote">
           <input
             v-model="inputNote"
@@ -218,8 +231,11 @@ export default {
 <style lang="scss" scoped>
 .header {
   display: flex;
-  .icon-back {
+  align-items: center;
+  .icon {
+    font-family: "icons";
     cursor: pointer;
+    font-size: 20px;
   }
   .back-text {
     margin-left: 10px;
@@ -330,6 +346,7 @@ export default {
   max-width: 674px;
   background-color: #fbfbfb;
   border-radius: 10px;
+  border-bottom-left-radius: 10px;
   box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   .notes-header {
     background-color: white;
@@ -338,17 +355,24 @@ export default {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
-    border: none;
     text-align: left;
     outline: none;
     font-size: 16px;
     font-weight: bold;
-    &:after {
-      content: "\02795"; /* Unicode character for "plus" sign (+) */
-      font-size: 13px;
-      color: white;
-      float: right;
-      margin-left: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-style: hidden;
+
+    display: flex;
+    justify-content: space-between;
+    .icon {
+      font-family: "icons";
+      font-style: normal;
+      transform: rotate(180deg);
+
+      &.active {
+        transform: rotate(270deg);
+      }
     }
   }
   .notes {
@@ -380,12 +404,17 @@ export default {
     font-size: 16px;
     font-weight: bold;
     box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
-    &:after {
-      content: "\02795"; /* Unicode character for "plus" sign (+) */
-      font-size: 13px;
-      color: white;
-      float: right;
-      margin-left: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    .icon {
+      font-family: "icons";
+      font-style: normal;
+      transform: rotate(180deg);
+
+      &.active {
+        transform: rotate(270deg);
+      }
     }
   }
   .quotes-header {
@@ -395,25 +424,35 @@ export default {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
-    border: none;
     text-align: left;
     outline: none;
     font-size: 16px;
     font-weight: bold;
-    &:after {
-      content: "\02795"; /* Unicode character for "plus" sign (+) */
-      font-size: 13px;
-      color: white;
-      float: right;
-      margin-left: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-style: hidden;
+
+    display: flex;
+    justify-content: space-between;
+    .icon {
+      font-family: "icons";
+      font-style: normal;
+      transform: rotate(180deg);
+
+      &.active {
+        transform: rotate(270deg);
+      }
     }
   }
 }
 .text-input {
   margin-top: 50px;
   display: flex;
-  .emoji {
+  align-items: center;
+  .icon {
     margin-right: 30px;
+    font-family: "icons";
+    font-size: 25px;
     cursor: pointer;
   }
   form {

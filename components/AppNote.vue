@@ -1,8 +1,11 @@
 <template>
   <div class="note" :class="{ 'active': active }">
-    <div class="note-timestamp">{{timestamp}} sec.</div>
+    <div class="note-timestamp">{{timestamp}}</div>
     <div class="note-divider" :class="{ 'active': active }"></div>
     <div class="note-text">{{note}}</div>
+    <div class="menu" v-if="active">
+      <div class="dot-3">b</div>
+    </div>
   </div>
 </template>
 
@@ -47,6 +50,16 @@ export default {
     }
   }
   .note-text {
+  }
+  .menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    .dot-3 {
+      font-family: "icons";
+      font-size: 17px;
+      transform: rotate(90deg);
+    }
   }
 }
 </style>
