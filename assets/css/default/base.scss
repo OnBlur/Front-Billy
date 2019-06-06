@@ -1,7 +1,5 @@
 /* Apply the site font to body and form elements */
-*{
-  outline: 1px solid red;
-}
+
 
 body {
   background-color: #ececec;
@@ -9,6 +7,6 @@ body {
 }
 
 .container {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 20%;
+  padding-right: 20%;
 }

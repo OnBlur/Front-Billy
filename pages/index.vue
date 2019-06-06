@@ -2,7 +2,7 @@
   <b-container ref="container">
     <b-row>
       <b-col>
-          <div class="recent-text">Recent folders</div>
+        <div class="recent-text">Recent folders</div>
       </b-col>
     </b-row>
     <Folder :allData="data"/>
@@ -54,6 +54,7 @@ export default {
     font-size: 16px;
     font-weight: bold;
     color: #424242;
+    padding-left: 0px;
   }
 }
 </style>
