@@ -3,7 +3,7 @@
     <div class="header" ref="mainHeader">
       <AppHeader/>
     </div>
-    <b-container ref="container">
+    <b-container fluid ref="container">
       <nuxt/>
     </b-container>
   </div>
@@ -47,10 +47,10 @@ export default {
     padding: 1rem 2rem;
     background: #eaecec;
   }
-  .container {
+  .container-fluid {
     margin-top: 70px;
-    padding-left: 140px;
-    padding-right: 140px;
+    // padding-left: 140px;
+    // padding-right: 140px;
   }
 }
 </style>

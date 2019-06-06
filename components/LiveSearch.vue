@@ -1,6 +1,8 @@
 <template>
   <div class="wrapper-container">
-    <input type="text" v-model="searchWord" class="search-box" placeholder="Zoeken" list="insights">
+    <div class="input-wrapper">
+      <input type="text" v-model="searchWord" class="search-box" placeholder="Zoeken" list="insights">
+    </div>
     <datalist id="insights">
       <option v-for="(item, index) in filteredItems" :key="index" v-text="item.name"></option>
       <option v-if="countFilteredItems == 0">Er zijn geen resultaten gevonden.</option>
@@ -57,8 +59,13 @@ export default {
     margin-top: 2em;
     display: none;
   }
+  .input-wrapper{
+    display: flex;
+    justify-content: center;
+  }
   input {
-    width: 40rem;
+    max-width: 40rem;
+    width: 90%;
     border: none;
     height: 40px;
     margin: 10px 0;
@@ -68,8 +75,6 @@ export default {
     box-shadow: 0px 0px 17px white;
     outline: none;
     transition: 1s;
-    margin-left: auto;
-    margin-right: auto;
     display: block;
   }
 

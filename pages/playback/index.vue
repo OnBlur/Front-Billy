@@ -1,7 +1,7 @@
 <template>
-  <b-row :no-gutters="true">
+  <b-row align-h="between">
     <!-- LEFT -->
-    <b-col>
+    <b-col md="5">
       <div class="header">
         <img class="icon-back" src="~/static/icons/right-arrow.svg" alt="Back">
         <div class="back-text">Terug</div>
@@ -15,52 +15,70 @@
           <div class="pause">PAUSE</div>
           <div class="video-timestamp">1:40 / 4:50</div>
         </div>
-        <div class="timeline"></div>
+        <div class="timeline">
+          <div class="progress"></div>
+          <div
+            class="timeline-item"
+            v-for="item in notes"
+            :key="item.id"
+            @click="selectComment(item)"
+          >
+            <img class="icon-down" :src="'~/static/icons/' + item.item + '.svg'">
+          </div>
+        </div>
       </div>
       <div class="info">
         <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
         <div class="date">January 22, 2018</div>
       </div>
       <div class="tags-wrapper">
-        <Tag :tags="tags"/>
+        <div class="tags">
+          <Tag v-for="item in tags" :key="item.id" :title="item.title"/>
+          <div class="custom">+ Add a tag here</div>
+        </div>
       </div>
     </b-col>
-    <b-col cols="1"></b-col>
     <!-- RIGHT -->
-    <b-col>
+    <b-col md="4">
       <div class="comments">
-        <div class="notes-header">
-          <div class="notes-header-text">Notes (30)</div>
-          <img class="icon-down" src="~/static/icons/next.svg" alt="Close">
-        </div>
-        <div class="notes">
+        <button class="notes-header" @click="changeActiveCommentHeader(1)">Notes ({{notes.length}})</button>
+        <div class="notes" v-if="activeHeader === 1">
           <Note
-            v-for="item in data"
+            v-for="item in notes"
             :key="item.id"
             :active="item.id === activeNote"
             :timestamp="item.timestamp"
             :note="item.note"
-            @click.native="activeNote = item.id"
+            @click.native="selectComment(item)"
           />
-          <!-- <div
-            class="note"
-            :class="{ 'active': item.id === activeNote }"
-            v-for="item in data"
+        </div>
+        <button
+          class="findings-header"
+          @click="changeActiveCommentHeader(2)"
+        >Findings ({{findings.length}})</button>
+        <div class="notes" v-if="activeHeader === 2">
+          <Note
+            v-for="item in findings"
             :key="item.id"
-            @click="activeNote = item.id"
-          >
-            <div class="note-timestamp">{{item.timestamp}}</div>
-            <div class="note-divider" :class="{ 'active': item.id === activeNote }"></div>
-            <div class="note-text">{{item.note}}</div>
-          </div>-->
+            :active="item.id === activeNote"
+            :timestamp="item.timestamp"
+            :note="item.note"
+            @click.native="selectComment(item)"
+          />
         </div>
-        <div class="findings-header">
-          <div class="findings-header-text">Findings (13)</div>
-          <img class="icon-right" src="~/static/icons/next_2.svg" alt="Open">
-        </div>
-        <div class="quotes-header">
-          <div class="quotes-header-text">Quotes (5)</div>
-          <img class="icon-right" src="~/static/icons/next_2.svg" alt="Open">
+        <button
+          class="quotes-header"
+          @click="changeActiveCommentHeader(3)"
+        >Quotes ({{quotes.length}})</button>
+        <div class="notes" v-if="activeHeader === 3">
+          <Note
+            v-for="item in quotes"
+            :key="item.id"
+            :active="item.id === activeNote"
+            :timestamp="item.timestamp"
+            :note="item.note"
+            @click.native="selectComment(item)"
+          />
         </div>
       </div>
       <div class="text-input">
@@ -93,23 +111,50 @@ export default {
     return {
       inputNote: "",
       activeNote: 1,
+      activeHeader: 1,
       tags: [{ id: 1, title: "Amsterdam" }, { id: 2, title: "16 to 20 years" }],
-      data: [
-        { id: 1, timestamp: 1.4, note: "De testpersoon komt gelukkig over." },
+      notes: [
+        {
+          id: 1,
+          timestamp: 1.4,
+          note: "De testpersoon komt gelukkig over."
+        },
         {
           id: 2,
           timestamp: 1.5,
           note: "Inschrijven vak weergeven in het midden van de website."
         },
-        { id: 3, timestamp: 2.1, note: "De testpersoon komt gelukkig over." },
+        {
+          id: 3,
+          timestamp: 2.1,
+          note: "Inschrijven vak weergeven in het midden van de website."
+        },
         {
           id: 4,
           timestamp: 2.3,
           note: "Inschrijven vak weergeven in het midden van de website."
         },
-        { id: 5, timestamp: 3.1, note: "De testpersoon komt gelukkig over." },
-        { id: 6, timestamp: 3.4, note: "De testpersoon komt gelukkig over." },
-        { id: 7, timestamp: 4.4, note: "De testpersoon komt gelukkig over." }
+        {
+          id: 5,
+          timestamp: 3.1,
+          note: "Inschrijven vak weergeven in het midden van de website."
+        }
+      ],
+      findings: [
+        {
+          id: 1,
+          timestamp: 2.1,
+          note: "De testpersoon komt gelukkig over."
+        },
+        { id: 2, timestamp: 1.4, note: "De testpersoon komt gelukkig over." }
+      ],
+      quotes: [
+        {
+          id: 1,
+          timestamp: 1.4,
+          note: "De testpersoon komt gelukkig over."
+        },
+        { id: 2, timestamp: 1.4, note: "De testpersoon komt gelukkig over." }
       ]
     };
   },
@@ -157,6 +202,13 @@ export default {
     },
     deleteVideo(id) {
       this.$store.dispatch("videos/deleteVideo", id);
+    },
+    selectComment(item) {
+      this.activeNote = item.id;
+      this.goToTimestamp(item.timestamp);
+    },
+    changeActiveCommentHeader(id) {
+      this.activeHeader = id;
     }
   },
   components: { Tag, Note }
@@ -183,6 +235,7 @@ export default {
 }
 .video-player {
   margin-top: 30px;
+  max-width: 826px;
   background-color: white;
   background-color: transparent;
   .video {
@@ -192,6 +245,7 @@ export default {
   }
   .navigation {
     padding: 17px;
+    margin-top: -5px;
     background-color: white;
 
     display: flex;
@@ -207,6 +261,32 @@ export default {
     background-color: #424242;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+
+    display: flex;
+    justify-content: flex-end;
+    // justify-content: center;
+    align-items: center;
+    .progress {
+      height: 50px;
+      background-color: #808080;
+      position: absolute;
+      left: 0;
+      width: 157px;
+      margin-left: 10px;
+      border-radius: 0px;
+      border-bottom-left-radius: 10px;
+    }
+    .timeline-item {
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      background-color: #ffffff;
+      border-radius: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 .info {
@@ -232,26 +312,43 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  .tags {
+    display: flex;
+    .custom {
+      cursor: pointer;
+      background-color: white;
+      padding: 15px 25px 15px 25px;
+      margin-right: 10px;
+      border-radius: 10px;
+      background-color: #424242;
+      color: white;
+    }
+  }
 }
-
 .comments {
   // width: 550px;
+  max-width: 674px;
   background-color: #fbfbfb;
   border-radius: 10px;
   box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   .notes-header {
-    display: flex;
-    justify-content: space-between;
+    background-color: white;
+    color: #424242;
     padding: 25px;
     padding-top: 20px;
     padding-bottom: 20px;
-    .notes-header-text {
-      font-size: 16px;
-      font-weight: bold;
-      color: #424242;
-    }
-    .icon-down {
-      cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    &:after {
+      content: "\02795"; /* Unicode character for "plus" sign (+) */
+      font-size: 13px;
+      color: white;
+      float: right;
+      margin-left: 5px;
     }
   }
   .notes {
@@ -265,29 +362,6 @@ export default {
       background: #424242;
       border-radius: 0px;
     }
-    .note {
-      cursor: pointer;
-      padding: 25px;
-      display: flex;
-      align-items: center;
-      &.active {
-        box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.08);
-      }
-      .note-timestamp {
-      }
-      .note-divider {
-        height: 40px;
-        width: 2px;
-        margin-left: 10px;
-        margin-right: 10px;
-        background-color: #f1f1f1;
-        &.active {
-          background-color: #daedf5;
-        }
-      }
-      .note-text {
-      }
-    }
     .active {
       background-color: white;
       box-shadow: 0px 10px 9px #f7f7f7, 0px -10px 5px #f7f7f7;
@@ -295,37 +369,43 @@ export default {
   }
   .findings-header {
     background-color: white;
-    display: flex;
-    justify-content: space-between;
+    color: #424242;
     padding: 25px;
     padding-top: 20px;
     padding-bottom: 20px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
     box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
-    .findings-header-text {
-      font-size: 16px;
-      font-weight: bold;
-      color: #424242;
-    }
-    .icon-right {
-      cursor: pointer;
+    &:after {
+      content: "\02795"; /* Unicode character for "plus" sign (+) */
+      font-size: 13px;
+      color: white;
+      float: right;
+      margin-left: 5px;
     }
   }
   .quotes-header {
     background-color: white;
-    display: flex;
-    justify-content: space-between;
+    color: #424242;
     padding: 25px;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    .quotes-header-text {
-      font-size: 16px;
-      font-weight: bold;
-      color: #424242;
-    }
-    .icon-right {
-      cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    &:after {
+      content: "\02795"; /* Unicode character for "plus" sign (+) */
+      font-size: 13px;
+      color: white;
+      float: right;
+      margin-left: 5px;
     }
   }
 }
@@ -346,13 +426,14 @@ export default {
       -moz-appearance: none;
       font-size: 1em;
       width: 100%;
-    }
-    button {
+      &:focus {
+        outline: none;
+      }
     }
   }
 }
 .text-input-divider {
-  margin-top: 10px;
+  margin-top: 15px;
   height: 2px;
   background-color: #bfbfbf;
 }

@@ -131,8 +131,9 @@ export default {
   }
 
   .open-slide img {
-    margin-top: 20px;
     position: absolute;
+    left: 35px;
+    top: 32px;
   }
   .side-nav .btn-close {
     position: absolute;

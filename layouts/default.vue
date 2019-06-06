@@ -43,7 +43,7 @@ export default {
   .header {
     width: 100%;
     overflow: hidden;
-    padding: 1rem 2rem;
+    padding: 1rem 50px;
     background: #eaecec;
 
     // width: calc(100% - 300px);
