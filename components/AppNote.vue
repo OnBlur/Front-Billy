@@ -1,6 +1,6 @@
 <template>
   <div class="note" :class="{ 'active': active }">
-    <div class="note-timestamp">{{timestamp}}</div>
+    <div class="note-timestamp">{{timestamp}} sec.</div>
     <div class="note-divider" :class="{ 'active': active }"></div>
     <div class="note-text">{{note}}</div>
   </div>
@@ -41,9 +41,9 @@ export default {
     width: 2px;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: #f1f1f1;
+    background-color: #daedf5;
     &.active {
-      background-color: #daedf5;
+      background-color: #bdebff;
     }
   }
   .note-text {
