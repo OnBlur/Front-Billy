@@ -12,8 +12,8 @@ export const mutations = {
     state.data.push(value);
   },
   editData(state, value) {
-    const videoIndex = state.data.findIndex(video => video.id === value.id);
-    state.data[videoIndex] = value;
+    const index = state.data.findIndex(video => video.id === value.id);
+    state.data[index] = value;
   },
   deleteData(state, value) {
     state.data = state.data.filter(video => video.id !== value);
@@ -74,7 +74,7 @@ export const getters = {
   allData(state) {
     return state.data;
   },
-  getVideo: state => id => {
+  getItem: state => id => {
     return state.data.find(item => item.id === id);
   }
 };

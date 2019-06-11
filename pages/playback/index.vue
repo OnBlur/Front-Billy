@@ -51,8 +51,8 @@
             v-for="item in notes"
             :key="item.id"
             :active="item.id === activeNote"
-            :timestamp="item.timestamp"
-            :note="item.note"
+            :timestamp="trimTimestamp(+item.timestamp)"
+            :note="item.content"
             @click.native="selectComment(item)"
           />
         </div>
@@ -68,7 +68,7 @@
             v-for="item in findings"
             :key="item.id"
             :active="item.id === activeNote"
-            :timestamp="item.timestamp"
+            :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.note"
             @click.native="selectComment(item)"
           />
@@ -133,52 +133,52 @@ export default {
           iconClass: "quote-left",
           characterClass: "l",
           timestamp: 1.4,
-          note: "De testpersoon komt gelukkig over."
+          content: "De testpersoon komt gelukkig over."
         },
         {
           id: 2,
           iconClass: "bulb",
           characterClass: "k",
           timestamp: 1.5,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 3,
           iconClass: "quote-left",
           characterClass: "l",
           timestamp: 2.1,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 4,
           iconClass: "quote-left",
           characterClass: "l",
           timestamp: 2.3,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 5,
           iconClass: "bulb",
           characterClass: "k",
           timestamp: 3.1,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         }
       ],
       findings: [
         {
           id: 1,
           timestamp: 2.1,
-          note: "De testpersoon komt gelukkig over."
+          content: "De testpersoon komt gelukkig over."
         },
-        { id: 2, timestamp: 1.4, note: "De testpersoon komt gelukkig over." }
+        { id: 2, timestamp: 1.4, content: "De testpersoon komt gelukkig over." }
       ],
       quotes: [
         {
           id: 1,
           timestamp: 1.4,
-          note: "De testpersoon komt gelukkig over."
+          content: "De testpersoon komt gelukkig over."
         },
-        { id: 2, timestamp: 1.4, note: "De testpersoon komt gelukkig over." }
+        { id: 2, timestamp: 1.4, content: "De testpersoon komt gelukkig over." }
       ]
     };
   },
@@ -244,6 +244,9 @@ export default {
     },
     changeActiveCommentHeader(id) {
       this.activeHeader = id;
+    },
+    trimTimestamp(time) {
+      return time.toFixed(2);
     }
   },
   watch: {
