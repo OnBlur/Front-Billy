@@ -87,7 +87,7 @@ export default {
     a {
       padding: 10px 10px 10px 30px;
       text-decoration: none;
-      font-size: 17px;
+      font-size: 1.2em;
       color: #ffffff;
       display: block;
       transition: 0.3s;
@@ -103,7 +103,7 @@ export default {
     .profile {
       padding: 10px 10px 10px 30px;
       font-weight: bold;
-      font-size: 17px;
+      font-size: 1.2em;
       color: #ffffff;
       display: block;
       transition: 0.3s;
@@ -116,7 +116,7 @@ export default {
     h1 {
       padding: 10px 10px 10px 30px;
       text-decoration: none;
-      font-size: 22px;
+      font-size: 1.4em;
       color: #ffffff;
       display: block;
       transition: 0.3s;
@@ -139,7 +139,7 @@ export default {
     position: absolute;
     top: 0;
     right: 22px;
-    font-size: 36px;
+    font-size: 3em;
     margin-left: 50px;
   }
 }

@@ -41,7 +41,9 @@
               </td>
               <td>{{item.name}}</td>
               <td>{{item.projects}}</td>
-              <td>{{item.members}}</td>
+              <td>
+                <img v-for="item in data" :key="item.id" :src="item.members">
+              </td>
               <td>
                 <div class="lastedit">{{item.lastEdit}}</div>
                 <div class="editby">{{item.editBy}}</div>
@@ -101,7 +103,7 @@ export default {
           name: "A&B Meester Schilders",
           img: "random",
           projects: "3 projecten",
-          members: "img",
+          members: "~/assets/img/profile.png",
           lastEdit: "gisteren",
           editBy: "Renze"
         },
@@ -160,7 +162,7 @@ export default {
     max-width: 1100px;
     .title {
       width: 100%;
-      font-size: 16px;
+      font-size: 1.2em;
       font-weight: bold;
       color: #424242;
       margin-bottom: 25px;
@@ -169,7 +171,7 @@ export default {
     .breadcrumb {
       margin-top: 50px;
       font-family: OpenSans;
-      font-size: 16px;
+      font-size: 1em;
       font-weight: bold;
       color: #171717;
       opacity: 0.55;
@@ -231,7 +233,7 @@ export default {
         position: absolute;
         top: 50%;
         left: 50%;
-        font-size: 16px;
+        font-size: 1.1em;
         transform: translate(-50%, -50%);
         display: flex;
         flex-wrap: wrap;
