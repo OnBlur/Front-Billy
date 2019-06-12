@@ -1,6 +1,6 @@
 <template>
   <div class="note" :class="{ 'active': active}">
-    <div class="overlay" v-if="dropdown" @click="overlayClicked"></div>
+    <div class="overlay" v-if="dropdown" @click="openDropdown"></div>
     <div class="note-timestamp">{{timestamp}}</div>
     <div class="note-divider" :class="{ 'active': active }"></div>
     <div class="note-text">{{note}}</div>
@@ -52,7 +52,6 @@ export default {
   methods: {
     openDropdown() {
       this.dropdown = !this.dropdown;
-      this.$emit("dropdownValue", this.dropdown);
     }
   }
 };
@@ -68,13 +67,15 @@ export default {
     box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.08);
   }
   .overlay {
+    cursor: auto;
     position: fixed;
-    background-color: red;
+    // background-color: red;
     opacity: 0.4;
     height: 100%;
     width: 100%;
     z-index: 700;
     top: 0;
+    left: 0;
   }
   .note-timestamp {
   }
@@ -91,6 +92,7 @@ export default {
   .note-text {
   }
   .dropdown {
+    z-index: 900;
     position: absolute;
     // width: 300px;
     // height: 100px;
