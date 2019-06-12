@@ -13,4 +13,7 @@ $grid-columns: 12;
 $grid-max-width: 100%;
 // $grid-max-width: 1240px;
 
+@import "bootstrap/scss/bootstrap.scss";
+@import "bootstrap-vue/src/index.scss";
+
 // Custom colors

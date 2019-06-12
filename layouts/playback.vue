@@ -49,7 +49,7 @@ export default {
   }
   .container {
     margin: 0px;
-    margin-top: 70px;
+    margin-top: 45px;
     // padding-left: 140px;
     // padding-right: 140px;
   }
