@@ -11,10 +11,6 @@
         <video class="video" width="100%" ref="myVideo" controls>
           <source src="~/assets/bassie.mp4" type="video/mp4">
         </video>
-        <!-- <div class="navigation">
-          <div class="pause">PAUSE</div>
-          <div class="video-timestamp">1:40 / 4:50</div>
-        </div>-->
         <div class="timeline">
           <!-- <div class="progress" :style="{ width: activeColor, fontSize: fontSize + 'px' }"></div> -->
           <div class="progress" ref="progressBar"></div>
@@ -23,11 +19,11 @@
             v-for="item in notes"
             :key="item.id"
             @click="selectComment(item)"
+            ref="timelineItems"
           >
             <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
           </div>
         </div>
-        <!-- <p>{{currentTimestamp}}</p> -->
       </div>
       <div class="info">
         <div class="title">UMCG-44350 > Recording website 3 Roots ( Alex de Vries )</div>
@@ -55,8 +51,8 @@
             v-for="item in notes"
             :key="item.id"
             :active="item.id === activeNote"
-            :timestamp="item.timestamp"
-            :note="item.note"
+            :timestamp="trimTimestamp(+item.timestamp)"
+            :note="item.content"
             @click.native="selectComment(item)"
           />
         </div>
@@ -72,7 +68,7 @@
             v-for="item in findings"
             :key="item.id"
             :active="item.id === activeNote"
-            :timestamp="item.timestamp"
+            :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.note"
             @click.native="selectComment(item)"
           />
@@ -97,7 +93,6 @@
       </div>
       <div class="text-input">
         <div class="icon smile-o">p</div>
-        <!-- <img class="emoji" src="~/static/icons/happy.svg" alt="Emoji's"> -->
         <form v-on:submit.prevent="addNote">
           <input
             v-model="inputNote"
@@ -124,8 +119,8 @@ export default {
   layout: "playback",
   data() {
     return {
-      currentTimestamp: 0,
-      progressBarTimestamp: 0,
+      currentTimestamp: 0, // Timestamp of the video DOM
+      progressBarTimestamp: 0, // The width of the progress bar under the video
 
       inputNote: "",
       activeNote: 1,
@@ -138,56 +133,62 @@ export default {
           iconClass: "quote-left",
           characterClass: "l",
           timestamp: 1.4,
-          note: "De testpersoon komt gelukkig over."
+          content: "De testpersoon komt gelukkig over."
         },
         {
           id: 2,
           iconClass: "bulb",
           characterClass: "k",
           timestamp: 1.5,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 3,
           iconClass: "quote-left",
           characterClass: "l",
           timestamp: 2.1,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 4,
           iconClass: "quote-left",
           characterClass: "l",
           timestamp: 2.3,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         },
         {
           id: 5,
           iconClass: "bulb",
           characterClass: "k",
           timestamp: 3.1,
-          note: "Inschrijven vak weergeven in het midden van de website."
+          content: "Inschrijven vak weergeven in het midden van de website."
         }
       ],
       findings: [
         {
           id: 1,
           timestamp: 2.1,
-          note: "De testpersoon komt gelukkig over."
+          content: "De testpersoon komt gelukkig over."
         },
-        { id: 2, timestamp: 1.4, note: "De testpersoon komt gelukkig over." }
+        { id: 2, timestamp: 1.4, content: "De testpersoon komt gelukkig over." }
       ],
       quotes: [
         {
           id: 1,
           timestamp: 1.4,
-          note: "De testpersoon komt gelukkig over."
+          content: "De testpersoon komt gelukkig over."
         },
-        { id: 2, timestamp: 1.4, note: "De testpersoon komt gelukkig over." }
+        { id: 2, timestamp: 1.4, content: "De testpersoon komt gelukkig over." }
       ]
     };
   },
   mounted() {
+    //Initialize timeline items on the timeline
+    for (let i = 0; i < this.notes.length; i++) {
+      let itemPosition = this.notes[i].timestamp * 7;
+      this.$refs.timelineItems[i].style.left = itemPosition + "%";
+    }
+
     this.$refs.myVideo.ontimeupdate = event => {
       this.currentTimestamp = this.$refs.myVideo.currentTime;
     };
@@ -243,6 +244,9 @@ export default {
     },
     changeActiveCommentHeader(id) {
       this.activeHeader = id;
+    },
+    trimTimestamp(time) {
+      return time.toFixed(2);
     }
   },
   watch: {
@@ -250,16 +254,17 @@ export default {
       let durationVideo = this.$refs.myVideo.duration;
       let increaseBarBy = 25 / +durationVideo;
 
-      this.progressBarTimestamp = this.progressBarTimestamp + increaseBarBy;
-      console.log(this.progressBarTimestamp);
+      this.progressBarTimestamp = this.currentTimestamp * 10;
+      // this.progressBarTimestamp = this.progressBarTimestamp + increaseBarBy;
 
-      // this.$refs.progressBar.style.width = this.progressBarTimestamp + "%";
-
+      // Add bottom right border if the timeline is 100% width or above
       if (this.progressBarTimestamp >= 100) {
         this.$refs.progressBar.style.width = this.progressBarTimestamp + "%";
         this.$refs.progressBar.style.borderBottomRightRadius = "10px";
-      } else
+      } else {
         this.$refs.progressBar.style.width = this.progressBarTimestamp + "%";
+        this.$refs.progressBar.style.borderBottomRightRadius = "0px";
+      }
     }
   },
   components: { Tag, Note }
@@ -299,6 +304,7 @@ export default {
     border-top-right-radius: 10px;
   }
   .timeline {
+    position: relative;
     margin-top: -5px;
     height: 50px;
     background-color: #424242;

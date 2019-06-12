@@ -61,14 +61,6 @@
 import Folder from "@/components/Folder";
 
 export default {
-  computed: {
-    getRefFromStore() {
-      return this.$store.state.stateStore.sidebarStatus;
-    }
-  },
-  watch: {
-    getRefFromStore() {
-      if (this.$store.state.stateStore.sidebarStatus) {
         console.log("true?");
         this.$refs.mainContainer.style.width = "calc(100% - 300px)";
       } else {
@@ -146,6 +138,23 @@ export default {
       ]
     };
   },
+  computed: {
+    getRefFromStore() {
+      return this.$store.state.stateStore.sidebarStatus;
+    }
+  },
+  watch: {
+    getRefFromStore() {
+      if (this.$store.state.stateStore.sidebarStatus) {
+        console.log("true?");
+        this.$refs.mainContainer.style.width = "calc(100% - 300px)";
+      } else {
+        console.log("false?");
+        this.$refs.mainContainer.style.width = "100%";
+      }
+    }
+  },
+  
   components: { Folder }
 };
 </script>
