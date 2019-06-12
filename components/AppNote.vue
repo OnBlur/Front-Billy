@@ -1,22 +1,23 @@
 <template>
-  <div class="note" :class="{ 'active': active }">
+  <div class="note" :class="{ 'active': active}">
+    <div class="overlay" v-if="dropdown" @click="overlayClicked"></div>
     <div class="note-timestamp">{{timestamp}}</div>
     <div class="note-divider" :class="{ 'active': active }"></div>
     <div class="note-text">{{note}}</div>
     <div class="dropdown" v-if="dropdown">
       <div class="edit">Edit Note</div>
       <div class="note-property">
-        <div class="item notes">
+        <div class="item note">
           <div class="icon folder">c</div>
-          <div class="text">Notes</div>
+          <div class="text">Note</div>
         </div>
-        <div class="item quotes">
+        <div class="item quote">
           <div class="icon quote-left">l</div>
-          <div class="text">Quotes</div>
+          <div class="text">Quote</div>
         </div>
-        <div class="item findings">
+        <div class="item finding">
           <div class="icon bulb">k</div>
-          <div class="text">Findings</div>
+          <div class="text">Finding</div>
         </div>
       </div>
       <div class="delete">Delete</div>
@@ -45,13 +46,13 @@ export default {
     },
     note: {
       type: String,
-      default: "No notes have been found"
+      default: "No note have been found"
     }
   },
   methods: {
     openDropdown() {
       this.dropdown = !this.dropdown;
-      console.log(this.dropdown);
+      this.$emit("dropdownValue", this.dropdown);
     }
   }
 };
@@ -65,6 +66,15 @@ export default {
   align-items: center;
   &.active {
     box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.08);
+  }
+  .overlay {
+    position: fixed;
+    background-color: red;
+    opacity: 0.4;
+    height: 100%;
+    width: 100%;
+    z-index: 700;
+    top: 0;
   }
   .note-timestamp {
   }
@@ -82,17 +92,17 @@ export default {
   }
   .dropdown {
     position: absolute;
-    width: 300px;
+    // width: 300px;
     // height: 100px;
     background-color: green;
     right: 15%;
     // top: 200px;
     border-radius: 10px;
     .edit {
-      font-size: 20px;
+      font-size: 16px;
       color: #424242;
 
-      height: 70px;
+      height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -100,11 +110,11 @@ export default {
     .note-property {
       display: flex;
       .item {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
 
-        &.notes {
-          font-size: 18px;
+        &.note {
+          font-size: 16px;
           color: #424242;
           background-color: blue;
 
@@ -113,7 +123,7 @@ export default {
           align-items: center;
           flex-direction: column;
         }
-        &.quotes {
+        &.quote {
           font-size: 18px;
           color: #424242;
           background-color: white;
@@ -123,7 +133,7 @@ export default {
           align-items: center;
           flex-direction: column;
         }
-        &.findings {
+        &.finding {
           font-size: 18px;
           color: #424242;
           background-color: blue;
@@ -140,9 +150,9 @@ export default {
       }
     }
     .delete {
-      font-size: 20px;
+      font-size: 16px;
       color: #ed5153;
-      height: 70px;
+      height: 50px;
 
       display: flex;
       justify-content: center;

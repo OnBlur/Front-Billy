@@ -61,14 +61,6 @@
 import Folder from "@/components/Folder";
 
 export default {
-        console.log("true?");
-        this.$refs.mainContainer.style.width = "calc(100% - 300px)";
-      } else {
-        console.log("false?");
-        this.$refs.mainContainer.style.width = "100%";
-      }
-    }
-  },
   data() {
     return {
       data: [
@@ -95,7 +87,7 @@ export default {
           name: "A&B Meester Schilders",
           img: "random",
           projects: "3 projecten",
-          members: "~/assets/img/profile.png",
+          members: require("~/assets/img/profile.png"),
           lastEdit: "gisteren",
           editBy: "Renze"
         },
@@ -154,7 +146,7 @@ export default {
       }
     }
   },
-  
+
   components: { Folder }
 };
 </script>
