@@ -24,14 +24,14 @@
           >
             <div class="time">{{item.timestamp}}</div>
             <div class="divider"></div>
-            <!-- <b-form-textarea
+            <b-form-textarea
               id="textarea-no-resize"
               placeholder="Fixed height textarea"
               no-resize
               v-model="item.content"
-            ></b-form-textarea>-->
+            ></b-form-textarea>
             <!-- <textarea class="note" type="text" v-model="item.content"></textarea> -->
-            <div class="note" contenteditable v-text="item.content"></div>
+            <!-- <div class="note" contenteditable v-text="item.content"></div> -->
             <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
           </div>
         </div>
@@ -182,7 +182,7 @@ export default {
 }
 .main {
   .notes {
-    max-height: 700px;
+    max-height: 650px;
     overflow-y: scroll;
     max-width: 750px;
     &::-webkit-scrollbar {
@@ -220,6 +220,10 @@ export default {
         margin-left: 17px;
         max-width: 443px;
         width: 100%;
+
+        &:focus .note-wrapper {
+          box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
+        }
       }
       .icon {
         font-size: 25px;
@@ -229,7 +233,7 @@ export default {
         align-items: center;
         font-family: "icons";
       }
-      textarea {
+      .form-control {
         resize: none;
         background-color: transparent;
         border-radius: 0;
@@ -237,8 +241,14 @@ export default {
         -webkit-appearance: none;
         -moz-appearance: none;
         width: 100%;
+        font-size: 16px;
+
         &:focus {
-          outline: none;
+          outline: none !important;
+
+          .note-wrapper {
+            box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
+          }
         }
       }
     }
