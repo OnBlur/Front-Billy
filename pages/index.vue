@@ -23,16 +23,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="folder">
+        <div class="filters">
+          <div></div>
+          <div>Bedrijf</div>
+          <div>Projecten</div>
+          <div></div>
+          <div>Laatst bewerkt</div>
+        </div>
         <div class="company-table">
-          <div class="filters">
-            <div></div>
-            <div>Bedrijf</div>
-            <div>Projecten</div>
-            <div></div>
-            <div>Laatst bewerkt</div>
-          </div>
-
           <div v-for="item in data" :key="item.id" class="company-folders">
             <div>
               <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
@@ -215,11 +214,28 @@ export default {
       margin: 0px 15px 0px 15px;
     }
   }
+  .folder {
+    width: 100%;
+    margin-right: 13px;
+    margin-left: 13px;
+  }
+  .filters {
+    width: 100%;
+    color: #424242;
+    display: flex;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+
+    div {
+      width: 13em;
+    }
+  }
 
   .company-table {
     width: 100%;
-    overflow: auto;
-    max-height: 100vh;
+    max-height: 350px;
+    overflow-y: scroll;
     .company-folders {
       width: 100%;
       color: #424242;
@@ -230,19 +246,12 @@ export default {
       border-radius: 10px;
     }
     div {
-      width: 13.4em;
+      width: 13em;
     }
-    .filters {
-      display: flex;
-      width: 100%;
-      color: #424242;
-      display: flex;
-      margin-bottom: 10px;
-      padding: 15px;
-      border-radius: 10px;
-    }
+
     .edited {
       display: flex;
+      flex-grow: 1.5;
     }
     .editby {
       font-weight: bold;
