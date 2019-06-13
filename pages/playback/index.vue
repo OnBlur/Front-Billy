@@ -18,7 +18,7 @@
             class="timeline-item"
             v-for="item in notes"
             :key="item.id"
-            @click="selectComment(item)"
+            @click="selectNote(item)"
             ref="timelineItems"
           >
             <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
@@ -39,7 +39,7 @@
     <!-- RIGHT -->
     <b-col md="4">
       <div class="comments">
-        <button class="notes-header" @click="changeActiveCommentHeader(1)">
+        <button class="notes-header" @click="changeActiveNoteHeader(1)">
           Notes ({{notes.length}})
           <i
             class="icon chevron-left"
@@ -53,10 +53,13 @@
             :active="item.id === activeNote"
             :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.content"
-            @click.native="selectComment(item)"
+            :noteProperty="item.property"
+            @click.native="selectNote(item)"
+            @editNote="editNote"
+            @deleteNote="deleteNote(item.id)"
           />
         </div>
-        <button class="findings-header" @click="changeActiveCommentHeader(2)">
+        <button class="findings-header" @click="changeActiveNoteHeader(2)">
           Findings ({{findings.length}})
           <i
             class="icon chevron-left"
@@ -70,10 +73,11 @@
             :active="item.id === activeNote"
             :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.note"
-            @click.native="selectComment(item)"
+            :noteProperty="item.property"
+            @click.native="selectNote(item)"
           />
         </div>
-        <button class="quotes-header" @click="changeActiveCommentHeader(3)">
+        <button class="quotes-header" @click="changeActiveNoteHeader(3)">
           Quotes ({{quotes.length}})
           <i
             class="icon chevron-left"
@@ -87,7 +91,8 @@
             :active="item.id === activeNote"
             :timestamp="item.timestamp"
             :note="item.note"
-            @click.native="selectComment(item)"
+            :noteProperty="item.property"
+            @click.native="selectNote(item)"
           />
         </div>
       </div>
@@ -111,8 +116,8 @@
 
 <script>
 import { mapMutations } from "vuex";
-import Tag from "@/components/AppTag";
-import Note from "@/components/AppNote";
+import Tag from "@/components/Tag";
+import Note from "@/components/Note";
 
 export default {
   name: "Playback",
@@ -132,6 +137,7 @@ export default {
           id: 1,
           iconClass: "quote-left",
           characterClass: "l",
+          property: 1,
           timestamp: 1.4,
           content: "De testpersoon komt gelukkig over."
         },
@@ -139,6 +145,7 @@ export default {
           id: 2,
           iconClass: "bulb",
           characterClass: "k",
+          property: 1,
           timestamp: 1.5,
           content: "Inschrijven vak weergeven in het midden van de website."
         },
@@ -146,6 +153,7 @@ export default {
           id: 3,
           iconClass: "quote-left",
           characterClass: "l",
+          property: 1,
           timestamp: 2.1,
           content: "Inschrijven vak weergeven in het midden van de website."
         },
@@ -153,6 +161,7 @@ export default {
           id: 4,
           iconClass: "quote-left",
           characterClass: "l",
+          property: 1,
           timestamp: 2.3,
           content: "Inschrijven vak weergeven in het midden van de website."
         },
@@ -160,6 +169,7 @@ export default {
           id: 5,
           iconClass: "bulb",
           characterClass: "k",
+          property: 1,
           timestamp: 3.1,
           content: "Inschrijven vak weergeven in het midden van de website."
         }
@@ -194,9 +204,6 @@ export default {
     };
   },
   computed: {
-    todos() {
-      return this.$store.state.todos.notes;
-    },
     allVideos() {
       return this.$store.state.videos.data;
     },
@@ -220,33 +227,31 @@ export default {
       this.$refs.myVideo.currentTime = value;
       this.pauseVideo();
     },
-    deleteNote(position) {
-      this.$store.commit("todos/deleteNote", position);
-    },
     playVideo() {
       this.$refs.myVideo.play();
     },
     pauseVideo() {
       this.$refs.myVideo.pause();
     },
-    addVideo() {
-      this.$store.dispatch("videos/addVideo", this.newVideoData);
+    addNote() {
+      this.$store.dispatch("notes/deleteNote", this.newVideoData);
     },
-    editVideo(item) {
-      this.$store.dispatch("videos/editVideo", item);
+    editNote(item) {
+      console.log(item);
+      this.$store.dispatch("notes/deleteNote", item);
     },
-    deleteVideo(id) {
-      this.$store.dispatch("videos/deleteVideo", id);
+    deleteNote(id) {
+      this.$store.dispatch("notes/deleteNote", id);
     },
-    selectComment(item) {
+    selectNote(item) {
       this.activeNote = item.id;
       this.goToTimestamp(item.timestamp);
     },
-    changeActiveCommentHeader(id) {
+    changeActiveNoteHeader(id) {
       this.activeHeader = id;
     },
     trimTimestamp(time) {
-      return time.toFixed(2);
+      return time.toFixed(1);
     }
   },
   watch: {

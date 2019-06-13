@@ -12,11 +12,11 @@ export const mutations = {
     state.data.push(value);
   },
   editData(state, value) {
-    const index = state.data.findIndex(video => video.id === value.id);
+    const index = state.data.findIndex(item => item.id === value.id);
     state.data[index] = value;
   },
   deleteData(state, value) {
-    state.data = state.data.filter(video => video.id !== value);
+    state.data = state.data.filter(item => item.id !== value);
   }
 };
 
@@ -35,7 +35,7 @@ export const actions = {
         context.error(e);
       });
   },
-  addVideo(vuexContext, value) {
+  addNote(vuexContext, value) {
     return axios
       .post(process.env.baseUrl + "/create/video-note/", value)
       .then(result => {
@@ -46,7 +46,7 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  editVideo(vuexContext, value) {
+  editNote(vuexContext, value) {
     const requestOptions = {
       // method: "PATCH",
       project_id: value.project_id,
@@ -63,7 +63,7 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  deleteVideo(vuexContext, value) {
+  deleteNote(vuexContext, value) {
     return axios
       .delete(process.env.baseUrl + "/delete/video-note/" + value)
       .then(() => {
