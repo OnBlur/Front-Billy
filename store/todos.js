@@ -1,13 +1,5 @@
 export const state = () => ({
-  notes: [{
-      timestamp: 3,
-      note: "Hier gaat iets verkeerd"
-    },
-    {
-      timestamp: 13,
-      note: "Hallo?"
-    }
-  ]
+  notes: []
 });
 
 export const mutations = {
@@ -27,6 +19,22 @@ export const mutations = {
     //   item => item.id !== value
     // );
     console.log("removed note", value);
+  }
+};
+
+export const actions = {
+  getAllInit(vuexContext, context) {
+    vuexContext.commit(
+      "setNote",
+      {
+        timestamp: 3,
+        note: "Hier gaat iets verkeerd"
+      },
+      {
+        timestamp: 13,
+        note: "Hallo?"
+      }
+    );
   }
 };
 

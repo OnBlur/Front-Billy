@@ -1,7 +1,16 @@
 import axios from "axios";
 
 export const state = () => ({
-  data: []
+  data: [
+    {
+      timestamp: 3,
+      note: "Hier gaat iets verkeerd"
+    },
+    {
+      timestamp: 13,
+      note: "Hallo?"
+    }
+  ]
 });
 
 export const mutations = {
