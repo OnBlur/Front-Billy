@@ -24,33 +24,36 @@
     </div>
     <div class="row">
       <div class="col">
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Bedrijf</th>
-              <th>Projecten</th>
-              <th></th>
-              <th>Laatst bewerkt</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in data" :key="item.id" class="companyfolders">
-              <td>
-                <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
-              </td>
-              <td>{{item.name}}</td>
-              <td>{{item.projects}}</td>
-              <td>
-                <img v-for="item in data" :key="item.id" :src="item.members">
-              </td>
-              <td>
-                <div class="lastedit">{{item.lastEdit}}</div>
-                <div class="editby">{{item.editBy}}</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="company-table">
+          <div class="filters">
+            <div></div>
+            <div>Bedrijf</div>
+            <div>Projecten</div>
+            <div></div>
+            <div>Laatst bewerkt</div>
+          </div>
+
+          <div v-for="item in data" :key="item.id" class="company-folders">
+            <div>
+              <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
+            </div>
+            <div>{{item.name}}</div>
+            <div>{{item.projects}}</div>
+            <div>
+              <img
+                v-for="image in item.members"
+                :key="image.id"
+                :src="image.url"
+                width="25px"
+                height="25px"
+              >
+            </div>
+            <div class="edited">
+              <div>{{item.lastEdit}}</div>
+              <div class="editby">{{item.editBy}}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- <Folder :allData="data"/> -->
@@ -69,7 +72,11 @@ export default {
           name: "Puur Schoonheid",
           img: "random",
           projects: "2 projecten",
-          members: "img",
+          members: [
+            { id: 1, url: require("~/assets/img/profile.png") },
+            { id: 2, url: require("~/assets/img/profile.png") },
+            { id: 3, url: require("~/assets/img/profile.png") }
+          ],
           lastEdit: "twee minuten geleden",
           editBy: "Raymond"
         },
@@ -78,7 +85,11 @@ export default {
           name: "3 roots",
           img: "random",
           projects: "7 projecten",
-          members: "img",
+          members: [
+            { id: 1, url: require("~/assets/img/profile.png") },
+            { id: 2, url: require("~/assets/img/profile.png") },
+            { id: 3, url: require("~/assets/img/profile.png") }
+          ],
           lastEdit: "een uur geleden",
           editBy: "Misha"
         },
@@ -87,7 +98,11 @@ export default {
           name: "A&B Meester Schilders",
           img: "random",
           projects: "3 projecten",
-          members: require("~/assets/img/profile.png"),
+          members: [
+            { id: 1, url: require("~/assets/img/profile.png") },
+            { id: 2, url: require("~/assets/img/profile.png") },
+            { id: 3, url: require("~/assets/img/profile.png") }
+          ],
           lastEdit: "gisteren",
           editBy: "Renze"
         },
@@ -96,7 +111,11 @@ export default {
           name: " Google",
           img: "random",
           projects: "4 projecten",
-          members: "img",
+          members: [
+            { id: 1, url: require("~/assets/img/profile.png") },
+            { id: 2, url: require("~/assets/img/profile.png") },
+            { id: 3, url: require("~/assets/img/profile.png") }
+          ],
           lastEdit: "eergisteren",
           editBy: "Yan"
         },
@@ -105,7 +124,11 @@ export default {
           name: " Microsoft",
           img: "random",
           projects: "1 project",
-          members: "img",
+          members: [
+            { id: 1, url: require("~/assets/img/profile.png") },
+            { id: 2, url: require("~/assets/img/profile.png") },
+            { id: 3, url: require("~/assets/img/profile.png") }
+          ],
           lastEdit: "gisteren",
           editBy: "Ruurd"
         },
@@ -114,7 +137,11 @@ export default {
           name: " Apple",
           img: "random",
           projects: "2 projecten",
-          members: "img",
+          members: [
+            { id: 1, url: require("~/assets/img/profile.png") },
+            { id: 2, url: require("~/assets/img/profile.png") },
+            { id: 3, url: require("~/assets/img/profile.png") }
+          ],
           lastEdit: "een week geleden",
           editBy: "Renze"
         },
@@ -123,7 +150,11 @@ export default {
           name: " Toshiba",
           img: "random",
           projects: "876 projecten",
-          members: "img",
+          members: [
+            { id: 1, url: require("~/assets/img/profile.png") },
+            { id: 2, url: require("~/assets/img/profile.png") },
+            { id: 3, url: require("~/assets/img/profile.png") }
+          ],
           lastEdit: "een jaar geleden",
           editBy: "Misha"
         }
@@ -185,74 +216,83 @@ export default {
     }
   }
 
-  table {
+  .company-table {
     width: 100%;
-    color: #424242;
-    thead {
+    overflow: auto;
+    max-height: 100vh;
+    .company-folders {
+      width: 100%;
+      color: #424242;
+      display: flex;
+      background-color: white;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 10px;
     }
-    tbody {
-      overflow: auto;
-      // height: 500px;
-      .companyfolders {
-        background-color: #ffffff;
-        width: 100%;
-        // height: 500px;
-
-        // color: black;
-        // scrollbar-base-color: gold;
-        // font-family: sans-serif;
-        // padding: 10px;
-        td {
-          // padding: 35px;
-          margin-bottom: 15px;
-        }
-      }
+    div {
+      width: 13.4em;
+    }
+    .filters {
+      display: flex;
+      width: 100%;
+      color: #424242;
+      display: flex;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .edited {
+      display: flex;
+    }
+    .editby {
+      font-weight: bold;
+      margin-left: 10px;
     }
   }
+}
 
-  .folders {
-    max-width: 1100px;
-    width: 100%;
+.folders {
+  max-width: 1100px;
+  width: 100%;
+}
+.col {
+  display: flex;
+  justify-content: space-between;
+
+  .column {
+    background-image: url("~assets/img/map-icon.svg");
+    background-size: cover;
+    height: 136px;
+    width: 203px;
+    margin: 10px 0 0 10px;
+    position: relative;
+
+    .item-name {
+      font-family: "Roboto", sans-serif;
+      font-weight: 900;
+      color: white;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 1.1em;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .blue-line {
+      width: 35%;
+      border-top: 2px solid #2699fb;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin-top: 25px;
+    }
   }
-  .col {
-    display: flex;
-    justify-content: space-between;
-
-    .column {
-      background-image: url("~assets/img/map-icon.svg");
-      background-size: cover;
-      height: 136px;
-      width: 203px;
-      margin: 10px 0 0 10px;
-      position: relative;
-
-      .item-name {
-        font-family: "Roboto", sans-serif;
-        font-weight: 900;
-        color: white;
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        font-size: 1.1em;
-        transform: translate(-50%, -50%);
-        display: flex;
-        flex-wrap: wrap;
-        text-align: center;
-      }
-      .blue-line {
-        width: 35%;
-        border-top: 2px solid #2699fb;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        margin-top: 25px;
-      }
-    }
-    .column:nth-child(1) {
-      margin-left: 0;
-    }
+  .column:nth-child(1) {
+    margin-left: 0;
   }
 }
 </style>
