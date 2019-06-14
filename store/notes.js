@@ -30,7 +30,7 @@ export const mutations = {
 };
 
 export const actions = {
-  getAllInit(vuexContext, context) {
+  async getAllInit(vuexContext, context) {
     const requestOptions = {
       method: "GET"
       //   headers: authHeader()
@@ -44,7 +44,7 @@ export const actions = {
         context.error(e);
       });
   },
-  addNote(vuexContext, value) {
+  async addNote(vuexContext, value) {
     return axios
       .post(process.env.baseUrl + "/create/video-note/", value)
       .then(result => {
@@ -55,7 +55,7 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  editNote(vuexContext, value) {
+  async editNote(vuexContext, value) {
     const requestOptions = {
       // method: "PATCH",
       project_id: value.project_id,
@@ -72,7 +72,7 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  deleteNote(vuexContext, value) {
+  async deleteNote(vuexContext, value) {
     return axios
       .delete(process.env.baseUrl + "/delete/video-note/" + value)
       .then(() => {

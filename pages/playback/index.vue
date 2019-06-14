@@ -97,7 +97,6 @@
         </div>
       </div>
       <div class="text-input">
-        <div class="icon smile-o">p</div>
         <form v-on:submit.prevent="addNote">
           <input
             v-model="inputNote"
@@ -110,6 +109,11 @@
         </form>
       </div>
       <div class="text-input-divider"></div>
+      <div class="emojis">
+        <div class="icon smile-o">p</div>
+        <div class="icon meh-o">r</div>
+        <div class="icon frown-o">q</div>
+      </div>
     </b-col>
   </b-row>
 </template>
@@ -251,7 +255,7 @@ export default {
       this.activeHeader = id;
     },
     trimTimestamp(time) {
-      return time.toFixed(1);
+      return time.toFixed(2);
     }
   },
   watch: {
@@ -518,5 +522,19 @@ export default {
   margin-top: 15px;
   height: 2px;
   background-color: #bfbfbf;
+}
+.emojis {
+  font-family: "icons";
+  font-size: 30px;
+  display: flex;
+  margin-top: 10px;
+  .icon {
+    margin-right: 10px;
+    cursor: pointer;
+    opacity: 0.4;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 </style>
