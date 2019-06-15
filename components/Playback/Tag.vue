@@ -1,9 +1,19 @@
 <template>
-  <div class="tag">#{{title}}</div>
+  <div
+    class="tag"
+    :class="{'active' : hover == true}"
+    @mouseover="hover = true"
+    @mouseleave="hover = false"
+  >#{{title}}</div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      hover: false
+    };
+  },
   props: {
     title: {
       type: String,

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" ref="mainContainer">
+  <div>
     <div class="row">
       <div class="breadcrumb">Alle bestanden ></div>
       <div class="divider"></div>
@@ -63,6 +63,13 @@
 import Folder from "@/components/Folder";
 
 export default {
+  name: "Dashboard",
+  props: {
+    sidebarStatus: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       data: [
@@ -160,22 +167,6 @@ export default {
       ]
     };
   },
-  computed: {
-    getRefFromStore() {
-      return this.$store.state.stateStore.sidebarStatus;
-    }
-  },
-  watch: {
-    getRefFromStore() {
-      if (this.$store.state.stateStore.sidebarStatus) {
-        console.log("true?");
-        this.$refs.mainContainer.style.width = "calc(100% - 300px)";
-      } else {
-        console.log("false?");
-        this.$refs.mainContainer.style.width = "100%";
-      }
-    }
-  },
 
   components: { Folder }
 };
@@ -183,8 +174,8 @@ export default {
 
 <style lang="scss" scoped>
 .container {
+  margin-top: 130px;
   padding: 0px;
-  margin: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;

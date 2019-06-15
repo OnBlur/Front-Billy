@@ -39,27 +39,27 @@
 <script>
 export default {
   name: "AppHeader",
-
-  computed: {
-    sidebarStatus() {
-      return this.$store.state.stateStore.sidebarStatus;
+  props: {
+    sidebarStatus: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     openSlideMenu() {
       this.$refs.sideMenu.style.left = "0px";
-      this.$store.state.stateStore.sidebarStatus = true;
+      this.$store.commit("stateStore/setSidebarStatus", true);
       this.$refs.menuIcon.style.display = "none";
     },
     closeSlideMenu() {
       this.$refs.sideMenu.style.left = "-300px";
-      this.$store.state.stateStore.sidebarStatus = false;
+      this.$store.commit("stateStore/setSidebarStatus", false);
       this.$refs.menuIcon.style.display = "unset";
     }
   },
   watch: {
     sidebarStatus() {
-      if (this.$store.state.stateStore.sidebarStatus) {
+      if (this.sidebarStatus) {
         this.openSlideMenu();
       } else {
         this.closeSlideMenu();

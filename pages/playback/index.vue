@@ -14,15 +14,13 @@
         <div class="timeline">
           <!-- <div class="progress" :style="{ width: activeColor, fontSize: fontSize + 'px' }"></div> -->
           <div class="progress" ref="progressBar"></div>
-          <div
-            class="timeline-item"
-            v-for="item in notes"
+          <TimelineItem
+            v-for="item in allNotes"
             :key="item.id"
-            @click="selectNote(item)"
-            ref="timelineItems"
-          >
-            <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
-          </div>
+            :noteProperty="item.property"
+            :timestamp="item.timestamp"
+            @click.native="selectNote(item)"
+          />
         </div>
       </div>
       <div class="info">
@@ -48,7 +46,7 @@
         </button>
         <div class="notes" v-if="activeHeader === 1">
           <Note
-            v-for="item in notes"
+            v-for="item in allNotes"
             :key="item.id"
             :active="item.id === activeNote"
             :timestamp="trimTimestamp(+item.timestamp)"
@@ -120,8 +118,9 @@
 
 <script>
 import { mapMutations } from "vuex";
-import Tag from "@/components/Tag";
-import Note from "@/components/Note";
+import Tag from "@/components/Playback/Tag";
+import Note from "@/components/Playback/Note";
+import TimelineItem from "@/components/Playback/TimelineItem";
 
 export default {
   name: "Playback",
@@ -200,7 +199,7 @@ export default {
     //Initialize timeline items on the timeline
     for (let i = 0; i < this.notes.length; i++) {
       let itemPosition = this.notes[i].timestamp * 7;
-      this.$refs.timelineItems[i].style.left = itemPosition + "%";
+      // this.$refs.timelineItems[i].style.left = itemPosition + "%";
     }
 
     this.$refs.myVideo.ontimeupdate = event => {
@@ -208,9 +207,6 @@ export default {
     };
   },
   computed: {
-    allVideos() {
-      return this.$store.state.videos.data;
-    },
     allNotes() {
       return this.$store.state.notes.data;
     }
@@ -276,7 +272,7 @@ export default {
       }
     }
   },
-  components: { Tag, Note }
+  components: { Tag, Note, TimelineItem }
 };
 </script>
 

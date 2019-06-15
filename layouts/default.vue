@@ -1,36 +1,35 @@
 <template>
   <div class="content">
-    <div class="header" ref="mainHeader">
-      <AppHeader/>
+    <div class="icon menu-icon" @click="openMenu" v-if="!sidebarState">a</div>
+    <SideMenu v-if="sidebarState" @closeMenu="closeMenu"/>
+    <div class="container">
       <LiveSearch/>
+      <nuxt :sidebarStatus="sidebarState"/>
     </div>
-    <nuxt/>
   </div>
 </template>
 
 <script>
-import AppHeader from "../components/AppHeader";
 import LiveSearch from "@/components/LiveSearch.vue";
+import SideMenu from "@/components/SideMenu";
 
 export default {
   computed: {
-    getRefFromStore() {
-      return this.$store.state.stateStore.sidebarStatus;
+    sidebarState() {
+      return this.$store.getters["stateStore/getSidebarStatus"];
     }
   },
-  watch: {
-    getRefFromStore() {
-      if (this.$store.state.stateStore.sidebarStatus) {
-        this.$refs.mainHeader.style.width = "calc(100% - 300px)";
-        this.$refs.mainHeader.style.float = "right";
-      } else {
-        this.$refs.mainHeader.style.width = "100%";
-      }
+  methods: {
+    openMenu() {
+      this.$store.commit("stateStore/setSidebarStatus", true);
+    },
+    closeMenu() {
+      this.$store.commit("stateStore/setSidebarStatus", false);
     }
   },
   components: {
-    AppHeader,
-    LiveSearch
+    LiveSearch,
+    SideMenu
   }
 };
 </script>
@@ -38,18 +37,20 @@ export default {
 <style lang="scss" scoped>
 .content {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  .header {
-    width: 100%;
-    overflow: hidden;
-    padding: 1rem 50px;
-    background: #eaecec;
-
-    // width: calc(100% - 300px);
-    /* float: right; */
-    /* justify-content: end; */
-    /* display: flex; */
+  // flex-direction: column;
+  // align-items: flex-end;
+  .icon {
+    cursor: pointer;
+    position: fixed;
+    font-family: "icons";
+    font-size: 20px;
+    margin-top: 60px;
+    margin-left: 60px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>

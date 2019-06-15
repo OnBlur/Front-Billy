@@ -3,12 +3,45 @@ import axios from "axios";
 export const state = () => ({
   data: [
     {
-      timestamp: 3,
-      note: "Hier gaat iets verkeerd"
+      id: 1,
+      property: 0,
+      timestamp: 0.35,
+      content: "De testpersoon geeft een verwarde indruk"
     },
     {
-      timestamp: 13,
-      note: "Hallo?"
+      id: 2,
+      property: 3,
+      timestamp: 1.2,
+      content:
+        "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
+    },
+    {
+      id: 3,
+      property: 0,
+      timestamp: 2.1,
+      content:
+        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
+    },
+    {
+      id: 4,
+      property: 2,
+      timestamp: 2.3,
+      content:
+        "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
+    },
+    {
+      id: 5,
+      property: 0,
+      timestamp: 3.1,
+      content:
+        "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
+    },
+    {
+      id: 6,
+      property: 0,
+      timestamp: 3.1,
+      content:
+        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
     }
   ]
 });
