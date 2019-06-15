@@ -36,7 +36,7 @@
             <nuxt-link to="/archive" tag="li" class="menu-item" exact>
               <div class="menu-item-info">
                 <div class="menu-icon">
-                  <span class="admin">c</span>
+                  <span class="file-text">t</span>
                 </div>
                 <div class="label">Archive</div>
               </div>

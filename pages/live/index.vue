@@ -120,7 +120,7 @@ export default {
   },
   computed: {
     allNotes() {
-      return this.$store.state.notes.data;
+      return this.$store.getters["notes/allData"];
     }
   },
   methods: {

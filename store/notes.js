@@ -4,7 +4,7 @@ export const state = () => ({
   data: [
     {
       id: 1,
-      property: 0,
+      property: 1,
       timestamp: 0.35,
       content: "De testpersoon geeft een verwarde indruk"
     },
@@ -17,7 +17,7 @@ export const state = () => ({
     },
     {
       id: 3,
-      property: 0,
+      property: 1,
       timestamp: 2.1,
       content:
         "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
@@ -31,14 +31,14 @@ export const state = () => ({
     },
     {
       id: 5,
-      property: 0,
+      property: 1,
       timestamp: 3.1,
       content:
         "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
     },
     {
       id: 6,
-      property: 0,
+      property: 1,
       timestamp: 3.1,
       content:
         "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
