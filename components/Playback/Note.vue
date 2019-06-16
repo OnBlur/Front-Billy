@@ -16,7 +16,7 @@
   </div>
   <form v-on:submit.prevent="editNote" class="note-edit" v-else>
     <div class="note-input">
-      <input class="timestamp-input" type="number" v-model="timestampInput">
+      <input class="timestamp-input" v-model="timestampInput">
       <input class="note-input" v-model="noteInput" type="text">
     </div>
     <div class="buttons">
@@ -34,6 +34,7 @@
 import Dropdown from "@/components/Playback/Dropdown";
 
 export default {
+  name: "PlaybackNote",
   props: {
     active: {
       type: Boolean,
@@ -109,15 +110,16 @@ export default {
   }
   .note-divider {
     height: 40px;
-    width: 2px;
-    margin-left: 10px;
+    padding-left: 2px;
     margin-right: 10px;
+    margin-left: 10px;
     background-color: #daedf5;
     &.active {
       background-color: #bdebff;
     }
   }
   .note-text {
+    max-width: 80%;
   }
   .menu {
     flex-grow: 1;

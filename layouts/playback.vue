@@ -37,7 +37,7 @@ export default {
   display: flex;
   .icon {
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     font-family: "icons";
     font-size: 20px;
     margin-top: 60px;

@@ -5,7 +5,11 @@
 </template>
 
 <script>
+import { ConvertPropertyIdToIcon } from "@/mixins";
+
 export default {
+  name: "TimelineItem",
+  mixins: [ConvertPropertyIdToIcon],
   props: {
     timestamp: {
       type: Number,
@@ -28,19 +32,6 @@ export default {
     //Initialize timeline items on the timeline
     let itemPosition = this.timestamp * 7;
     this.$refs.timelineItems.style.left = itemPosition + "%";
-  },
-  computed: {
-    propertyIcon() {
-      if (this.noteProperty === 1) {
-        return { iconClass: "clipboard-notes", characterClass: "s" };
-      } else if (this.noteProperty === 2) {
-        return { iconClass: "bulb", characterClass: "k" };
-      } else if (this.noteProperty === 3) {
-        return { iconClass: "quote-left", characterClass: "l" };
-      } else {
-        return { iconClass: null, characterClass: null };
-      }
-    }
   }
 };
 </script>

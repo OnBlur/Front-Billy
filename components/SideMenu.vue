@@ -96,6 +96,7 @@
 
 <script>
 export default {
+  name: "Menu",
   methods: {
     closeMenu() {
       this.$emit("closeMenu");
@@ -105,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@-webkit-keyframes slide-right {
+@keyframes slide-right {
   0% {
     opacity: 0;
     -webkit-transform: translateZ(-10%);

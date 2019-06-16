@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const state = () => ({
   data: [
@@ -10,7 +11,7 @@ export const state = () => ({
     },
     {
       id: 2,
-      property: 3,
+      property: 2,
       timestamp: 1.2,
       content:
         "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
@@ -72,6 +73,8 @@ export const actions = {
       .get(process.env.baseUrl + "/get/video-note/", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
+        Cookies.set("notes", res.data.data);
+        localStorage.setItem("notes", res.data.data);
       })
       .catch(e => {
         context.error(e);

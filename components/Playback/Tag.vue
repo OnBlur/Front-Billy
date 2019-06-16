@@ -1,7 +1,6 @@
 <template>
   <div v-if="!hover" class="tag" @mouseover="hover = true">
-    #
-    <a>{{title}}</a>
+    <a>#{{title}}</a>
   </div>
   <div v-else class="tag edit" @mouseleave="hover = false">
     <button class="edit-button" @click="editTag()">
@@ -15,6 +14,7 @@
 
 <script>
 export default {
+  name: "Tag",
   props: {
     title: {
       type: String,
@@ -49,6 +49,7 @@ export default {
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
+  width: 130px;
   &.edit {
     display: flex;
     justify-content: space-between;

@@ -134,7 +134,7 @@ export default {
       activeNote: 1,
       activeHeader: 1,
 
-      tags: [{ id: 1, title: "Amsterdam" }, { id: 2, title: "16 to 20 years" }],
+      tags: [{ id: 1, title: "MCL" }, { id: 2, title: "Revalidatie" }],
       notes: [
         {
           id: 1,

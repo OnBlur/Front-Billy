@@ -41,7 +41,7 @@ export default {
   // align-items: flex-end;
   .icon {
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     font-family: "icons";
     font-size: 20px;
     margin-top: 60px;

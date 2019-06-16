@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: "Dropdown",
   props: {
     dropdown: {
       type: Boolean,
@@ -63,12 +64,18 @@ export default {
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #f2f2f2;
+    &:hover {
+      background-color: #f7f7f7;
+    }
   }
   .note-property {
     display: flex;
     .item {
       width: 70px;
       height: 70px;
+      &:hover {
+        background-color: #f7f7f7;
+      }
 
       &.active {
         background-color: #f2f2f2;
@@ -118,6 +125,9 @@ export default {
     align-items: center;
     border-top: 1px solid #f2f2f2;
     // background-color: red;
+    &:hover {
+      background-color: #f7f7f7;
+    }
   }
 }
 </style>
