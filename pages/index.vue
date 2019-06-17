@@ -11,10 +11,16 @@
     </div>
     <div class="row folders">
       <div class="col">
-        <div class="column" v-for="item in data.slice(0, 4)" :key="item.id">
+        <Folder
+          v-for="item in data.slice(0, 4)"
+          :key="item.id"
+          :name="item.name"
+          @click.native="goToProject(item.id)"
+        />
+        <!-- <div class="column" v-for="item in data.slice(0, 4)" :key="item.id">
           <h2 class="item-name">{{item.name}}</h2>
           <div class="blue-line"></div>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="row">
@@ -48,14 +54,16 @@
               >
             </div>
             <div class="edited">
-              <div>{{item.lastEdit}}</div>
-              <div class="editby">{{item.editBy}}</div>
+              <div>
+                {{item.lastEdit}} door
+                <b>{{item.editBy}}</b>
+              </div>
+              <!-- <div class="editby">{{item.editBy}}</div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <Folder :allData="data"/> -->
   </div>
 </template>
 
@@ -167,7 +175,11 @@ export default {
       ]
     };
   },
-
+  methods: {
+    goToProject(id) {
+      console.log(id);
+    }
+  },
   components: { Folder }
 };
 </script>
