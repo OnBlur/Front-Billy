@@ -5,13 +5,15 @@
     <div class="container">
       <LiveSearch/>
       <nuxt :sidebarStatus="sidebarState"/>
+      <FloatingActionButton/>
     </div>
   </div>
 </template>
 
 <script>
-import LiveSearch from "@/components/LiveSearch.vue";
+import LiveSearch from "@/components/LiveSearch";
 import SideMenu from "@/components/SideMenu";
+import FloatingActionButton from "@/components/FloatingActionButton";
 
 export default {
   computed: {
@@ -29,7 +31,8 @@ export default {
   },
   components: {
     LiveSearch,
-    SideMenu
+    SideMenu,
+    FloatingActionButton
   }
 };
 </script>

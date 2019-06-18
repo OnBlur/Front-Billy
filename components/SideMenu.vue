@@ -24,7 +24,7 @@
         <div class="menu-items">
           <ul>
             <!-- Files -->
-            <nuxt-link to="/files" tag="li" class="menu-item" exact>
+            <nuxt-link to="/" tag="li" class="menu-item" exact>
               <div class="menu-item-info">
                 <div class="menu-icon">
                   <span class="admin">c</span>
