@@ -1,5 +1,5 @@
 <template>
-  <div class="company-table">
+  <nuxt-link :to="{ path: 'company/' + id}" tag="div" class="company-table" exact>
     <div class="company-folders">
       <div>
         <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
@@ -17,7 +17,7 @@
         <!-- <div class="editby">{{item.editBy}}</div> -->
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -25,6 +25,10 @@ export default {
   name: "companyFolders",
 
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       default: "Geen naam gevonden"
@@ -51,6 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .company-table {
+  cursor: pointer;
   width: 100%;
   max-height: 350px;
   overflow-y: scroll;

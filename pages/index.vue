@@ -40,6 +40,7 @@
         <companyFolders
           v-for="item in allCompanies"
           :key="item.id"
+          :id="item.id"
           :name="item.name"
           :projects="item.projects"
           :members="item.members"

@@ -1,22 +1,20 @@
 <template>
   <section class="container">
-    <!-- <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo"> -->
-    <h1 class="title">User</h1>
-    <h2 class="info">{{ company }}</h2>
+    <div class="company" v-for="item in projects" :key="item.id">{{item.name}}</div>
   </section>
 </template>
 
 <script>
 export default {
-  props: {
-    id: {
-      type: Number,
-      default: 1
-    }
+  name: "Company",
+  data() {
+    return {
+      id: this.$route.params.id
+    };
   },
   computed: {
-    company() {
-      return this.$store.getters[("companies/getItem", 1)];
+    projects() {
+      return this.$store.getters["projects/getItemByCompanyId"](+this.id);
     }
   }
 };
