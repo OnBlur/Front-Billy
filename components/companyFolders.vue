@@ -34,7 +34,7 @@ export default {
       default: "0 projects"
     },
     members: {
-      type: Object,
+      type: Array,
       require: false
     },
     lastEdit: {
