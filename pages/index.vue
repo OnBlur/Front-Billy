@@ -56,6 +56,12 @@
       </div>
     </div>
     <!-- <Folder :allData="data"/> -->
+    <nav class="fab">
+      <a href="#" class="buttons" tooltip></a>
+      <a href="#" class="buttons" tooltip></a>
+      <a href="#" class="buttons" tooltip></a>
+      <a class="buttons times" tooltip="Toevoegen" href="#">f</a>
+    </nav>
   </div>
 </template>
 
@@ -258,6 +264,50 @@ export default {
       margin-left: 10px;
     }
   }
+}
+
+.fab {
+  bottom: 0;
+  position: fixed;
+  margin: 1em;
+  right: 0px;
+
+  a {
+    background-color: #424242;
+  }
+}
+
+.buttons {
+  box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18),
+    0px 4px 12px -7px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 20px auto 0;
+  position: relative;
+  transition: all 0.1s ease-out;
+  font-family: "icons";
+}
+
+.buttons:active,
+.buttons:focus,
+.buttons:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+}
+
+.buttons:not(:last-child) {
+  width: 40px;
+  height: 40px;
+  margin: 20px auto 0;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.fab:hover .buttons:not(:last-child) {
+  opacity: 1;
+  transform: none;
+  margin: 15px auto 0;
 }
 
 .folders {
