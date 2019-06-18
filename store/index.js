@@ -25,7 +25,6 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ dispatch }) {
-    // await dispatch("videos/getAllInit");
     // await dispatch("companies/getAllInit");
     // await dispatch("projects/getAllInit");
     // await dispatch("notes/getAllInit");

@@ -48,6 +48,14 @@ export default {
    */
   plugins: [],
 
+  manifest: {
+    name: "Front Billy",
+    short_name: "Billy",
+    description: "Applicatie voor usability testing met Billy",
+    theme_color: "#2F495E",
+    start_url: "/"
+  },
+
   /*
    ** Nuxt.js modules
    */
@@ -56,7 +64,8 @@ export default {
     "@nuxtjs/axios",
     // Doc: https://bootstrap-vue.js.org/docs/
     "bootstrap-vue/nuxt",
-    "nuxt-fontawesome"
+    "nuxt-fontawesome",
+    "@nuxtjs/pwa"
   ],
   /*
    ** Axios module configuration
@@ -67,6 +76,20 @@ export default {
 
   env: {
     baseUrl: process.env.BASE_URL || "http://c71de6a9.eu.ngrok.io/api"
+  },
+
+  render: {
+    http2: {
+      push: true
+    },
+    static: {
+      maxAge: "1y",
+      setHeaders(res, path) {
+        if (path.includes("sw.js")) {
+          res.setHeader("Cache-Control", `public, max-age=${15 * 60}`);
+        }
+      }
+    }
   },
 
   /*

@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <div class="icon menu-icon" @click="openMenu" v-if="!sidebarState">a</div>
+    <AlertMessage/>
     <SideMenu v-if="sidebarState" @closeMenu="closeMenu"/>
     <div class="container">
       <nuxt/>
@@ -11,6 +12,7 @@
 <script>
 import AppHeader from "@/components/AppHeader";
 import SideMenu from "@/components/SideMenu";
+import AlertMessage from "@/components/UI/AlertMessage";
 
 export default {
   computed: {
@@ -28,7 +30,8 @@ export default {
   },
   components: {
     AppHeader,
-    SideMenu
+    SideMenu,
+    AlertMessage
   }
 };
 </script>
