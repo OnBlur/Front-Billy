@@ -12,7 +12,7 @@ export default {
   mixins: [ConvertPropertyIdToIcon],
   props: {
     timestamp: {
-      type: Number,
+      type: String,
       default: 0
     },
     noteProperty: {

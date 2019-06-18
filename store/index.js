@@ -27,7 +27,7 @@ export const actions = {
   async nuxtServerInit({ dispatch }) {
     // await dispatch("videos/getAllInit");
     // await dispatch("notes/getAllInit");
-    await dispatch("todos/getAllInit");
+    // await dispatch("todos/getAllInit");
   }
 };
 

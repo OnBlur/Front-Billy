@@ -66,7 +66,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || "http://fade7f7e.eu.ngrok.io/api"
+    baseUrl: process.env.BASE_URL || "http://c71de6a9.eu.ngrok.io/api"
   },
 
   /*

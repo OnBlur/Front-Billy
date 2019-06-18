@@ -19,9 +19,9 @@
           <Note
             v-for="item in allNotes"
             :key="item.id"
-            :timestamp="item.timestamp"
+            :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.content"
-            :noteProperty="item.property"
+            :noteProperty="item.type"
           />
         </div>
         <div class="text-input">
@@ -47,10 +47,13 @@
 
 <script>
 import { mapMutations } from "vuex";
+import { trimTimestamp } from "@/mixins";
+
 import Note from "@/components/Live/Note";
 
 export default {
   name: "Live",
+  mixins: [trimTimestamp],
   layout: "playback",
   data() {
     return {
@@ -59,63 +62,7 @@ export default {
       inputNote: "",
       tooltipSuccess: "Internet and API connection is available",
       tooltipFail:
-        "All your changes will be saved automatically when you’re offline.",
-
-      notes: [
-        {
-          id: 1,
-          iconClass: null,
-          characterClass: null,
-          property: 1,
-          timestamp: 0.35,
-          content: "De testpersoon geeft een verwarde indruk"
-        },
-        {
-          id: 2,
-          iconClass: "quote-left",
-          characterClass: "l",
-          property: 1,
-          timestamp: 1.2,
-          content:
-            "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
-        },
-        {
-          id: 3,
-          iconClass: null,
-          characterClass: null,
-          property: 1,
-          timestamp: 2.1,
-          content:
-            "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
-        },
-        {
-          id: 4,
-          iconClass: "bulb",
-          characterClass: "k",
-          property: 1,
-          timestamp: 2.3,
-          content:
-            "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
-        },
-        {
-          id: 5,
-          iconClass: null,
-          characterClass: null,
-          property: 1,
-          timestamp: 3.1,
-          content:
-            "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
-        },
-        {
-          id: 6,
-          iconClass: null,
-          characterClass: null,
-          property: 1,
-          timestamp: 3.1,
-          content:
-            "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
-        }
-      ]
+        "All your changes will be saved automatically when you’re offline."
     };
   },
   computed: {

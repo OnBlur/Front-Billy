@@ -26,7 +26,7 @@ export default {
       default: false
     },
     timestamp: {
-      type: Number,
+      type: String,
       default: 0.0
     },
     note: {

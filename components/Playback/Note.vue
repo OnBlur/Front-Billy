@@ -8,6 +8,7 @@
       :dropdown="dropdown"
       :noteProperty="noteProperty"
       @startEditModus="startEditModus()"
+      @changeType="editNoteType($event)"
       @deleteNote="deleteNote()"
     />
     <div class="menu" v-if="active" @click="openDropdown()">
@@ -59,7 +60,8 @@ export default {
       edit: false,
 
       timestampInput: this.timestamp,
-      noteInput: this.note
+      noteInput: this.note,
+      noteType: this.noteProperty
     };
   },
   methods: {
@@ -74,8 +76,17 @@ export default {
       this.editSwitch();
     },
     editNote() {
-      console.log(this.timestamp, this.note);
-      this.$emit("editNote", [this.timestamp, this.note]);
+      this.$emit("editNote", {
+        timestamp: this.timestamp,
+        content: this.note,
+        type: this.noteType
+      });
+      this.editSwitch();
+    },
+    editNoteType(type) {
+      this.noteType = type;
+      this.openDropdown();
+      this.editNote();
     },
     deleteNote() {
       this.openDropdown();

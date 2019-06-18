@@ -1,18 +1,18 @@
 <template>
   <div class="dropdown" v-if="dropdown">
     <div class="edit" @click="startEditModus()">Edit Note</div>
-    <div class="note-property">
-      <div class="item note" :class="{ 'active': noteProperty === 1}">
+    <div class="note-type">
+      <div class="item note" @click="changeType(0)" :class="{ 'active': noteProperty === 0}">
         <div class="icon folder">c</div>
         <div class="text">Note</div>
       </div>
-      <div class="item quote" :class="{ 'active': noteProperty === 2}">
-        <div class="icon quote-left">l</div>
-        <div class="text">Quote</div>
-      </div>
-      <div class="item finding" :class="{ 'active': noteProperty === 3}">
+      <div class="item finding" @click="changeType(1)" :class="{ 'active': noteProperty === 1}">
         <div class="icon bulb">k</div>
         <div class="text">Finding</div>
+      </div>
+      <div class="item quote" @click="changeType(2)" :class="{ 'active': noteProperty === 2}">
+        <div class="icon quote-left">l</div>
+        <div class="text">Quote</div>
       </div>
     </div>
     <div class="delete" @click="deleteNote()">Delete</div>
@@ -38,6 +38,9 @@ export default {
     },
     deleteNote() {
       this.$emit("deleteNote");
+    },
+    changeType(id) {
+      this.$emit("changeType", id);
     }
   }
 };
@@ -68,7 +71,7 @@ export default {
       background-color: #f7f7f7;
     }
   }
-  .note-property {
+  .note-type {
     display: flex;
     .item {
       width: 70px;
@@ -90,15 +93,6 @@ export default {
         align-items: center;
         flex-direction: column;
       }
-      &.quote {
-        font-size: 18px;
-        color: #424242;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
       &.finding {
         font-size: 18px;
         color: #424242;
@@ -112,6 +106,15 @@ export default {
       .icon {
         font-family: "icons";
         font-size: 22px;
+      }
+      &.quote {
+        font-size: 18px;
+        color: #424242;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
     }
   }
