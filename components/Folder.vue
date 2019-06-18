@@ -1,8 +1,8 @@
 <template>
   <div class="row folders">
     <div class="col">
-      <div class="column" v-for="item in allData.slice(0, 4)" :key="item.id">
-        <h2 class="item-name">{{item.name}}</h2>
+      <div class="column">
+        <h2 class="item-name">{{name}}</h2>
       </div>
     </div>
   </div>
@@ -11,9 +11,9 @@
 <script>
 export default {
   props: {
-    allData: {
-      type: Array,
-      required: true
+    name: {
+      type: String,
+      default: "Geen naam gevonden"
     }
   }
 };

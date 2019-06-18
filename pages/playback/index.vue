@@ -14,15 +14,13 @@
         <div class="timeline">
           <!-- <div class="progress" :style="{ width: activeColor, fontSize: fontSize + 'px' }"></div> -->
           <div class="progress" ref="progressBar"></div>
-          <div
-            class="timeline-item"
-            v-for="item in notes"
+          <TimelineItem
+            v-for="item in allNotes"
             :key="item.id"
-            @click="selectNote(item)"
-            ref="timelineItems"
-          >
-            <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
-          </div>
+            :noteProperty="item.property"
+            :timestamp="item.timestamp"
+            @click.native="selectNote(item)"
+          />
         </div>
       </div>
       <div class="info">
@@ -48,7 +46,7 @@
         </button>
         <div class="notes" v-if="activeHeader === 1">
           <Note
-            v-for="item in notes"
+            v-for="item in allNotes"
             :key="item.id"
             :active="item.id === activeNote"
             :timestamp="trimTimestamp(+item.timestamp)"
@@ -97,7 +95,6 @@
         </div>
       </div>
       <div class="text-input">
-        <div class="icon smile-o">p</div>
         <form v-on:submit.prevent="addNote">
           <input
             v-model="inputNote"
@@ -110,14 +107,20 @@
         </form>
       </div>
       <div class="text-input-divider"></div>
+      <div class="emojis">
+        <div class="icon smile-o">p</div>
+        <div class="icon meh-o">r</div>
+        <div class="icon frown-o">q</div>
+      </div>
     </b-col>
   </b-row>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
-import Tag from "@/components/Tag";
-import Note from "@/components/Note";
+import Tag from "@/components/Playback/Tag";
+import Note from "@/components/Playback/Note";
+import TimelineItem from "@/components/Playback/TimelineItem";
 
 export default {
   name: "Playback",
@@ -131,7 +134,7 @@ export default {
       activeNote: 1,
       activeHeader: 1,
 
-      tags: [{ id: 1, title: "Amsterdam" }, { id: 2, title: "16 to 20 years" }],
+      tags: [{ id: 1, title: "MCL" }, { id: 2, title: "Revalidatie" }],
       notes: [
         {
           id: 1,
@@ -196,7 +199,7 @@ export default {
     //Initialize timeline items on the timeline
     for (let i = 0; i < this.notes.length; i++) {
       let itemPosition = this.notes[i].timestamp * 7;
-      this.$refs.timelineItems[i].style.left = itemPosition + "%";
+      // this.$refs.timelineItems[i].style.left = itemPosition + "%";
     }
 
     this.$refs.myVideo.ontimeupdate = event => {
@@ -204,11 +207,8 @@ export default {
     };
   },
   computed: {
-    allVideos() {
-      return this.$store.state.videos.data;
-    },
     allNotes() {
-      return this.$store.state.notes.data;
+      return this.$store.getters["notes/allData"];
     }
   },
   methods: {
@@ -251,7 +251,7 @@ export default {
       this.activeHeader = id;
     },
     trimTimestamp(time) {
-      return time.toFixed(1);
+      return time.toFixed(2);
     }
   },
   watch: {
@@ -272,7 +272,7 @@ export default {
       }
     }
   },
-  components: { Tag, Note }
+  components: { Tag, Note, TimelineItem }
 };
 </script>
 
@@ -518,5 +518,19 @@ export default {
   margin-top: 15px;
   height: 2px;
   background-color: #bfbfbf;
+}
+.emojis {
+  font-family: "icons";
+  font-size: 30px;
+  display: flex;
+  margin-top: 10px;
+  .icon {
+    margin-right: 10px;
+    cursor: pointer;
+    opacity: 0.4;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 </style>

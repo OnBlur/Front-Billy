@@ -1,7 +1,50 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const state = () => ({
-  data: []
+  data: [
+    {
+      id: 1,
+      property: 1,
+      timestamp: 0.35,
+      content: "De testpersoon geeft een verwarde indruk"
+    },
+    {
+      id: 2,
+      property: 2,
+      timestamp: 1.2,
+      content:
+        "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
+    },
+    {
+      id: 3,
+      property: 1,
+      timestamp: 2.1,
+      content:
+        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
+    },
+    {
+      id: 4,
+      property: 2,
+      timestamp: 2.3,
+      content:
+        "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
+    },
+    {
+      id: 5,
+      property: 1,
+      timestamp: 3.1,
+      content:
+        "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
+    },
+    {
+      id: 6,
+      property: 1,
+      timestamp: 3.1,
+      content:
+        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
+    }
+  ]
 });
 
 export const mutations = {
@@ -21,7 +64,7 @@ export const mutations = {
 };
 
 export const actions = {
-  getAllInit(vuexContext, context) {
+  async getAllInit(vuexContext, context) {
     const requestOptions = {
       method: "GET"
       //   headers: authHeader()
@@ -30,12 +73,14 @@ export const actions = {
       .get(process.env.baseUrl + "/get/video-note/", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
+        Cookies.set("notes", res.data.data);
+        localStorage.setItem("notes", res.data.data);
       })
       .catch(e => {
         context.error(e);
       });
   },
-  addNote(vuexContext, value) {
+  async addNote(vuexContext, value) {
     return axios
       .post(process.env.baseUrl + "/create/video-note/", value)
       .then(result => {
@@ -46,7 +91,7 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  editNote(vuexContext, value) {
+  async editNote(vuexContext, value) {
     const requestOptions = {
       // method: "PATCH",
       project_id: value.project_id,
@@ -63,7 +108,7 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  deleteNote(vuexContext, value) {
+  async deleteNote(vuexContext, value) {
     return axios
       .delete(process.env.baseUrl + "/delete/video-note/" + value)
       .then(() => {

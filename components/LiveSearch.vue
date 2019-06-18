@@ -1,7 +1,13 @@
 <template>
   <div class="wrapper-container">
     <div class="input-wrapper">
-      <input type="text" v-model="searchWord" class="search-box" placeholder="Zoeken" list="insights">
+      <input
+        type="text"
+        v-model="searchWord"
+        class="search-box"
+        placeholder="Search for folders, testresults and tags"
+        list="insights"
+      >
     </div>
     <datalist id="insights">
       <option v-for="(item, index) in filteredItems" :key="index" v-text="item.name"></option>
@@ -55,23 +61,26 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper-container {
+  width: 100%;
+  margin-top: 30px;
   .insights-overview {
     margin-top: 2em;
     display: none;
   }
-  .input-wrapper{
+  .input-wrapper {
     display: flex;
     justify-content: center;
   }
   input {
-    max-width: 40rem;
+    font-size: 13px;
+    max-width: 50rem;
     width: 90%;
     border: none;
-    height: 40px;
+    height: 45px;
     margin: 10px 0;
     background-color: white;
-    border-radius: 8px;
-    padding-left: 10px;
+    border-radius: 10px;
+    padding-left: 20px;
     box-shadow: 0px 0px 17px white;
     outline: none;
     transition: 1s;

@@ -1,55 +1,51 @@
 <template>
   <div class="content">
-    <div class="header" ref="mainHeader">
-      <AppHeader/>
-    </div>
-    <div class="container" ref="container">
+    <div class="icon menu-icon" @click="openMenu" v-if="!sidebarState">a</div>
+    <SideMenu v-if="sidebarState" @closeMenu="closeMenu"/>
+    <div class="container">
       <nuxt/>
     </div>
   </div>
 </template>
 
 <script>
-import AppHeader from "../components/AppHeader";
+import AppHeader from "@/components/AppHeader";
+import SideMenu from "@/components/SideMenu";
 
 export default {
   computed: {
-    getRefFromStore() {
-      // return this.$store.getters["stateStore/getSidebarStatus"];
-      return this.$store.state.stateStore.sidebarStatus;
+    sidebarState() {
+      return this.$store.getters["stateStore/getSidebarStatus"];
     }
   },
-  watch: {
-    getRefFromStore() {
-      if (this.$store.state.stateStore.sidebarStatus) {
-        this.$refs.mainHeader.style.width = "calc(100% - 300px)";
-        this.$refs.container.style.width = "calc(100% - 300px)";
-        this.$refs.mainHeader.style.float = "right";
-      } else {
-        this.$refs.mainHeader.style.width = "100%";
-        this.$refs.container.style.width = "100%";
-      }
+  methods: {
+    openMenu() {
+      this.$store.commit("stateStore/setSidebarStatus", true);
+    },
+    closeMenu() {
+      this.$store.commit("stateStore/setSidebarStatus", false);
     }
   },
   components: {
-    AppHeader
+    AppHeader,
+    SideMenu
   }
 };
 </script>
 <style lang="scss" scoped>
 .content {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  .header {
-    width: 100%;
-    overflow: hidden;
-    padding: 1rem 2rem;
-    background: #eaecec;
+  .icon {
+    cursor: pointer;
+    position: absolute;
+    font-family: "icons";
+    font-size: 20px;
+    margin-top: 60px;
+    margin-left: 60px;
   }
   .container {
     margin: 0px;
-    margin-top: 45px;
+    margin-top: 130px;
     // padding-left: 140px;
     // padding-right: 140px;
   }

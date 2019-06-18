@@ -16,24 +16,13 @@
     <b-col md="9">
       <div class="main">
         <div class="notes">
-          <div
-            class="note-wrapper"
-            v-for="item in notes"
+          <Note
+            v-for="item in allNotes"
             :key="item.id"
-            :class="{ 'simple': !item.iconClass }"
-          >
-            <div class="time">{{item.timestamp}}</div>
-            <div class="divider"></div>
-            <b-form-textarea
-              id="textarea-no-resize"
-              placeholder="Fixed height textarea"
-              no-resize
-              v-model="item.content"
-            ></b-form-textarea>
-            <!-- <textarea class="note" type="text" v-model="item.content"></textarea> -->
-            <!-- <div class="note" contenteditable v-text="item.content"></div> -->
-            <div class="icon" :class="item.iconClass">{{item.characterClass}}</div>
-          </div>
+            :timestamp="item.timestamp"
+            :note="item.content"
+            :noteProperty="item.property"
+          />
         </div>
         <div class="text-input">
           <form v-on:submit.prevent="addNote">
@@ -58,6 +47,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import Note from "@/components/Live/Note";
 
 export default {
   name: "Live",
@@ -128,16 +118,22 @@ export default {
       ]
     };
   },
+  computed: {
+    allNotes() {
+      return this.$store.getters["notes/allData"];
+    }
+  },
   methods: {
     addNote() {
       console.log(this.inputNote);
     }
   },
   watch: {
-    notes() {
-      console.log("hoi");
+    allNotes() {
+      console.log("Something has been changed in store: AllNotes");
     }
-  }
+  },
+  components: { Note }
 };
 </script>
 
@@ -194,63 +190,6 @@ export default {
     &::-webkit-scrollbar-thumb {
       background: #424242;
       border-radius: 0px;
-    }
-
-    .note-wrapper {
-      padding: 30px;
-      max-width: 660px;
-      background-color: white;
-      display: flex;
-      // align-items: center;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      font-size: 16px;
-      &.simple {
-        background-color: #f8f8f8;
-      }
-      .time {
-        margin-right: 17px;
-      }
-      .divider {
-        width: 1px;
-        height: 40px;
-        background-color: #ececec;
-      }
-      .note {
-        margin-left: 17px;
-        max-width: 443px;
-        width: 100%;
-
-        &:focus .note-wrapper {
-          box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
-        }
-      }
-      .icon {
-        font-size: 25px;
-        flex-grow: 1;
-        justify-content: flex-end;
-        display: flex;
-        align-items: center;
-        font-family: "icons";
-      }
-      .form-control {
-        resize: none;
-        background-color: transparent;
-        border-radius: 0;
-        border: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        width: 100%;
-        font-size: 16px;
-
-        &:focus {
-          outline: none !important;
-
-          .note-wrapper {
-            box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
-          }
-        }
-      }
     }
   }
   .text-input {

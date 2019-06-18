@@ -1,5 +1,5 @@
 <template>
-  <div class="container" ref="mainContainer">
+  <div>
     <div class="row">
       <div class="breadcrumb">Alle bestanden ></div>
       <div class="divider"></div>
@@ -11,10 +11,16 @@
     </div>
     <div class="row folders">
       <div class="col">
-        <div class="column" v-for="item in data.slice(0, 4)" :key="item.id">
+        <Folder
+          v-for="item in data.slice(0, 4)"
+          :key="item.id"
+          :name="item.name"
+          @click.native="goToProject(item.id)"
+        />
+        <!-- <div class="column" v-for="item in data.slice(0, 4)" :key="item.id">
           <h2 class="item-name">{{item.name}}</h2>
           <div class="blue-line"></div>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="row">
@@ -48,20 +54,16 @@
               >
             </div>
             <div class="edited">
-              <div>{{item.lastEdit}}</div>
-              <div class="editby">{{item.editBy}}</div>
+              <div>
+                {{item.lastEdit}} door
+                <b>{{item.editBy}}</b>
+              </div>
+              <!-- <div class="editby">{{item.editBy}}</div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <Folder :allData="data"/> -->
-    <nav class="fab">
-      <a href="#" class="buttons" tooltip></a>
-      <a href="#" class="buttons" tooltip></a>
-      <a href="#" class="buttons" tooltip></a>
-      <a class="buttons times" tooltip="Toevoegen" href="#">f</a>
-    </nav>
   </div>
 </template>
 
@@ -69,6 +71,13 @@
 import Folder from "@/components/Folder";
 
 export default {
+  name: "Dashboard",
+  props: {
+    sidebarStatus: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       data: [
@@ -166,31 +175,19 @@ export default {
       ]
     };
   },
-  computed: {
-    getRefFromStore() {
-      return this.$store.state.stateStore.sidebarStatus;
+  methods: {
+    goToProject(id) {
+      console.log(id);
     }
   },
-  watch: {
-    getRefFromStore() {
-      if (this.$store.state.stateStore.sidebarStatus) {
-        console.log("true?");
-        this.$refs.mainContainer.style.width = "calc(100% - 300px)";
-      } else {
-        console.log("false?");
-        this.$refs.mainContainer.style.width = "100%";
-      }
-    }
-  },
-
   components: { Folder }
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
+  margin-top: 130px;
   padding: 0px;
-  margin: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
