@@ -3,6 +3,7 @@
     <div class="col">
       <div class="column">
         <h2 class="item-name">{{name}}</h2>
+        <div class="blue-line"></div>
       </div>
     </div>
   </div>
@@ -24,6 +25,15 @@ export default {
   &.folders {
     max-width: 1100px;
     width: 100%;
+    .blue-line {
+      width: 35%;
+      border-top: 2px solid #2699fb;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin-top: 25px;
+    }
   }
   .col {
     display: flex;
@@ -49,6 +59,7 @@ export default {
         transform: translate(-50%, -50%);
         display: flex;
         flex-wrap: wrap;
+        text-align: center;
       }
     }
     .column:nth-child(1) {

@@ -99,7 +99,7 @@ export default {
     font-size: 12px;
     visibility: hidden;
     opacity: 0;
-    padding: 5px 7px;
+    padding: 1px 7px;
     margin-right: 12px;
     position: absolute;
     right: 100%;
