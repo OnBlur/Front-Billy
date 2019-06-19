@@ -18,7 +18,7 @@
   <form v-on:submit.prevent="editNote" class="note-edit" v-else>
     <div class="note-input">
       <input type="text" class="timestamp-input" v-model="timestampInput">
-      <input type="text" class="note-input" v-model="noteInput">
+      <input type="text" class="note-input" v-model="note">
     </div>
     <div class="buttons">
       <button class="save" @click="editNote">
@@ -81,7 +81,7 @@ export default {
         content: this.note,
         type: this.noteType
       });
-      this.editSwitch();
+      this.edit = false;
     },
     editNoteType(type) {
       this.noteType = type;

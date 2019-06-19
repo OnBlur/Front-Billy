@@ -2,14 +2,14 @@
   <div class="note-wrapper" :class="{ 'simple': !propertyIcon.iconClass }">
     <div class="time">{{timestamp}}</div>
     <div class="divider"></div>
-    <!-- <b-form-textarea
-              id="textarea-no-resize"
-              placeholder="Fixed height textarea"
-              no-resize
-              v-model="content"
-    ></b-form-textarea>-->
+    <b-form-textarea
+      id="textarea-no-resize"
+      placeholder="Fixed height textarea"
+      no-resize
+      v-model="noteInput"
+    ></b-form-textarea>
     <!-- <textarea class="note" type="text" v-model="content"></textarea> -->
-    <div class="note" contenteditable v-text="note"></div>
+    <!-- <div class="note" contenteditable v-text="note"></div> -->
     <div class="icon" :class="propertyIcon.iconClass">{{propertyIcon.characterClass}}</div>
   </div>
 </template>
@@ -54,8 +54,8 @@ export default {
       this.editSwitch();
     },
     editNote() {
-      console.log(this.timestamp, this.note);
-      //   this.$emit("editNote", [this.timestamp, this.note]);
+      // console.log(this.timestamp, this.note);
+      this.$emit("editNote", this.note);
     }
   }
 };
@@ -90,6 +90,11 @@ export default {
     &:focus .note-wrapper {
       box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
     }
+  }
+  textarea {
+    padding: 0;
+    margin-left: 17px;
+    max-width: 443px;
   }
   .icon {
     font-size: 25px;

@@ -22,6 +22,7 @@
             :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.content"
             :noteProperty="item.type"
+            @editNote="editNote($event)"
           />
         </div>
         <div class="text-input">
@@ -60,6 +61,7 @@ export default {
       currentTime: null,
       connected: true,
       inputNote: "",
+      timestamp: 4.3,
       tooltipSuccess: "Internet and API connection is available",
       tooltipFail:
         "All your changes will be saved automatically when you’re offline."
@@ -72,8 +74,15 @@ export default {
   },
   methods: {
     addNote() {
-      console.log(this.inputNote);
-    }
+      this.$store.commit("todos/addNote", {
+        timestamp: this.timestamp,
+        note: this.inputNote
+      });
+
+      this.inputNote = "";
+      this.playVideo();
+    },
+    editNote(content) {}
   },
   watch: {
     allNotes() {
