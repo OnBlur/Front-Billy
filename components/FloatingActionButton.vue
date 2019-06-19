@@ -7,8 +7,6 @@
         tooltip="Projectmap aanmaken"
         v-b-modal.modal-1
       >d</b-button>
-
-      <b-button class="buttons times" href="#">f</b-button>
     </nav>
     <div>
       <b-modal id="modal-1">
@@ -48,59 +46,21 @@ export default {
   margin: 20px auto 0;
   position: relative;
   transition: all 0.1s ease-out;
-
-  &:active,
-  &:focus,
-  &:hover {
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
-  }
-  &:not(:last-child) {
-    width: 50px;
-    height: 50px;
-    margin: 20px auto 0;
-    opacity: 0;
-    transform: translateY(50px);
-  }
-}
-
-.fab:hover .buttons:not(:last-child) {
-  opacity: 1;
-  transform: none;
-  margin: 15px auto 0;
 }
 
 .buttons {
   font-family: "icons";
-  &:nth-last-child(1) {
-    transition-delay: 25ms;
-    background-color: #424242;
-    background-size: contain;
-  }
-  &:not(:last-child) {
-    &:nth-last-child(2) {
-      transition-delay: 20ms;
-      background-color: #ffffff;
-      background-size: contain;
-    }
-  }
-}
-.times {
-  color: white;
-  text-align: center;
-  padding-top: 11px;
-  font-size: 2em;
-  transform: rotate(46deg);
 
-  &:hover {
-    text-decoration: none;
-  }
+  transition-delay: 25ms;
+  background-color: #424242;
+  background-size: contain;
 }
 
 .folder-add {
-  color: #424242;
+  color: #ffffff;
   text-align: center;
-  padding-top: 9px;
-  font-size: 1.5em;
+  padding-top: 10px;
+  font-size: 2em;
 
   &:hover {
     text-decoration: none;
@@ -113,7 +73,8 @@ export default {
     font-family: arial;
     font-weight: 600;
     border-radius: 2px;
-    color: #424242;
+    background-color: #424242;
+    color: #ffffff;
     content: attr(tooltip);
     font-size: 12px;
     visibility: hidden;
