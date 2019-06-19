@@ -1,15 +1,12 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
 export const state = () => ({
-  data: [
-    {
+  data: [{
       id: 1,
       name: "Puur Schoonheid",
       img: "random",
       projects: "2 projecten",
-      members: [
-        {
+      members: [{
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -30,8 +27,7 @@ export const state = () => ({
       name: "3 roots",
       img: "random",
       projects: "7 projecten",
-      members: [
-        {
+      members: [{
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -52,8 +48,7 @@ export const state = () => ({
       name: "A&B Meester Schilders",
       img: "random",
       projects: "3 projecten",
-      members: [
-        {
+      members: [{
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -74,8 +69,7 @@ export const state = () => ({
       name: " Google",
       img: "random",
       projects: "4 projecten",
-      members: [
-        {
+      members: [{
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -96,8 +90,7 @@ export const state = () => ({
       name: " Microsoft",
       img: "random",
       projects: "1 project",
-      members: [
-        {
+      members: [{
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -118,8 +111,7 @@ export const state = () => ({
       name: " Apple",
       img: "random",
       projects: "2 projecten",
-      members: [
-        {
+      members: [{
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -140,8 +132,7 @@ export const state = () => ({
       name: " Toshiba",
       img: "random",
       projects: "876 projecten",
-      members: [
-        {
+      members: [{
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -183,7 +174,7 @@ export const actions = {
       //   headers: authHeader()
     };
     return axios
-      .get(process.env.baseUrl + "/get/video-Company/", requestOptions)
+      .get(process.env.baseUrl + "/get/company", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
         // Cookies.set("Companys", res.data.data);
@@ -195,7 +186,7 @@ export const actions = {
   },
   async addCompany(vuexContext, value) {
     return axios
-      .post(process.env.baseUrl + "/create/company/", value)
+      .post(process.env.baseUrl + "/create/company", value)
       .then(result => {
         vuexContext.commit("addData", {
           ...value,
@@ -234,5 +225,8 @@ export const getters = {
   },
   getItem: state => id => {
     return state.data.find(item => item.id === id);
+  },
+  getLastItem(state) {
+    return state.data.slice(-1)[0];
   }
 };

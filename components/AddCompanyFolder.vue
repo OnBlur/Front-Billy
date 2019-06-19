@@ -9,14 +9,15 @@
       >d</b-button>
     </nav>
     <div>
-      <b-modal id="modal-1">
-        <h1 class="create-modal-title">Bedrijfsmap en projectmap aanmaken</h1>
-        <b-form-input v-model="text" placeholder="Bedrijfsnaam"></b-form-input>
-        <b-form-input v-model="text" placeholder="Projectnaam"></b-form-input>
-        <div class="modal-buttons">
-          <b-button class="create">Aanmaken</b-button>
-          <b-button class="cancel">Annuleren</b-button>
-        </div>
+      <b-modal id="modal-1" ref="modal">
+        <h1 class="create-modal-title">Bedrijfsmap aanmaken</h1>
+        <b-form v-on:submit.prevent="onSubmit">
+          <b-form-input v-model="companyName" placeholder="Bedrijfsnaam"></b-form-input>
+          <div class="modal-buttons">
+            <b-button type="submit" class="create">Aanmaken</b-button>
+            <b-button class="cancel">Annuleren</b-button>
+          </div>
+        </b-form>
       </b-modal>
     </div>
   </div>
@@ -24,7 +25,28 @@
 
 <script>
 export default {
-  name: "FloatingActionButton"
+  name: "AddCompanyFolder",
+  data() {
+    return {
+      companyName: "",
+      modelStatus: false,
+      modalShown: false
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log("hallo?");
+      this.$store
+        .dispatch("companies/addCompany", {
+          name: this.companyName
+        })
+        .then(res => {
+          let newCompany = this.$store.getters["companies/getLastItem"];
+          this.$router.push("/company/" + newCompany.id);
+          this.$refs.modal.hide();
+        });
+    }
+  }
 };
 </script>
 
