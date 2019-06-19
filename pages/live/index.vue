@@ -15,7 +15,7 @@
     <!-- Right -->
     <b-col md="9">
       <div class="main">
-        <div class="notes">
+        <div class="notes" ref="notes">
           <Note
             v-for="item in allNotes"
             :key="item.id"
@@ -62,6 +62,7 @@ export default {
       connected: true,
       inputNote: "",
       timestamp: 4.3,
+      noteType: 0,
       tooltipSuccess: "Internet and API connection is available",
       tooltipFail:
         "All your changes will be saved automatically when you’re offline."
@@ -74,13 +75,22 @@ export default {
   },
   methods: {
     addNote() {
-      this.$store.commit("todos/addNote", {
-        timestamp: this.timestamp,
-        note: this.inputNote
-      });
+      this.$store
+        .dispatch("notes/addNote", {
+          timestamp: this.timestamp,
+          content: this.inputNote,
+          type: this.noteType,
+          video_id: 1
+        })
+        .then(() => {
+          this.$router.push("/live");
+        });
 
       this.inputNote = "";
-      this.playVideo();
+      this.$refs.notes.scrollTo.animate(
+        { scrollTop: document.scrollTo.scrollHeight },
+        "slow"
+      );
     },
     editNote(content) {}
   },

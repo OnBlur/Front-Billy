@@ -89,7 +89,7 @@ export const actions = {
   },
   async addNote(vuexContext, value) {
     return axios
-      .post(process.env.baseUrl + "/create/video-note/", value)
+      .post(process.env.baseUrl + "/create/video-note", value)
       .then(result => {
         vuexContext.commit("addData", {
           ...value,

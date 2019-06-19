@@ -176,10 +176,14 @@ export default {
   methods: {
     // Save timestamp and note onsubmit, clear the input field and resume the video
     addNote() {
-      this.$store.commit("todos/addNote", {
-        timestamp: this.$refs.myVideo.currentTime,
-        note: this.inputNote
-      });
+      this.$store
+        .dispatch("notes/addNote", {
+          timestamp: this.$refs.myVideo.currentTime,
+          note: this.inputNote
+        })
+        .then(() => {
+          this.$router.push("/playback");
+        });
 
       this.inputNote = "";
       this.playVideo();
