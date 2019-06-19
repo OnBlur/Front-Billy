@@ -55,7 +55,15 @@ export default {
     },
     editNote() {
       // console.log(this.timestamp, this.note);
-      this.$emit("editNote", this.note);
+      this.$emit("editNote", this.noteInput);
+    }
+  },
+  watch: {
+    noteInput() {
+      clearInterval(this.interval);
+      this.interval = setTimeout(() => {
+        this.editNote();
+      }, 1000);
     }
   }
 };
