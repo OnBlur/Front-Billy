@@ -71,33 +71,7 @@ export default {
     display: flex;
     flex-grow: 1.5;
   }
-  .editby {
-    font-weight: bold;
-    margin-left: 10px;
-  }
-}
 
-.company-table {
-  width: 100%;
-  max-height: 350px;
-  overflow-y: scroll;
-  .company-folders {
-    width: 100%;
-    color: #424242;
-    display: flex;
-    background-color: white;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 10px;
-  }
-  div {
-    width: 13em;
-  }
-
-  .edited {
-    display: flex;
-    flex-grow: 1.5;
-  }
   .editby {
     font-weight: bold;
     margin-left: 10px;
