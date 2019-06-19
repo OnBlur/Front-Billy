@@ -1,5 +1,5 @@
 import createPersistedState from "vuex-persistedstate";
-import Cookies from "js-cookie";
+import * as Cookies from "js-cookie";
 
 export const plugins = [
   createPersistedState({
@@ -7,10 +7,7 @@ export const plugins = [
       getItem: key => Cookies.get(key),
       // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
       setItem: (key, value) =>
-        Cookies.set(key, value, {
-          expires: 3,
-          secure: true
-        }),
+        Cookies.set(key, value, { expires: 3, secure: true }),
       removeItem: key => Cookies.remove(key)
     }
   })
@@ -25,14 +22,14 @@ export const mutations = {
   //   state.counter++
   // }
 };
-/* 
+
 export const actions = {
   async nuxtServerInit({ dispatch }) {
     // await dispatch("companies/getAllInit");
-    await dispatch("projects/getAllInit");
+    // await dispatch("projects/getAllInit");
     // await dispatch("stateStore/getVersion");
     // await dispatch("notes/getAllInit");
   }
-}; */
+};
 
 export const strict = false;

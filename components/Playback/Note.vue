@@ -1,9 +1,11 @@
 <template>
   <div class="note" :class="{ 'active': active}" v-if="!edit">
     <div class="overlay" v-if="dropdown" @click="openDropdown"></div>
-    <div class="note-timestamp">{{timestamp}}</div>
-    <div class="note-divider" :class="{ 'active': active }"></div>
-    <div class="note-text">{{note}}</div>
+    <div class="note-content">
+      <div class="note-timestamp">{{timestamp}}</div>
+      <div class="note-divider" :class="{ 'active': active }"></div>
+      <div class="note-text">{{note}}</div>
+    </div>
     <Dropdown
       :dropdown="dropdown"
       :noteProperty="noteProperty"
@@ -101,9 +103,8 @@ export default {
 <style lang="scss" scoped>
 .note {
   cursor: pointer;
-  padding: 25px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   &.active {
     box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.08);
   }
@@ -118,25 +119,31 @@ export default {
     top: 0;
     left: 0;
   }
-  .note-timestamp {
-  }
-  .note-divider {
-    height: 40px;
-    padding-left: 2px;
-    margin-right: 10px;
-    margin-left: 10px;
-    background-color: #daedf5;
-    &.active {
-      background-color: #bdebff;
+  .note-content {
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    .note-timestamp {
     }
-  }
-  .note-text {
-    max-width: 80%;
+    .note-divider {
+      height: 40px;
+      padding-left: 2px;
+      margin-right: 10px;
+      margin-left: 10px;
+      background-color: #daedf5;
+      &.active {
+        background-color: #bdebff;
+      }
+    }
+    .note-text {
+      max-width: 80%;
+    }
   }
   .menu {
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
+    margin: 10px;
     .dot-3 {
       font-family: "icons";
       font-size: 17px;

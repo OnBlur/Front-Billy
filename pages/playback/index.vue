@@ -36,71 +36,14 @@
     </b-col>
     <!-- RIGHT -->
     <b-col md="4">
-      <div class="comments">
-        <button
-          class="notes-header"
-          :class="{ 'active': activeHeader === 1 }"
-          @click="changeActiveNoteHeader(1)"
-        >
-          Notes ({{getNotes.length}})
-          <i class="icon chevron-left">n</i>
-        </button>
-        <div class="notes" v-if="activeHeader === 1">
-          <Note
-            v-for="item in getNotes"
-            :key="item.id"
-            :active="item.id === activeNote"
-            :timestamp="trimTimestamp(+item.timestamp)"
-            :note="item.content"
-            :noteProperty="item.type"
-            @click.native="selectNote(item)"
-            @editNote="editNote(item.id, $event)"
-            @deleteNote="deleteNote(item.id)"
-          />
-        </div>
-        <button
-          class="findings-header"
-          :class="{ 'active': activeHeader === 2 }"
-          @click="changeActiveNoteHeader(2)"
-        >
-          Findings ({{getFindings.length}})
-          <i class="icon chevron-left">n</i>
-        </button>
-        <div class="notes" v-if="activeHeader === 2">
-          <Note
-            v-for="item in getFindings"
-            :key="item.id"
-            :active="item.id === activeNote"
-            :timestamp="trimTimestamp(+item.timestamp)"
-            :note="item.content"
-            :noteProperty="item.type"
-            @click.native="selectNote(item)"
-            @editNote="editNote(item.id, $event)"
-            @deleteNote="deleteNote(item.id)"
-          />
-        </div>
-        <button
-          class="quotes-header"
-          :class="{ 'active': activeHeader === 3 }"
-          @click="changeActiveNoteHeader(3)"
-        >
-          Quotes ({{getQuotes.length}})
-          <i class="icon chevron-left">n</i>
-        </button>
-        <div class="notes" v-if="activeHeader === 3">
-          <Note
-            v-for="item in getQuotes"
-            :key="item.id"
-            :active="item.id === activeNote"
-            :timestamp="trimTimestamp(+item.timestamp)"
-            :note="item.content"
-            :noteProperty="item.type"
-            @click.native="selectNote(item)"
-            @editNote="editNote(item.id, $event)"
-            @deleteNote="deleteNote(item.id)"
-          />
-        </div>
-      </div>
+      <Collapsible
+        :getNotes="getNotes"
+        :getFindings="getFindings"
+        :getQuotes="getQuotes"
+        @gotoTimestamp="goToTimestamp($event)"
+        @editNote="editNote($event)"
+        @deleteNote="deleteNote($event)"
+      />
       <div class="text-input">
         <form v-on:submit.prevent="addNote">
           <input
@@ -130,6 +73,7 @@ import { mapMutations } from "vuex";
 import Tag from "@/components/Playback/Tag";
 import Note from "@/components/Playback/Note";
 import TimelineItem from "@/components/Playback/TimelineItem";
+import Collapsible from "@/components/Playback/Collapsible";
 
 export default {
   name: "Playback",
@@ -209,10 +153,6 @@ export default {
     pauseVideo() {
       this.$refs.myVideo.pause();
     },
-    selectNote(item) {
-      this.activeNote = item.id;
-      this.goToTimestamp(item.timestamp);
-    },
     changeActiveNoteHeader(id) {
       this.activeHeader = id;
     }
@@ -235,7 +175,12 @@ export default {
       }
     }
   },
-  components: { Tag, Note, TimelineItem }
+  components: {
+    Tag,
+    Note,
+    TimelineItem,
+    Collapsible
+  }
 };
 </script>
 
@@ -344,113 +289,6 @@ export default {
       border-radius: 10px;
       background-color: #424242;
       color: white;
-    }
-  }
-}
-.comments {
-  // width: 550px;
-  max-width: 674px;
-  background-color: #fbfbfb;
-  border-radius: 10px;
-  border-bottom-left-radius: 10px;
-  box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
-  .notes-header {
-    background-color: white;
-    color: #424242;
-    padding: 25px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 100%;
-    text-align: left;
-    outline: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-style: hidden;
-
-    display: flex;
-    justify-content: space-between;
-    &.active {
-      .icon {
-        transform: rotate(270deg);
-      }
-    }
-    .icon {
-      font-family: "icons";
-      font-style: normal;
-      transform: rotate(180deg);
-    }
-  }
-  .notes {
-    margin-top: 5px;
-    max-height: 470px;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #424242;
-      border-radius: 0px;
-    }
-    .active {
-      background-color: white;
-      box-shadow: 0px 10px 9px #f7f7f7, 0px -10px 5px #f7f7f7;
-    }
-  }
-  .findings-header {
-    background-color: white;
-    color: #424242;
-    padding: 25px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.05);
-
-    display: flex;
-    justify-content: space-between;
-    &.active {
-      .icon {
-        transform: rotate(270deg);
-      }
-    }
-    .icon {
-      font-family: "icons";
-      font-style: normal;
-      transform: rotate(180deg);
-    }
-  }
-  .quotes-header {
-    background-color: white;
-    color: #424242;
-    padding: 25px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 100%;
-    text-align: left;
-    outline: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-style: hidden;
-
-    display: flex;
-    justify-content: space-between;
-    &.active {
-      .icon {
-        transform: rotate(270deg);
-      }
-    }
-    .icon {
-      font-family: "icons";
-      font-style: normal;
-      transform: rotate(180deg);
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="note-wrapper" :class="{ 'simple': !propertyIcon.iconClass }">
+  <div class="note-wrapper" :class="{ 'simple': noteProperty === 0 }">
     <div class="time">{{timestamp}}</div>
     <div class="divider"></div>
     <b-form-textarea
@@ -111,6 +111,10 @@ export default {
     display: flex;
     align-items: center;
     font-family: "icons";
+
+    &.clipboard-notes {
+      display: none;
+    }
   }
   .form-control {
     resize: none;

@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const state = () => ({
   data: []
-
 });
 
 export const mutations = {
@@ -47,7 +46,7 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -57,14 +56,11 @@ export const actions = {
       link: value.link
     };
     return axios
-      .post(
-        process.env.baseUrl + "/update/project/" + value.id,
-        requestOptions
-      )
+      .post(process.env.baseUrl + "/update/project/" + value.id, requestOptions)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async deleteNote(vuexContext, value) {
     return axios

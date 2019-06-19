@@ -56,6 +56,7 @@ export default {
     text-align: center;
     padding-left: 0px;
     padding-right: 0px;
+
     button {
       height: 100%;
       border: none;

@@ -20,7 +20,7 @@ export const state = () => ({
     },
     {
       id: 3,
-      type: 1,
+      type: 0,
       video_id: 1,
       timestamp: "2.1",
       content:
@@ -28,7 +28,7 @@ export const state = () => ({
     },
     {
       id: 4,
-      type: 2,
+      type: 1,
       video_id: 1,
       timestamp: "2.3",
       content:
@@ -84,7 +84,7 @@ export const actions = {
         // localStorage.setItem("notes", res.data.data);
       })
       .catch(e => {
-        context.error(e);
+        context.error(e.response.data.message);
       });
   },
   async addNote(vuexContext, value) {
@@ -96,7 +96,7 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -104,7 +104,6 @@ export const actions = {
       video_id: 1,
       ...value
     };
-    console.log(requestOptions);
     return axios
       .post(
         process.env.baseUrl + "/update/video-note/" + value.id,
@@ -114,7 +113,7 @@ export const actions = {
         console.log(res.data.data);
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async deleteNote(vuexContext, value) {
     return axios
@@ -122,7 +121,7 @@ export const actions = {
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
-      .catch(e => alert(e.response.data.message));
+      .catch(e => console.log(e.response.data.message));
   }
 };
 

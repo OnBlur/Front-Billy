@@ -8,13 +8,14 @@
           @currentMin="minutes = $event"
           @currentSec="seconds = $event"
           @clockStatus="clockStatus = $event"
-          @click.native="pauseTimer"
-          ref="timer"
         />
         <!-- <div class="current-time">1:20:23</div> -->
         <div class="connection" id="tooltip">
           <div class="icon wifi-3" :class="{ 'success': connected }">e</div>
-          <div class="connection-text" :class="{ 'success': connected }">Connected</div>
+          <div
+            class="connection-text"
+            :class="{ 'success': connected }"
+          >{{connected ? "Connected" : "Disconnected"}}</div>
         </div>
         <b-tooltip target="tooltip" placement="bottom">{{connected ? tooltipSuccess : tooltipFail}}</b-tooltip>
       </div>
@@ -22,7 +23,7 @@
     <!-- Right -->
     <b-col md="9">
       <div class="main">
-        <div class="notes" ref="notes">
+        <div class="notes">
           <Note
             v-for="item in allNotes"
             :key="item.id"
@@ -37,7 +38,6 @@
             <input
               v-model="inputNote"
               type="text"
-              ref="note"
               placeholder="Write your note, findings or a quote here.."
             >
           </form>
@@ -58,7 +58,7 @@ import { mapMutations } from "vuex";
 import { trimTimestamp } from "@/mixins";
 
 import Note from "@/components/Live/Note";
-import Stopwatch from "@/components/UI/Stopwatch";
+import Stopwatch from "@/components/Live/Stopwatch";
 
 export default {
   name: "Live",
@@ -115,14 +115,6 @@ export default {
         .then(() => {
           this.$router.push("/live");
         });
-    },
-    pauseTimer() {
-      console.log();
-      if (this.clockStatus === "paused") {
-        this.$refs.timer.resume();
-      } else {
-        this.$refs.timer.pause();
-      }
     }
   },
   watch: {
