@@ -8,3 +8,73 @@ body {
   padding-left: 5%;
   padding-right: 5%;
 }
+
+.modal {
+  display: flex !important;
+  align-items: center;
+
+}
+
+.modal-content {
+  border-radius: 0.8rem;
+
+  .form-control {
+    border-bottom: solid 1px #424242;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    margin-top: 2rem;
+  }
+
+  .modal-footer {
+    display: none;
+  }
+
+  .create {
+    border-radius: 9px;
+    background-color: #424242;
+    width: 175px;
+    height: 45px;
+    margin-right: 10px;
+  }
+
+  .cancel {
+    border-radius: 9px;
+    background-color: #ffffff;
+    color: #424242;
+    width: 175px;
+    height: 45px;
+  }
+
+  .modal-buttons {
+    display: block;
+    width: 364px;
+    margin: 0 auto 0px auto;
+    padding-top: 45px;
+  }
+
+  .modal.show .modal-dialog {
+    width: 100%;
+  }
+
+  .modal-body {
+    padding: 3rem;
+  }
+
+  .modal-header {
+    border: none;
+
+    .modal-title {
+      display: none;
+    }
+  }
+
+  .create-modal-title {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 25px;
+    font-family: "OpenSans-Bold";
+  }
+
+}

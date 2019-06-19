@@ -1,8 +1,27 @@
 <template>
-  <nav class="fab">
-    <a href="#" class="buttons folder-add" tooltip="Projectmap aanmaken">d</a>
-    <a class="buttons times" data-toggle="modal" href="#">f</a>
-  </nav>
+  <div>
+    <nav class="fab">
+      <b-button
+        href="#"
+        class="buttons folder-add"
+        tooltip="Projectmap aanmaken"
+        v-b-modal.modal-1
+      >d</b-button>
+
+      <b-button class="buttons times" href="#">f</b-button>
+    </nav>
+    <div>
+      <b-modal id="modal-1">
+        <h1 class="create-modal-title">Bedrijfsmap en projectmap aanmaken</h1>
+        <b-form-input v-model="text" placeholder="Bedrijfsnaam"></b-form-input>
+        <b-form-input v-model="text" placeholder="Projectnaam"></b-form-input>
+        <div class="modal-buttons">
+          <b-button class="create">Aanmaken</b-button>
+          <b-button class="cancel">Annuleren</b-button>
+        </div>
+      </b-modal>
+    </div>
+  </div>
 </template>
 
 <script>

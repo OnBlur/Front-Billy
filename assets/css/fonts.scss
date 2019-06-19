@@ -37,6 +37,16 @@ $icon-dir: "~static/icons/";
   font-style: normal;
 }
 
+@font-face {
+  font-family: "OpenSans-Bold";
+  // src: url($avenir-font-dir+"OpenSans-Regular.eot");
+  // src: url($avenir-font-dir+"OpenSans-Regular.eot?#iefix") format("embedded-opentype");
+  // src: url($avenir-font-dir+"OpenSans-Regular.woff") format("woff");
+  src: url($openSans-font-dir+"OpenSans-Bold.ttf") format("truetype");
+  font-weight: 900;
+  // font-style: bold;
+}
+
 /*===============================================================================================*/
 /*		ICONFONTS																											 */
 /*===============================================================================================*/
