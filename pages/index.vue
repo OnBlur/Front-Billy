@@ -17,10 +17,6 @@
           :name="item.name"
           @click.native="goToProject(item.id)"
         />
-        <!-- <div class="column" v-for="item in data.slice(0, 4)" :key="item.id">
-          <h2 class="item-name">{{item.name}}</h2>
-          <div class="blue-line"></div>
-        </div>-->
       </div>
     </div>
     <div class="row">

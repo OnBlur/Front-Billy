@@ -1,50 +1,8 @@
 import axios from "axios";
 
 export const state = () => ({
-  data: [
-    {
-      id: 1,
-      company_id: 2,
-      name: "NLH Stenden",
-      status: 1,
-      last_updated_by: 3
-    },
-    {
-      id: 1,
-      company_id: 2,
-      name: "Zwembad de Blauwe Golf",
-      status: 1,
-      last_updated_by: 3
-    },
-    {
-      id: 1,
-      company_id: 3,
-      name: "Sterkliniek Dierenartsen Leeuwarden",
-      status: 1,
-      last_updated_by: 3
-    },
-    {
-      id: 1,
-      company_id: 3,
-      name: "Grand-Café De Walrus",
-      status: 1,
-      last_updated_by: 3
-    },
-    {
-      id: 1,
-      company_id: 1,
-      name: "Stadswaag Leeuwarden",
-      status: 1,
-      last_updated_by: 3
-    },
-    {
-      id: 1,
-      company_id: 4,
-      name: "Fellini City Lounge",
-      status: 1,
-      last_updated_by: 3
-    }
-  ]
+  data: []
+
 });
 
 export const mutations = {
@@ -70,7 +28,7 @@ export const actions = {
       //   headers: authHeader()
     };
     return axios
-      .get(process.env.baseUrl + "/get/video-note/", requestOptions)
+      .get(process.env.baseUrl + "/get/project", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
         // Cookies.set("notes", res.data.data);
@@ -82,7 +40,7 @@ export const actions = {
   },
   async addNote(vuexContext, value) {
     return axios
-      .post(process.env.baseUrl + "/create/video-note/", value)
+      .post(process.env.baseUrl + "/create/project/", value)
       .then(result => {
         vuexContext.commit("addData", {
           ...value,
@@ -100,7 +58,7 @@ export const actions = {
     };
     return axios
       .post(
-        process.env.baseUrl + "/update/video-note/" + value.id,
+        process.env.baseUrl + "/update/project/" + value.id,
         requestOptions
       )
       .then(res => {
@@ -110,7 +68,7 @@ export const actions = {
   },
   async deleteNote(vuexContext, value) {
     return axios
-      .delete(process.env.baseUrl + "/delete/video-note/" + value)
+      .delete(process.env.baseUrl + "/delete/project/" + value)
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
@@ -124,12 +82,6 @@ export const getters = {
   },
   getItem: state => id => {
     return state.data.filter(item => item.id === id);
-  },
-  getItemByCompanyId(state, id) {
-    var result = state.data.filter(item => {
-      return item.company_id === id;
-    });
-    return result;
   },
   getItemByCompanyId: state => id => {
     var result = state.data.filter(item => {
