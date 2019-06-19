@@ -11,7 +11,7 @@
     </div>
     <div class="row folders">
       <div class="col">
-        <Folder
+        <RecentFolders
           v-for="item in recentFolders"
           :key="item.id"
           :name="item.name"
@@ -33,7 +33,7 @@
           <div></div>
           <div>Laatst bewerkt</div>
         </div>
-        <companyFolders
+        <CompanyFolders
           v-for="item in allCompanies"
           :key="item.id"
           :id="item.id"
@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import Folder from "@/components/Folder";
-import companyFolders from "@/components/companyFolders";
+import RecentFolders from "@/components/RecentFolders";
+import CompanyFolders from "@/components/CompanyFolders";
 
 export default {
   name: "Dashboard",
@@ -75,8 +75,8 @@ export default {
     }
   },
   components: {
-    Folder,
-    companyFolders
+    RecentFolders,
+    CompanyFolders
   }
 };
 </script>
