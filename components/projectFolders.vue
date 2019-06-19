@@ -10,9 +10,6 @@
           <div v-if="circle.status === status" class="check">u</div>
         </div>
       </div>
-      <div>
-        <img v-for="image in members" :key="image.id" :src="image.url" width="25px" height="25px">
-      </div>
       <div class="edited">
         <div>
           {{lastUpdate}} door
@@ -39,7 +36,7 @@ export default {
       type: Number,
     },
     lastUpdate: {
-      type: Date,
+      type: String,
     }
   },
   data() {
