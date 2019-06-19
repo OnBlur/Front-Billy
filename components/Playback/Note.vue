@@ -79,7 +79,8 @@ export default {
       this.$emit("editNote", {
         timestamp: this.timestamp,
         content: this.note,
-        type: this.noteType
+        type: this.noteType,
+        video_id: 1
       });
       this.edit = false;
     },

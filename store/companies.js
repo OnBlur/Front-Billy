@@ -183,19 +183,19 @@ export const actions = {
       //   headers: authHeader()
     };
     return axios
-      .get(process.env.baseUrl + "/get/video-note/", requestOptions)
+      .get(process.env.baseUrl + "/get/video-Company/", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
-        // Cookies.set("notes", res.data.data);
-        // localStorage.setItem("notes", res.data.data);
+        // Cookies.set("Companys", res.data.data);
+        // localStorage.setItem("Companys", res.data.data);
       })
       .catch(e => {
         context.error(e);
       });
   },
-  async addNote(vuexContext, value) {
+  async addCompany(vuexContext, value) {
     return axios
-      .post(process.env.baseUrl + "/create/video-note/", value)
+      .post(process.env.baseUrl + "/create/company/", value)
       .then(result => {
         vuexContext.commit("addData", {
           ...value,
@@ -204,7 +204,7 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  async editNote(vuexContext, value) {
+  async editCompany(vuexContext, value) {
     const requestOptions = {
       // method: "PATCH",
       project_id: value.project_id,
@@ -212,18 +212,15 @@ export const actions = {
       link: value.link
     };
     return axios
-      .post(
-        process.env.baseUrl + "/update/video-note/" + value.id,
-        requestOptions
-      )
+      .post(process.env.baseUrl + "/update/company/" + value.id, requestOptions)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
       .catch(e => console.log(e));
   },
-  async deleteNote(vuexContext, value) {
+  async deleteCompany(vuexContext, value) {
     return axios
-      .delete(process.env.baseUrl + "/delete/video-note/" + value)
+      .delete(process.env.baseUrl + "/delete/company/" + value)
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
