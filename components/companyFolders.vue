@@ -56,9 +56,7 @@ export default {
 <style lang="scss" scoped>
 .company-table {
   cursor: pointer;
-  width: 100%;
-  max-height: 350px;
-  overflow-y: scroll;
+
   .company-folders {
     width: 100%;
     color: #424242;

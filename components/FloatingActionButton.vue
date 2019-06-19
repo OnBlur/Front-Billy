@@ -1,7 +1,7 @@
 <template>
   <nav class="fab">
     <a href="#" class="buttons folder-add" tooltip="Projectmap aanmaken">d</a>
-    <a class="buttons times" href="#">f</a>
+    <a class="buttons times" data-toggle="modal" href="#">f</a>
   </nav>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 .fab {
   bottom: 0;
   position: fixed;
-  margin: 1em;
+  margin: 1.5em;
   right: 0px;
 }
 
@@ -24,8 +24,8 @@ export default {
     0px 4px 12px -7px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
   display: block;
-  width: 56px;
-  height: 56px;
+  width: 65px;
+  height: 65px;
   margin: 20px auto 0;
   position: relative;
   transition: all 0.1s ease-out;
@@ -36,8 +36,8 @@ export default {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   }
   &:not(:last-child) {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin: 20px auto 0;
     opacity: 0;
     transform: translateY(50px);
@@ -68,8 +68,8 @@ export default {
 .times {
   color: white;
   text-align: center;
-  padding-top: 12px;
-  font-size: 1.6em;
+  padding-top: 11px;
+  font-size: 2em;
   transform: rotate(46deg);
 
   &:hover {
@@ -80,7 +80,7 @@ export default {
 .folder-add {
   color: #424242;
   text-align: center;
-  padding-top: 5px;
+  padding-top: 9px;
   font-size: 1.5em;
 
   &:hover {
