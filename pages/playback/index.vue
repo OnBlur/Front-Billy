@@ -133,6 +133,7 @@ import TimelineItem from "@/components/Playback/TimelineItem";
 
 export default {
   name: "Playback",
+  // middleware: "versionCheck",
   mixins: [trimTimestamp],
   layout: "playback",
   data() {
