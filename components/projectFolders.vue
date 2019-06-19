@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{ path: 'project/' + id}" tag="div" class="project-table" exact>
+  <nuxt-link :to="{ path: '../project/' + id}" tag="div" class="project-table" exact>
     <div class="project-folders">
       <div>
         <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
@@ -7,7 +7,7 @@
       <div>{{name}}</div>
       <div class="circle-outer">
         <div v-for="circle in cirlces" :key="circle.id" :style="{backgroundColor: circle.color}" class="circle">
-          <div v-if="circle.status"></div>
+          <div v-if="circle.status === status" class="check">u</div>
         </div>
       </div>
       <div>
@@ -15,8 +15,8 @@
       </div>
       <div class="edited">
         <div>
-          {{lastEdit}} door
-          <b>{{editBy}}</b>
+          {{lastUpdate}} door
+          <b>Henk</b>
         </div>
       </div>
     </div>
@@ -26,17 +26,6 @@
 <script>
 export default {
   name: "projectFolders",
-  data() {
-    return {
-      cirlces: [
-        {id: 1, color: '#3fb1de', status: false},
-        {id: 2, color: '#4cb421', status: false},
-        {id: 3, color: '#ffcd07', status: true},
-        {id: 4, color: '#ff4343', status: false},
-      ]
-
-    }
-  },
   props: {
     id: {
       type: Number,
@@ -46,21 +35,22 @@ export default {
       type: String,
       default: "Geen naam gevonden"
     },
-    projects: {
-      type: String,
-      default: "0 projects"
+    status: {
+      type: Number,
     },
-    members: {
-      type: Array,
-      require: false
-    },
-    lastEdit: {
-      type: String,
-      default: "Sometime"
-    },
-    editBy: {
-      type: String,
-      default: "Misha"
+    lastUpdate: {
+      type: Date,
+    }
+  },
+  data() {
+    return {
+      cirlces: [
+        {id: 1, color: '#3fb1de', status: 0},
+        {id: 2, color: '#4cb421', status: 1},
+        {id: 3, color: '#ffcd07', status: 2},
+        {id: 4, color: '#ff4343', status: 3},
+      ]
+
     }
   }
 };
@@ -73,14 +63,23 @@ export default {
   .circle-outer {
     display: flex;
     justify-content: space-around;
-    /*width: 150px;*/
   }
 
   .circle {
     width: 26px;
     height: 26px;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .check {
+      font-family: "icons";
+      color: #fff;
+    }
   }
+
 
   .project-folders {
     width: 100%;

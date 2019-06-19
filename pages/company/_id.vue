@@ -1,7 +1,5 @@
 <template>
   <section class="container">
-    <!--<div class="company" v-for="item in projects" :key="item.id">{{item.name}}</div>-->
-
     <div class="row">
     <div class="col">
       <div class="title">Folders > {{getCompanyById.name}}</div>
@@ -21,6 +19,8 @@
           :key="item.id"
           :id="item.id"
           :name="item.name"
+          :status="item.status"
+          :lastUpdate="item.updated_at"
         />
       </div>
     </div>
