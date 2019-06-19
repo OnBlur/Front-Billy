@@ -3,53 +3,53 @@ import Cookies from "js-cookie";
 
 export const state = () => ({
   data: [
-    {
-      id: 1,
-      type: 2,
-      video_id: 1,
-      timestamp: "0.35",
-      content: "De testpersoon geeft een verwarde indruk"
-    },
-    {
-      id: 2,
-      type: 2,
-      video_id: 1,
-      timestamp: "1.2",
-      content:
-        "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
-    },
-    {
-      id: 3,
-      type: 1,
-      video_id: 1,
-      timestamp: "2.1",
-      content:
-        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
-    },
-    {
-      id: 4,
-      type: 2,
-      video_id: 1,
-      timestamp: "2.3",
-      content:
-        "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
-    },
-    {
-      id: 5,
-      type: 0,
-      video_id: 1,
-      timestamp: "3.1",
-      content:
-        "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
-    },
-    {
-      id: 6,
-      type: 0,
-      video_id: 1,
-      timestamp: "3.1",
-      content:
-        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
-    }
+    // {
+    //   id: 1,
+    //   type: 2,
+    //   video_id: 1,
+    //   timestamp: "0.35",
+    //   content: "De testpersoon geeft een verwarde indruk"
+    // },
+    // {
+    //   id: 2,
+    //   type: 2,
+    //   video_id: 1,
+    //   timestamp: "1.2",
+    //   content:
+    //     "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
+    // },
+    // {
+    //   id: 3,
+    //   type: 1,
+    //   video_id: 1,
+    //   timestamp: "2.1",
+    //   content:
+    //     "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
+    // },
+    // {
+    //   id: 4,
+    //   type: 2,
+    //   video_id: 1,
+    //   timestamp: "2.3",
+    //   content:
+    //     "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
+    // },
+    // {
+    //   id: 5,
+    //   type: 0,
+    //   video_id: 1,
+    //   timestamp: "3.1",
+    //   content:
+    //     "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
+    // },
+    // {
+    //   id: 6,
+    //   type: 0,
+    //   video_id: 1,
+    //   timestamp: "3.1",
+    //   content:
+    //     "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
+    // }
   ]
 });
 
@@ -62,6 +62,7 @@ export const mutations = {
   },
   editData(state, value) {
     const index = state.data.findIndex(item => item.id === value.id);
+    console.log(value, "mutation");
     state.data[index] = value;
   },
   deleteData(state, value) {
@@ -110,6 +111,7 @@ export const actions = {
         requestOptions
       )
       .then(res => {
+        console.log(res.data.data);
         vuexContext.commit("editData", res.data.data);
       })
       .catch(e => console.log(e));

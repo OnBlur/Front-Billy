@@ -185,7 +185,11 @@ export default {
       this.playVideo();
     },
     editNote(noteId, item) {
-      this.$store.dispatch("notes/editNote", { ...item, id: noteId });
+      this.$store
+        .dispatch("notes/editNote", { ...item, id: noteId })
+        .then(() => {
+          this.$router.push("/playback");
+        });
     },
     deleteNote(id) {
       this.$store.dispatch("notes/deleteNote", id);

@@ -1,9 +1,11 @@
+import axios from "axios";
+
 export const state = () => ({
   sidebarStatus: false,
 
   alertMessageStatus: false,
   currentVersion: 0.4,
-  latestVersion: 0.5
+  latestVersion: null
 });
 
 export const mutations = {
@@ -11,7 +13,23 @@ export const mutations = {
     state.sidebarStatus = value;
   },
   setAlertMessageStatus(state, value) {
-    state.sidebarStatus = value;
+    state.alertMessageStatus = value;
+  },
+  setLatesVersion(state, value) {
+    state.latestVersion = +value;
+  }
+};
+
+export const actions = {
+  async getVersion(vuexContext, context) {
+    return axios
+      .get(process.env.baseUrl + "/get-version")
+      .then(res => {
+        vuexContext.commit("setLatesVersion", res.data.data);
+      })
+      .catch(e => {
+        context.error(e);
+      });
   }
 };
 
@@ -20,7 +38,7 @@ export const getters = {
     return state.sidebarStatus;
   },
   getAlertMessageStatus(state) {
-    return state.sidebarStatus;
+    return state.alertMessageStatus;
   },
   getCurrentVersion(state) {
     return state.currentVersion;
