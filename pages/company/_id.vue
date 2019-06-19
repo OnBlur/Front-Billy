@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="wrapper">
     <div class="row">
     <div class="col">
       <div class="title">Folders > {{getCompanyById.name}}</div>
@@ -52,8 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .container {
-    margin-top: 130px;
+  .wrapper {
     padding: 0px;
     display: flex;
     flex-direction: column;
