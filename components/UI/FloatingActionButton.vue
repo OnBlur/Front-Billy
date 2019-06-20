@@ -8,45 +8,12 @@
         v-b-modal.modal-1
       >d</b-button>
     </nav>
-    <div>
-      <b-modal id="modal-1" ref="modal">
-        <h1 class="create-modal-title">Bedrijfsmap aanmaken</h1>
-        <b-form v-on:submit.prevent="onSubmit">
-          <b-form-input v-model="companyName" placeholder="Bedrijfsnaam"></b-form-input>
-          <div class="modal-buttons">
-            <b-button type="submit" class="create">Aanmaken</b-button>
-            <b-button class="cancel">Annuleren</b-button>
-          </div>
-        </b-form>
-      </b-modal>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AddCompanyFolder",
-  data() {
-    return {
-      companyName: "",
-      modelStatus: false,
-      modalShown: false
-    };
-  },
-  methods: {
-    onSubmit() {
-      console.log("hallo?");
-      this.$store
-        .dispatch("companies/addCompany", {
-          name: this.companyName
-        })
-        .then(res => {
-          let newCompany = this.$store.getters["companies/getLastItem"];
-          this.$router.push("/company/" + newCompany.id);
-          this.$refs.modal.hide();
-        });
-    }
-  }
+  name: "FloatingActionButton"
 };
 </script>
 
@@ -72,7 +39,6 @@ export default {
 
 .buttons {
   font-family: "icons";
-
   transition-delay: 25ms;
   background-color: #424242;
   background-size: contain;

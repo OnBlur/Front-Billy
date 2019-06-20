@@ -5,7 +5,6 @@
     <div class="container">
       <LiveSearch/>
       <nuxt :sidebarStatus="sidebarState"/>
-      <AddCompanyFolder/>
     </div>
   </div>
 </template>
@@ -13,7 +12,6 @@
 <script>
 import LiveSearch from "@/components/LiveSearch";
 import SideMenu from "@/components/SideMenu";
-import AddCompanyFolder from "@/components/AddCompanyFolder";
 
 export default {
   computed: {
@@ -31,8 +29,7 @@ export default {
   },
   components: {
     LiveSearch,
-    SideMenu,
-    AddCompanyFolder
+    SideMenu
   }
 };
 </script>

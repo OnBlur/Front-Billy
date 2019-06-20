@@ -46,15 +46,36 @@
         />
       </div>
     </div>
+    <FloatingActionButton/>
+
+    <b-modal id="modal-1" ref="modal">
+      <h1 class="create-modal-title">Bedrijfsmap aanmaken</h1>
+      <b-form v-on:submit.prevent="onSubmit">
+        <b-form-input v-model="companyName" placeholder="Bedrijfsnaam"></b-form-input>
+        <div class="modal-buttons">
+          <b-button type="submit" class="create">Aanmaken</b-button>
+          <b-button class="cancel" @click="$bvModal.hide('modal-1')">Annuleren</b-button>
+        </div>
+      </b-form>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import RecentFolders from "@/components/RecentFolders";
 import CompanyFolders from "@/components/CompanyFolders";
+import FloatingActionButton from "@/components/UI/FloatingActionButton";
 
 export default {
   name: "Dashboard",
+
+  data() {
+    return {
+      companyName: "",
+      modelStatus: false,
+      modalShown: false
+    };
+  },
   props: {
     sidebarStatus: {
       type: Boolean,
@@ -73,11 +94,24 @@ export default {
   methods: {
     goToProject(id) {
       console.log(id);
+    },
+    onSubmit() {
+      console.log("hallo?");
+      this.$store
+        .dispatch("companies/addCompany", {
+          name: this.companyName
+        })
+        .then(res => {
+          let newCompany = this.$store.getters["companies/getLastItem"];
+          this.$router.push("/company/" + newCompany.id);
+          this.$refs.modal.hide();
+        });
     }
   },
   components: {
     RecentFolders,
-    CompanyFolders
+    CompanyFolders,
+    FloatingActionButton
   }
 };
 </script>
