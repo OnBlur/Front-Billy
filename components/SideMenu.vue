@@ -59,7 +59,7 @@
         <div class="menu-items">
           <ul>
             <!-- Files -->
-            <nuxt-link to="/playback" tag="li" class="menu-item" exact>
+            <nuxt-link to="/tfe" tag="li" class="menu-item" exact>
               <div class="menu-item-info">
                 <div class="menu-icon">
                   <span class="admin">c</span>
@@ -68,7 +68,7 @@
               </div>
             </nuxt-link>
             <!-- Archieve -->
-            <nuxt-link to="/livesearch" tag="li" class="menu-item" exact>
+            <nuxt-link to="/nhl" tag="li" class="menu-item" exact>
               <div class="menu-item-info">
                 <div class="menu-icon">
                   <span class="admin">c</span>
@@ -77,12 +77,12 @@
               </div>
             </nuxt-link>
             <!-- Archieve -->
-            <nuxt-link to="/live" tag="li" class="menu-item" exact>
+            <nuxt-link to="/koornbeurs" tag="li" class="menu-item" exact>
               <div class="menu-item-info">
                 <div class="menu-icon">
                   <span class="admin">c</span>
                 </div>
-                <div class="label">Snakeware</div>
+                <div class="label">De Koornbeurs</div>
               </div>
             </nuxt-link>
           </ul>

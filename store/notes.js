@@ -96,7 +96,13 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(
+        e => console.log(e),
+        vuexContext.commit("addData", {
+          ...value,
+          id: getRandomInt(33332333)
+        })
+      );
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -145,3 +151,7 @@ export const getters = {
     return result;
   }
 };
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}

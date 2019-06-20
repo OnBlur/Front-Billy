@@ -68,8 +68,6 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-
 import Tag from "@/components/Playback/Tag";
 import Note from "@/components/Playback/Note";
 import TimelineItem from "@/components/Playback/TimelineItem";
@@ -77,6 +75,7 @@ import Collapsible from "@/components/Playback/Collapsible";
 
 export default {
   name: "Playback",
+  // middleware: "versionCheck",
   layout: "playback",
   data() {
     return {
@@ -86,8 +85,6 @@ export default {
       progressBarTimestamp: 0, // The width of the progress bar under the video
 
       inputNote: "",
-      activeNote: 1,
-      activeHeader: 1,
 
       tags: [{ id: 1, title: "MCL" }, { id: 2, title: "Revalidatie" }]
     };

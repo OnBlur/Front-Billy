@@ -52,7 +52,7 @@ export default {
     name: "Front Billy",
     short_name: "Billy",
     description: "Applicatie voor usability testing met Billy",
-    theme_color: "#2F495E",
+    theme_color: "#424242",
     start_url: "/"
   },
 
