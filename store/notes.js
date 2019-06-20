@@ -129,30 +129,18 @@ export const getters = {
   allData(state) {
     return state.data;
   },
-  getNotes(state) {
-    var result = state.data.filter(obj => {
-      return obj.type === 0;
-    });
-    return result;
-  },
-  getFindings(state) {
-    var result = state.data.filter(obj => {
-      return obj.type === 1;
-    });
-    return result;
-  },
-  getQuotes(state) {
-    var result = state.data.filter(obj => {
-      return obj.type === 2;
-    });
-    return result;
-  },
   getItem: state => id => {
     return state.data.find(item => item.id === id);
   },
   getItemsByVideoId: state => id => {
     var result = state.data.filter(item => {
       return item.video_id === id;
+    });
+    return result;
+  },
+  getItemsByVideoIdAndType: state => (id, type) => {
+    var result = state.data.filter(item => {
+      return item.video_id === id && item.type === type;
     });
     return result;
   }

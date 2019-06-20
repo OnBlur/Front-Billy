@@ -38,9 +38,9 @@
     <b-col md="4">
       <Collapsible
         :allVideoNotes="allVideoNotes"
-        :getNotes="allVideoNotes"
-        :getFindings="allVideoNotes"
-        :getQuotes="allVideoNotes"
+        :getNotes="getNotes"
+        :getFindings="getFindings"
+        :getQuotes="getQuotes"
         @gotoTimestamp="goToTimestamp($event)"
         @editNote="editNote($event)"
         @deleteNote="deleteNote($event)"
@@ -106,6 +106,15 @@ export default {
   computed: {
     allVideoNotes() {
       return this.$store.getters["notes/getItemsByVideoId"](+this.id);
+    },
+    getNotes() {
+      return this.$store.getters["notes/getItemsByVideoIdAndType"](+this.id, 0);
+    },
+    getFindings() {
+      return this.$store.getters["notes/getItemsByVideoIdAndType"](+this.id, 1);
+    },
+    getQuotes() {
+      return this.$store.getters["notes/getItemsByVideoIdAndType"](+this.id, 2);
     }
   },
   methods: {

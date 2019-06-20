@@ -40,7 +40,9 @@ export default {
   props: {
     allVideoNotes: {
       type: Array,
-      default: []
+      default: function() {
+        return [];
+      }
     },
     getNotes: {
       type: Array,
@@ -61,7 +63,7 @@ export default {
         {
           id: 1,
           header: "Notes",
-          comments: this.allVideoNotes,
+          comments: this.getNotes,
           type: 0,
           classIcon: "clipboard-notes",
           map: "s"
@@ -69,7 +71,7 @@ export default {
         {
           id: 2,
           header: "Findings",
-          comments: this.allVideoNotes,
+          comments: this.getFindings,
           type: 1,
           classIcon: "bulb",
           map: "k"
@@ -77,7 +79,7 @@ export default {
         {
           id: 3,
           header: "Quotes",
-          comments: this.allVideoNotes,
+          comments: this.getQuotes,
           type: 2,
           classIcon: "quote-left",
           map: "l"
@@ -99,9 +101,6 @@ export default {
     };
   },
   methods: {
-    getNoteById() {
-      return this.$store.getters["notes/getNotes"](+this.id);
-    },
     changeActiveNoteHeader(id) {
       this.activeHeader = id;
     },
