@@ -2,7 +2,7 @@
   <nuxt-link :to="{ path: '../project/' + id}" tag="div" class="project-table" exact>
     <div class="project-folders">
       <div>
-        <img src="~assets/img/map-icon.svg" alt width="25px" height="25px">
+        <div class="icon play">m</div>
       </div>
       <div>{{name}}</div>
       <div class="circle-outer">
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "projectFolders",
+  name: "videoFolder",
   props: {
     id: {
       type: Number,
@@ -89,9 +89,17 @@ export default {
     margin-bottom: 10px;
     padding: 15px;
     border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   div {
     width: 13em;
+    .icon {
+      font-family: "icons";
+      font-size: 25px;
+    }
   }
 
   .edited {
@@ -105,4 +113,3 @@ export default {
   }
 }
 </style>
-

@@ -75,7 +75,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || "http://9f71d785.eu.ngrok.io/api"
+    baseUrl: process.env.BASE_URL || "http://vettedomeinnaam.nl/api"
   },
 
   render: {

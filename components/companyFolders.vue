@@ -23,7 +23,6 @@
 <script>
 export default {
   name: "companyFolders",
-
   props: {
     id: {
       type: Number,
