@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{ path: '../project/' + id}" tag="div" class="project-table" exact>
+  <nuxt-link :to="{ path: '../playback/' + id}" tag="div" class="project-table" exact>
     <div class="project-folders">
       <div>
         <div class="icon play">m</div>

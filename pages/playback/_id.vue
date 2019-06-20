@@ -15,7 +15,7 @@
           <!-- <div class="progress" :style="{ width: activeColor, fontSize: fontSize + 'px' }"></div> -->
           <div class="progress" ref="progressBar"></div>
           <TimelineItem
-            v-for="item in allNotes"
+            v-for="item in allVideoNotes"
             :key="item.id"
             :noteProperty="item.type"
             :timestamp="item.timestamp"
@@ -37,9 +37,10 @@
     <!-- RIGHT -->
     <b-col md="4">
       <Collapsible
-        :getNotes="getNotes"
-        :getFindings="getFindings"
-        :getQuotes="getQuotes"
+        :allVideoNotes="allVideoNotes"
+        :getNotes="allVideoNotes"
+        :getFindings="allVideoNotes"
+        :getQuotes="allVideoNotes"
         @gotoTimestamp="goToTimestamp($event)"
         @editNote="editNote($event)"
         @deleteNote="deleteNote($event)"
@@ -76,10 +77,11 @@ import Collapsible from "@/components/Playback/Collapsible";
 
 export default {
   name: "Playback",
-  // middleware: "versionCheck",
   layout: "playback",
   data() {
     return {
+      id: this.$route.params.id,
+
       currentTimestamp: 0, // Timestamp of the video DOM
       progressBarTimestamp: 0, // The width of the progress bar under the video
 
@@ -92,8 +94,8 @@ export default {
   },
   mounted() {
     //Initialize timeline items on the timeline
-    for (let i = 0; i < this.allNotes.length; i++) {
-      let itemPosition = this.allNotes[i].timestamp * 7;
+    for (let i = 0; i < this.allVideoNotes.length; i++) {
+      let itemPosition = this.allVideoNotes[i].timestamp * 7;
       // this.$refs.timelineItems[i].style.left = itemPosition + "%";
     }
 
@@ -102,17 +104,8 @@ export default {
     };
   },
   computed: {
-    allNotes() {
-      return this.$store.getters["notes/allData"];
-    },
-    getNotes() {
-      return this.$store.getters["notes/getNotes"];
-    },
-    getFindings() {
-      return this.$store.getters["notes/getFindings"];
-    },
-    getQuotes() {
-      return this.$store.getters["notes/getQuotes"];
+    allVideoNotes() {
+      return this.$store.getters["notes/getItemsByVideoId"](+this.id);
     }
   },
   methods: {

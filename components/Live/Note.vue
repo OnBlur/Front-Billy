@@ -115,8 +115,8 @@ export default {
     &.clipboard-notes {
       display: none;
     }
-    &.bulb{
-      color:#f1c40a;
+    &.bulb {
+      color: #f1c40a;
     }
   }
   .form-control {

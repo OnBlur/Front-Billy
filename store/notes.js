@@ -21,7 +21,7 @@ export const state = () => ({
     {
       id: 3,
       type: 0,
-      video_id: 1,
+      video_id: 3,
       timestamp: "2.1",
       content:
         "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
@@ -29,7 +29,7 @@ export const state = () => ({
     {
       id: 4,
       type: 1,
-      video_id: 1,
+      video_id: 3,
       timestamp: "2.3",
       content:
         "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
@@ -37,7 +37,7 @@ export const state = () => ({
     {
       id: 5,
       type: 0,
-      video_id: 1,
+      video_id: 2,
       timestamp: "3.1",
       content:
         "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
@@ -45,7 +45,7 @@ export const state = () => ({
     {
       id: 6,
       type: 0,
-      video_id: 1,
+      video_id: 3,
       timestamp: "3.1",
       content:
         "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
@@ -149,5 +149,11 @@ export const getters = {
   },
   getItem: state => id => {
     return state.data.find(item => item.id === id);
+  },
+  getItemsByVideoId: state => id => {
+    var result = state.data.filter(item => {
+      return item.video_id === id;
+    });
+    return result;
   }
 };

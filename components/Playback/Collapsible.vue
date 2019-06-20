@@ -38,6 +38,10 @@ export default {
   name: "Collapsible",
   mixins: [trimTimestamp],
   props: {
+    allVideoNotes: {
+      type: Array,
+      default: []
+    },
     getNotes: {
       type: Array,
       default: []
@@ -57,21 +61,24 @@ export default {
         {
           id: 1,
           header: "Notes",
-          comments: this.getNotes,
+          comments: this.allVideoNotes,
+          type: 0,
           classIcon: "clipboard-notes",
           map: "s"
         },
         {
           id: 2,
           header: "Findings",
-          comments: this.getFindings,
+          comments: this.allVideoNotes,
+          type: 1,
           classIcon: "bulb",
           map: "k"
         },
         {
           id: 3,
           header: "Quotes",
-          comments: this.getQuotes,
+          comments: this.allVideoNotes,
+          type: 2,
           classIcon: "quote-left",
           map: "l"
         }
@@ -92,6 +99,9 @@ export default {
     };
   },
   methods: {
+    getNoteById() {
+      return this.$store.getters["notes/getNotes"](+this.id);
+    },
     changeActiveNoteHeader(id) {
       this.activeHeader = id;
     },
