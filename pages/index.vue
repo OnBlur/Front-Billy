@@ -14,6 +14,7 @@
         <RecentFolders
           v-for="item in recentFolders"
           :key="item.id"
+          :id="item.id"
           :name="item.name"
           @click.native="goToProject(item.id)"
         />
@@ -132,7 +133,6 @@ export default {
     }
   }
 }
-
 .col {
   display: flex;
   justify-content: space-between;

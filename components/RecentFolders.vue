@@ -1,17 +1,21 @@
 <template>
-  <div class="row folders">
+  <nuxt-link :to="{ path: 'company/' + id}" tag="div" class="row" exact>
     <div class="col">
       <div class="column">
         <h2 class="item-name">{{name}}</h2>
         <div class="blue-line"></div>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
 export default {
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       default: "Geen naam gevonden"
@@ -22,6 +26,7 @@ export default {
 
 <style lang="scss" scoped>
 .row {
+  cursor: pointer;
   &.folders {
     max-width: 1100px;
     width: 100%;
