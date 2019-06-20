@@ -3,53 +3,53 @@ import Cookies from "js-cookie";
 
 export const state = () => ({
   data: [
-    // {
-    //   id: 1,
-    //   type: 2,
-    //   video_id: 1,
-    //   timestamp: "0.35",
-    //   content: "De testpersoon geeft een verwarde indruk"
-    // },
-    // {
-    //   id: 2,
-    //   type: 2,
-    //   video_id: 1,
-    //   timestamp: "1.2",
-    //   content:
-    //     "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
-    // },
-    // {
-    //   id: 3,
-    //   type: 1,
-    //   video_id: 1,
-    //   timestamp: "2.1",
-    //   content:
-    //     "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
-    // },
-    // {
-    //   id: 4,
-    //   type: 2,
-    //   video_id: 1,
-    //   timestamp: "2.3",
-    //   content:
-    //     "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
-    // },
-    // {
-    //   id: 5,
-    //   type: 0,
-    //   video_id: 1,
-    //   timestamp: "3.1",
-    //   content:
-    //     "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
-    // },
-    // {
-    //   id: 6,
-    //   type: 0,
-    //   video_id: 1,
-    //   timestamp: "3.1",
-    //   content:
-    //     "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
-    // }
+    {
+      id: 1,
+      type: 2,
+      video_id: 1,
+      timestamp: "0.35",
+      content: "De testpersoon geeft een verwarde indruk"
+    },
+    {
+      id: 2,
+      type: 2,
+      video_id: 1,
+      timestamp: "1.2",
+      content:
+        "“De testpersoon kijkt over het blauwe vlak heen, waardoor de tekst onder het vak ook niet gelezen wordt. ”"
+    },
+    {
+      id: 3,
+      type: 0,
+      video_id: 1,
+      timestamp: "2.1",
+      content:
+        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
+    },
+    {
+      id: 4,
+      type: 1,
+      video_id: 1,
+      timestamp: "2.3",
+      content:
+        "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
+    },
+    {
+      id: 5,
+      type: 0,
+      video_id: 1,
+      timestamp: "3.1",
+      content:
+        "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
+    },
+    {
+      id: 6,
+      type: 0,
+      video_id: 1,
+      timestamp: "3.1",
+      content:
+        "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
+    }
   ]
 });
 
@@ -84,7 +84,7 @@ export const actions = {
         // localStorage.setItem("notes", res.data.data);
       })
       .catch(e => {
-        context.error(e);
+        context.error(e.response.data.message);
       });
   },
   async addNote(vuexContext, value) {
@@ -96,7 +96,7 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -104,7 +104,6 @@ export const actions = {
       video_id: 1,
       ...value
     };
-    console.log(requestOptions);
     return axios
       .post(
         process.env.baseUrl + "/update/video-note/" + value.id,
@@ -114,7 +113,7 @@ export const actions = {
         console.log(res.data.data);
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async deleteNote(vuexContext, value) {
     return axios
@@ -122,7 +121,7 @@ export const actions = {
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
-      .catch(e => alert(e.response.data.message));
+      .catch(e => console.log(e.response.data.message));
   }
 };
 

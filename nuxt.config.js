@@ -46,7 +46,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: "~/plugins/localStorage.js", ssr: false }],
 
   manifest: {
     name: "Front Billy",
@@ -75,7 +75,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || "http://9f71d785.eu.ngrok.io/api"
+    baseUrl: process.env.BASE_URL || "http://vettedomeinnaam.nl/api"
   },
 
   render: {

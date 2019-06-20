@@ -4,10 +4,18 @@
     <b-col md="3">
       <div class="system">
         <div class="time-text">Time</div>
-        <div class="current-time">1:20:23</div>
+        <Stopwatch
+          @currentMin="minutes = $event"
+          @currentSec="seconds = $event"
+          @clockStatus="clockStatus = $event"
+        />
+        <!-- <div class="current-time">1:20:23</div> -->
         <div class="connection" id="tooltip">
           <div class="icon wifi-3" :class="{ 'success': connected }">e</div>
-          <div class="connection-text" :class="{ 'success': connected }">Connected</div>
+          <div
+            class="connection-text"
+            :class="{ 'success': connected }"
+          >{{connected ? "Connected" : "Disconnected"}}</div>
         </div>
         <b-tooltip target="tooltip" placement="bottom">{{connected ? tooltipSuccess : tooltipFail}}</b-tooltip>
       </div>
@@ -15,14 +23,14 @@
     <!-- Right -->
     <b-col md="9">
       <div class="main">
-        <div class="notes" ref="notes">
+        <div class="notes">
           <Note
             v-for="item in allNotes"
             :key="item.id"
             :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.content"
             :noteProperty="item.type"
-            @editNote="editNote($event)"
+            @editNote="editNote(item.id, $event)"
           />
         </div>
         <div class="text-input">
@@ -30,7 +38,6 @@
             <input
               v-model="inputNote"
               type="text"
-              ref="note"
               placeholder="Write your note, findings or a quote here.."
             >
           </form>
@@ -51,6 +58,7 @@ import { mapMutations } from "vuex";
 import { trimTimestamp } from "@/mixins";
 
 import Note from "@/components/Live/Note";
+import Stopwatch from "@/components/Live/Stopwatch";
 
 export default {
   name: "Live",
@@ -59,18 +67,25 @@ export default {
   data() {
     return {
       currentTime: null,
+      clockStatus: "",
+      minutes: null,
+      seconds: null,
+
       connected: true,
-      inputNote: "",
-      timestamp: 4.3,
-      noteType: 0,
       tooltipSuccess: "Internet and API connection is available",
       tooltipFail:
-        "All your changes will be saved automatically when you’re offline."
+        "All your changes will be saved automatically when you’re offline.",
+
+      noteType: 0,
+      inputNote: ""
     };
   },
   computed: {
     allNotes() {
       return this.$store.getters["notes/allData"];
+    },
+    timestamp() {
+      return this.minutes + "." + this.seconds;
     }
   },
   methods: {
@@ -87,19 +102,27 @@ export default {
         });
 
       this.inputNote = "";
-      this.$refs.notes.scrollTo.animate(
-        { scrollTop: document.scrollTo.scrollHeight },
-        "slow"
-      );
     },
-    editNote(content) {}
+    editNote(noteId, text) {
+      this.$store
+        .dispatch("notes/editNote", {
+          id: noteId,
+          timestamp: this.timestamp,
+          content: this.text,
+          type: this.noteType,
+          video_id: 1
+        })
+        .then(() => {
+          this.$router.push("/live");
+        });
+    }
   },
   watch: {
     allNotes() {
       console.log("Something has been changed in store: AllNotes");
     }
   },
-  components: { Note }
+  components: { Note, Stopwatch }
 };
 </script>
 
@@ -115,11 +138,7 @@ export default {
     font-size: 30px;
     color: #424242;
   }
-  .current-time {
-    font-size: 50px;
-    color: #424242;
-    font-weight: 900;
-  }
+
   .connection {
     cursor: pointer;
     display: flex;

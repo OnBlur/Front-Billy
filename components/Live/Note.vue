@@ -1,5 +1,5 @@
 <template>
-  <div class="note-wrapper" :class="{ 'simple': !propertyIcon.iconClass }">
+  <div class="note-wrapper" :class="{ 'simple': noteProperty === 0 }">
     <div class="time">{{timestamp}}</div>
     <div class="divider"></div>
     <b-form-textarea
@@ -55,7 +55,15 @@ export default {
     },
     editNote() {
       // console.log(this.timestamp, this.note);
-      this.$emit("editNote", this.note);
+      this.$emit("editNote", this.noteInput);
+    }
+  },
+  watch: {
+    noteInput() {
+      clearInterval(this.interval);
+      this.interval = setTimeout(() => {
+        this.editNote();
+      }, 1000);
     }
   }
 };
@@ -103,6 +111,13 @@ export default {
     display: flex;
     align-items: center;
     font-family: "icons";
+
+    &.clipboard-notes {
+      display: none;
+    }
+    &.bulb{
+      color:#f1c40a;
+    }
   }
   .form-control {
     resize: none;

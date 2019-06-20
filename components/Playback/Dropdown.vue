@@ -3,7 +3,7 @@
     <div class="edit" @click="startEditModus()">Edit Note</div>
     <div class="note-type">
       <div class="item note" @click="changeType(0)" :class="{ 'active': noteProperty === 0}">
-        <div class="icon folder">c</div>
+        <div class="icon clipboard-notes">s</div>
         <div class="text">Note</div>
       </div>
       <div class="item finding" @click="changeType(1)" :class="{ 'active': noteProperty === 1}">

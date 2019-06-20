@@ -1,8 +1,13 @@
 import axios from "axios";
 
 export const state = () => ({
-  data: []
-
+  data: [
+    { id: 1, company_id: 1, name: "Een" },
+    { id: 2, company_id: 1, name: "Haooi" },
+    { id: 3, company_id: 2, name: "Drie" },
+    { id: 4, company_id: 3, name: "Vier" },
+    { id: 5, company_id: 4, name: "Vijf" }
+  ]
 });
 
 export const mutations = {
@@ -31,8 +36,6 @@ export const actions = {
       .get(process.env.baseUrl + "/get/project", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
-        // Cookies.set("notes", res.data.data);
-        // localStorage.setItem("notes", res.data.data);
       })
       .catch(e => {
         context.error(e);
@@ -47,7 +50,7 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -57,14 +60,11 @@ export const actions = {
       link: value.link
     };
     return axios
-      .post(
-        process.env.baseUrl + "/update/project/" + value.id,
-        requestOptions
-      )
+      .post(process.env.baseUrl + "/update/project/" + value.id, requestOptions)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e.response.data.message));
   },
   async deleteNote(vuexContext, value) {
     return axios

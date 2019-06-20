@@ -50,14 +50,14 @@ export default {
 }
 
 .alert {
-  padding: 20px;
+  padding: 15px;
   background-color: #2196f3;
   color: white;
   position: absolute;
   bottom: 0;
-  left: 0;
   z-index: 900;
   margin: 20px;
+  border-radius: 10px;
   position: absolute;
   left: -100%;
   -webkit-animation: slide 0.5s forwards;
@@ -71,21 +71,20 @@ export default {
   .info {
   }
   .link {
-    font-weight: 900;
+    font-family: "OpenSans-Bold";
     margin-left: 20px;
     border: none;
     background-color: transparent;
   }
   .closebtn {
     margin-left: 20px;
-    color: white;
+    color: #96d0ff;
     font-size: 22px;
-    line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
     font-family: "icons";
     &:hover {
-      color: black;
+      color: #1a76c2;
     }
   }
 }
