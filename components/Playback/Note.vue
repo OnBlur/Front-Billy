@@ -13,8 +13,8 @@
       @changeType="editNoteType($event)"
       @deleteNote="deleteNote()"
     />
-    <div class="menu" v-if="active" @click="openDropdown()">
-      <div class="dot-3">b</div>
+    <div class="menu" v-if="active">
+      <div class="dot-3" @click="openDropdown()">b</div>
     </div>
   </div>
   <form v-on:submit.prevent="editNote" class="note-edit" v-else>

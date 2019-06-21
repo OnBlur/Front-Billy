@@ -38,6 +38,12 @@ export default {
   name: "Collapsible",
   mixins: [trimTimestamp],
   props: {
+    allVideoNotes: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    },
     getNotes: {
       type: Array,
       default: []
@@ -58,6 +64,7 @@ export default {
           id: 1,
           header: "Notes",
           comments: this.getNotes,
+          type: 0,
           classIcon: "clipboard-notes",
           map: "s"
         },
@@ -65,6 +72,7 @@ export default {
           id: 2,
           header: "Findings",
           comments: this.getFindings,
+          type: 1,
           classIcon: "bulb",
           map: "k"
         },
@@ -72,6 +80,7 @@ export default {
           id: 3,
           header: "Quotes",
           comments: this.getQuotes,
+          type: 2,
           classIcon: "quote-left",
           map: "l"
         }

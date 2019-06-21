@@ -15,7 +15,7 @@
           <!-- <div class="progress" :style="{ width: activeColor, fontSize: fontSize + 'px' }"></div> -->
           <div class="progress" ref="progressBar"></div>
           <TimelineItem
-            v-for="item in allNotes"
+            v-for="item in allVideoNotes"
             :key="item.id"
             :noteProperty="item.type"
             :timestamp="item.timestamp"
@@ -37,6 +37,7 @@
     <!-- RIGHT -->
     <b-col md="4">
       <Collapsible
+        :allVideoNotes="allVideoNotes"
         :getNotes="getNotes"
         :getFindings="getFindings"
         :getQuotes="getQuotes"
@@ -67,9 +68,6 @@
 </template>
 
 <script>
-import { trimTimestamp } from "@/mixins";
-import { mapMutations } from "vuex";
-
 import Tag from "@/components/Playback/Tag";
 import Note from "@/components/Playback/Note";
 import TimelineItem from "@/components/Playback/TimelineItem";
@@ -78,24 +76,23 @@ import Collapsible from "@/components/Playback/Collapsible";
 export default {
   name: "Playback",
   // middleware: "versionCheck",
-  mixins: [trimTimestamp],
   layout: "playback",
   data() {
     return {
+      id: this.$route.params.id,
+
       currentTimestamp: 0, // Timestamp of the video DOM
       progressBarTimestamp: 0, // The width of the progress bar under the video
 
       inputNote: "",
-      activeNote: 1,
-      activeHeader: 1,
 
       tags: [{ id: 1, title: "MCL" }, { id: 2, title: "Revalidatie" }]
     };
   },
   mounted() {
     //Initialize timeline items on the timeline
-    for (let i = 0; i < this.allNotes.length; i++) {
-      let itemPosition = this.allNotes[i].timestamp * 7;
+    for (let i = 0; i < this.allVideoNotes.length; i++) {
+      let itemPosition = this.allVideoNotes[i].timestamp * 7;
       // this.$refs.timelineItems[i].style.left = itemPosition + "%";
     }
 
@@ -104,17 +101,17 @@ export default {
     };
   },
   computed: {
-    allNotes() {
-      return this.$store.getters["notes/allData"];
+    allVideoNotes() {
+      return this.$store.getters["notes/getItemsByVideoId"](+this.id);
     },
     getNotes() {
-      return this.$store.getters["notes/getNotes"];
+      return this.$store.getters["notes/getItemsByVideoIdAndType"](+this.id, 0);
     },
     getFindings() {
-      return this.$store.getters["notes/getFindings"];
+      return this.$store.getters["notes/getItemsByVideoIdAndType"](+this.id, 1);
     },
     getQuotes() {
-      return this.$store.getters["notes/getQuotes"];
+      return this.$store.getters["notes/getItemsByVideoIdAndType"](+this.id, 2);
     }
   },
   methods: {
@@ -149,6 +146,10 @@ export default {
     },
     playVideo() {
       this.$refs.myVideo.play();
+    },
+    selectNote(item) {
+      this.activeNote = item.id;
+      this.goToTimestamp(item.timestamp);
     },
     pauseVideo() {
       this.$refs.myVideo.pause();

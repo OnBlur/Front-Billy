@@ -21,7 +21,7 @@ export const state = () => ({
     {
       id: 3,
       type: 0,
-      video_id: 1,
+      video_id: 3,
       timestamp: "2.1",
       content:
         "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
@@ -29,7 +29,7 @@ export const state = () => ({
     {
       id: 4,
       type: 1,
-      video_id: 1,
+      video_id: 3,
       timestamp: "2.3",
       content:
         "Raakt het overzicht kwijt van de “over ons” pagina. Weet niet waarheen te navigeren."
@@ -37,7 +37,7 @@ export const state = () => ({
     {
       id: 5,
       type: 0,
-      video_id: 1,
+      video_id: 2,
       timestamp: "3.1",
       content:
         "Raakt het overzicht kwijt vanaf de “over ons” pagina. Weet niet waarheen te navigeren."
@@ -45,7 +45,7 @@ export const state = () => ({
     {
       id: 6,
       type: 0,
-      video_id: 1,
+      video_id: 3,
       timestamp: "3.1",
       content:
         "De afbeelding in de header geeft niet het gevoel van gezond en leefstijl."
@@ -96,7 +96,13 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(
+        e => console.log(e),
+        vuexContext.commit("addData", {
+          ...value,
+          id: getRandomInt(33332333)
+        })
+      );
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -129,25 +135,23 @@ export const getters = {
   allData(state) {
     return state.data;
   },
-  getNotes(state) {
-    var result = state.data.filter(obj => {
-      return obj.type === 0;
-    });
-    return result;
-  },
-  getFindings(state) {
-    var result = state.data.filter(obj => {
-      return obj.type === 1;
-    });
-    return result;
-  },
-  getQuotes(state) {
-    var result = state.data.filter(obj => {
-      return obj.type === 2;
-    });
-    return result;
-  },
   getItem: state => id => {
     return state.data.find(item => item.id === id);
+  },
+  getItemsByVideoId: state => id => {
+    var result = state.data.filter(item => {
+      return item.video_id === id;
+    });
+    return result;
+  },
+  getItemsByVideoIdAndType: state => (id, type) => {
+    var result = state.data.filter(item => {
+      return item.video_id === id && item.type === type;
+    });
+    return result;
   }
 };
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}

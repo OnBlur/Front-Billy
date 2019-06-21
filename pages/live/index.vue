@@ -66,12 +66,10 @@ export default {
   layout: "playback",
   data() {
     return {
-      currentTime: null,
-      clockStatus: "",
       minutes: null,
       seconds: null,
 
-      connected: true,
+      connected: null,
       tooltipSuccess: "Internet and API connection is available",
       tooltipFail:
         "All your changes will be saved automatically when you’re offline.",
@@ -80,6 +78,7 @@ export default {
       inputNote: ""
     };
   },
+  mounted() {},
   computed: {
     allNotes() {
       return this.$store.getters["notes/allData"];
@@ -115,11 +114,17 @@ export default {
         .then(() => {
           this.$router.push("/live");
         });
+    },
+    isOnline() {
+      this.connected = window.navigator.onLine;
     }
   },
   watch: {
     allNotes() {
       console.log("Something has been changed in store: AllNotes");
+    },
+    seconds: function(newQuestion, oldQuestion) {
+      this.isOnline();
     }
   },
   components: { Note, Stopwatch }
