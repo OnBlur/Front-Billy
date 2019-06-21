@@ -1,12 +1,31 @@
 import axios from "axios";
 
 export const state = () => ({
-  data: [
-    { id: 1, company_id: 1, name: "Een" },
-    { id: 2, company_id: 1, name: "Haooi" },
-    { id: 3, company_id: 2, name: "Drie" },
-    { id: 4, company_id: 3, name: "Vier" },
-    { id: 5, company_id: 4, name: "Vijf" }
+  data: [{
+      id: 1,
+      company_id: 1,
+      name: "Een"
+    },
+    {
+      id: 2,
+      company_id: 1,
+      name: "Haooi"
+    },
+    {
+      id: 3,
+      company_id: 2,
+      name: "Drie"
+    },
+    {
+      id: 4,
+      company_id: 3,
+      name: "Vier"
+    },
+    {
+      id: 5,
+      company_id: 4,
+      name: "Vijf"
+    }
   ]
 });
 
@@ -41,7 +60,7 @@ export const actions = {
         context.error(e);
       });
   },
-  async addNote(vuexContext, value) {
+  async addProject(vuexContext, value) {
     return axios
       .post(process.env.baseUrl + "/create/project/", value)
       .then(result => {
@@ -50,7 +69,7 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -82,6 +101,9 @@ export const getters = {
   },
   getItem: state => id => {
     return state.data.filter(item => item.id === id);
+  },
+  getLastItem(state) {
+    return state.data.slice(-1)[0];
   },
   getItemByCompanyId: state => id => {
     var result = state.data.filter(item => {

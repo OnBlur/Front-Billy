@@ -27,11 +27,13 @@
         />
       </div>
     </div>
+    <FloatingActionButton iconClass="times" iconLetter="f"/>
   </section>
 </template>
 
 <script>
 import videoFolders from "@/components/videoFolders";
+import FloatingActionButton from "@/components/UI/FloatingActionButton";
 
 export default {
   name: "Project",
@@ -52,7 +54,8 @@ export default {
     }
   },
   components: {
-    videoFolders
+    videoFolders,
+    FloatingActionButton
   }
 };
 </script>

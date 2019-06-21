@@ -46,7 +46,7 @@
         />
       </div>
     </div>
-    <FloatingActionButton/>
+    <FloatingActionButton iconClass="folder-add" iconLetter="d"/>
 
     <b-modal id="modal-1" ref="modal">
       <h1 class="create-modal-title">Bedrijfsmap aanmaken</h1>

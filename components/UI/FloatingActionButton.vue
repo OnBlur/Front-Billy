@@ -3,17 +3,26 @@
     <nav class="fab">
       <b-button
         href="#"
-        class="buttons folder-add"
+        :class="['buttons', iconClass]"
         tooltip="Projectmap aanmaken"
         v-b-modal.modal-1
-      >d</b-button>
+      >{{iconLetter}}</b-button>
     </nav>
   </div>
 </template>
 
 <script>
 export default {
-  name: "FloatingActionButton"
+  name: "FloatingActionButton",
+
+  props: {
+    iconClass: {
+      type: String
+    },
+    iconLetter: {
+      type: String
+    }
+  }
 };
 </script>
 
@@ -53,6 +62,14 @@ export default {
   &:hover {
     text-decoration: none;
   }
+}
+
+.times {
+  color: #ffffff;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 2em;
+  transform: rotate(45deg);
 }
 
 [tooltip] {
