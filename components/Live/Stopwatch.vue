@@ -28,6 +28,7 @@ module.exports = {
     hours: function() {
       var lapsed = this.milliseconds;
       var hrs = Math.floor(lapsed / 1000 / 60 / 60);
+      this.$emit("currentHrs", hrs);
       return hrs >= 10 ? hrs : "0" + hrs;
     },
     minutes: function() {
@@ -39,7 +40,7 @@ module.exports = {
     seconds: function() {
       var lapsed = this.milliseconds;
       var sec = Math.ceil((lapsed / 1000) % 60);
-      this.$emit("currentSec", sec);
+      this.$emit("currentSec", sec >= 10 ? sec : "0" + sec);
       return sec >= 10 ? sec : "0" + sec;
     }
   },

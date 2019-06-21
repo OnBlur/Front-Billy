@@ -75,7 +75,8 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || "http://vettedomeinnaam.nl/api"
+    baseUrl:
+      process.env.BASE_URL || "https://hidden-taiga-86718.herokuapp.com/api"
   },
 
   render: {

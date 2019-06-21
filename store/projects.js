@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const state = () => ({
-  data: [{
+  data: [
+    {
       id: 1,
       company_id: 1,
       name: "Een"
@@ -57,7 +58,7 @@ export const actions = {
         vuexContext.commit("setData", res.data.data);
       })
       .catch(e => {
-        context.error(e);
+        console.log(e);
       });
   },
   async addProject(vuexContext, value) {
@@ -83,7 +84,7 @@ export const actions = {
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   },
   async deleteNote(vuexContext, value) {
     return axios
@@ -91,7 +92,7 @@ export const actions = {
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
-      .catch(e => alert(e.response.data.message));
+      .catch(e => console.log(e));
   }
 };
 
