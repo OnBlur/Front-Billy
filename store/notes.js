@@ -62,7 +62,6 @@ export const mutations = {
   },
   editData(state, value) {
     const index = state.data.findIndex(item => item.id === value.id);
-    console.log(value, "mutation");
     state.data[index] = value;
   },
   deleteData(state, value) {
@@ -80,11 +79,9 @@ export const actions = {
       .get(process.env.baseUrl + "/get/video-note", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
-        // Cookies.set("notes", res.data.data);
-        // localStorage.setItem("notes", res.data.data);
       })
       .catch(e => {
-        context.error(e.response.data.message);
+        e => console.log(e);
       });
   },
   async addNote(vuexContext, value) {
@@ -96,13 +93,10 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(
-        e => console.log(e),
-        vuexContext.commit("addData", {
-          ...value,
-          id: getRandomInt(33332333)
-        })
-      );
+      .catch(function(error) {
+        // reject(error);
+        alert(error);
+      });
   },
   async editNote(vuexContext, value) {
     const requestOptions = {
@@ -119,7 +113,7 @@ export const actions = {
         console.log(res.data.data);
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   },
   async deleteNote(vuexContext, value) {
     return axios
@@ -127,7 +121,7 @@ export const actions = {
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   }
 };
 

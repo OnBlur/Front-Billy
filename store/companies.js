@@ -1,12 +1,14 @@
 import axios from "axios";
 
 export const state = () => ({
-  data: [{
+  data: [
+    {
       id: 1,
       name: "Puur Schoonheid",
       img: "random",
       projects: "2 projecten",
-      members: [{
+      members: [
+        {
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -27,7 +29,8 @@ export const state = () => ({
       name: "3 roots",
       img: "random",
       projects: "7 projecten",
-      members: [{
+      members: [
+        {
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -48,7 +51,8 @@ export const state = () => ({
       name: "A&B Meester Schilders",
       img: "random",
       projects: "3 projecten",
-      members: [{
+      members: [
+        {
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -69,7 +73,8 @@ export const state = () => ({
       name: " Google",
       img: "random",
       projects: "4 projecten",
-      members: [{
+      members: [
+        {
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -90,7 +95,8 @@ export const state = () => ({
       name: " Microsoft",
       img: "random",
       projects: "1 project",
-      members: [{
+      members: [
+        {
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -111,7 +117,8 @@ export const state = () => ({
       name: " Apple",
       img: "random",
       projects: "2 projecten",
-      members: [{
+      members: [
+        {
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -132,7 +139,8 @@ export const state = () => ({
       name: " Toshiba",
       img: "random",
       projects: "876 projecten",
-      members: [{
+      members: [
+        {
           id: 1,
           url: require("~/assets/img/profile.png")
         },
@@ -181,7 +189,7 @@ export const actions = {
         // localStorage.setItem("Companys", res.data.data);
       })
       .catch(e => {
-        context.error(e);
+        e => console.log(e);
       });
   },
   async addCompany(vuexContext, value) {
@@ -215,7 +223,7 @@ export const actions = {
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
-      .catch(e => alert(e));
+      .catch(e => console.log(e));
   }
 };
 

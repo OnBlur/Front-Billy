@@ -5,6 +5,7 @@
       <div class="system">
         <div class="time-text">Time</div>
         <Stopwatch
+          @currentHrs="hours = $event"
           @currentMin="minutes = $event"
           @currentSec="seconds = $event"
           @clockStatus="clockStatus = $event"
@@ -66,6 +67,7 @@ export default {
   layout: "playback",
   data() {
     return {
+      hours: null,
       minutes: null,
       seconds: null,
 
@@ -73,6 +75,7 @@ export default {
       tooltipSuccess: "Internet and API connection is available",
       tooltipFail:
         "All your changes will be saved automatically when you’re offline.",
+      offlineData: [],
 
       noteType: 0,
       inputNote: ""
@@ -89,16 +92,35 @@ export default {
   },
   methods: {
     addNote() {
-      this.$store
-        .dispatch("notes/addNote", {
+      // Save the note offline
+      if (this.connected === false) {
+        this.$store.commit("notes/addData", {
           timestamp: this.timestamp,
           content: this.inputNote,
           type: this.noteType,
           video_id: 1
-        })
-        .then(() => {
-          this.$router.push("/live");
         });
+        this.offlineData.push({
+          timestamp: this.timestamp,
+          content: this.inputNote,
+          type: this.noteType,
+          video_id: 1
+        });
+        console.log("saved locally", this.offlineData);
+      }
+      // Save the note when online
+      else {
+        this.$store
+          .dispatch("notes/addNote", {
+            timestamp: this.timestamp,
+            content: this.inputNote,
+            type: this.noteType,
+            video_id: 1
+          })
+          .then(() => {
+            this.$router.push("/live");
+          });
+      }
 
       this.inputNote = "";
     },
@@ -107,7 +129,7 @@ export default {
         .dispatch("notes/editNote", {
           id: noteId,
           timestamp: this.timestamp,
-          content: this.text,
+          content: text,
           type: this.noteType,
           video_id: 1
         })
@@ -117,6 +139,17 @@ export default {
     },
     isOnline() {
       this.connected = window.navigator.onLine;
+    },
+    syncData() {
+      console.log("Trying to sync...");
+      for (let i = 0; i < this.offlineData.length; i++) {
+        console.log("offline items:", this.offlineData.length);
+        this.$store.dispatch("notes/addNote", this.offlineData[i]).then(() => {
+          this.offlineData.splice(i, 1);
+          this.$store.dispatch("notes/getAllInit");
+          this.$router.push("/live");
+        });
+      }
     }
   },
   watch: {
@@ -124,6 +157,11 @@ export default {
       console.log("Something has been changed in store: AllNotes");
     },
     seconds: function(newQuestion, oldQuestion) {
+      if (this.connected === true && this.offlineData.length > 0) {
+        console.log(this.offlineData);
+        // setTimeout(this.syncData(), 9000);
+        this.syncData();
+      }
       this.isOnline();
     }
   },

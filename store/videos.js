@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
 export const state = () => ({
   data: [{
@@ -73,12 +72,12 @@ export const mutations = {
 export const actions = {
   async getAllInit(vuexContext, value) {
     return axios
-      .get(process.env.baseUrl + "/get/video/" + value)
+      .get(process.env.baseUrl + "/get/video")
       .then(res => {
         vuexContext.commit("setData", res.data.data);
       })
       .catch(e => {
-        context.error(e.response.data.message);
+        console.log(e);
       });
   },
   async addVideo(vuexContext, value) {
@@ -104,7 +103,7 @@ export const actions = {
         console.log(res.data.data);
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   },
   async deleteVideo(vuexContext, value) {
     return axios
@@ -112,7 +111,7 @@ export const actions = {
       .then(() => {
         vuexContext.commit("deleteData", value);
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   }
 };
 

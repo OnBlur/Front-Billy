@@ -28,7 +28,7 @@ export const actions = {
         vuexContext.commit("setLatesVersion", res.data.data);
       })
       .catch(e => {
-        context.error(e);
+        console.log(e);
       });
   }
 };
