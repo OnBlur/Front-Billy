@@ -24,7 +24,7 @@
         />
       </div>
     </div>
-    <FloatingActionButton iconClass="folder-add" iconLetter="d"/>
+    <FloatingActionButton toolTip="Projectmap toevoegen" iconClass="folder-add" iconLetter="d"/>
 
     <b-modal id="modal-1" ref="modal">
       <h1 class="create-modal-title">Projectmap toevoegen</h1>

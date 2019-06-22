@@ -2,8 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export const state = () => ({
-  data: [
-    {
+  data: [{
       id: 1,
       project_id: 1,
       name: "1e Video in project id 1",
@@ -91,7 +90,7 @@ export const actions = {
           id: result.data.data.id
         });
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   },
   async editVideo(vuexContext, value) {
     const requestOptions = {
@@ -123,6 +122,9 @@ export const getters = {
   },
   getItem: state => id => {
     return state.data.filter(item => item.id === id);
+  },
+  getLastItem(state) {
+    return state.data.slice(-1)[0];
   },
   getItemByProjectId: state => id => {
     var result = state.data.filter(item => {

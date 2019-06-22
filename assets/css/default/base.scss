@@ -12,7 +12,6 @@ body {
 .modal {
   display: flex !important;
   align-items: center;
-
 }
 
 .modal-content {
@@ -58,7 +57,9 @@ body {
   }
 
   .modal-body {
-    padding: 3rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
   }
 
   .modal-header {
@@ -76,5 +77,4 @@ body {
     padding-bottom: 25px;
     font-family: "OpenSans-Bold";
   }
-
 }

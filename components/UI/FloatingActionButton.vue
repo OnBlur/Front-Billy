@@ -1,12 +1,7 @@
 <template>
   <div>
-    <nav class="fab">
-      <b-button
-        href="#"
-        :class="['buttons', iconClass]"
-        tooltip="Projectmap aanmaken"
-        v-b-modal.modal-1
-      >{{iconLetter}}</b-button>
+    <nav class="fab" :tooltip="[toolTip]">
+      <b-button href="#" :class="['buttons', iconClass]" v-b-modal.modal-1>{{iconLetter}}</b-button>
     </nav>
   </div>
 </template>
@@ -16,6 +11,9 @@ export default {
   name: "FloatingActionButton",
 
   props: {
+    toolTip: {
+      type: String
+    },
     iconClass: {
       type: String
     },
