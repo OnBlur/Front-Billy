@@ -2,10 +2,10 @@
   <section class="wrapper">
     <div class="row">
       <div class="col">
-        <div class="title">
-          Folders > {{getCompanyById.name}} >
-          <div v-for="item in getProjectById" :key="item.id">{{item.name}}</div>
-        </div>
+        <Breadcrumbs
+          :companyId="getProjectById[0].company_id"
+          :projectName="getProjectById[0].name"
+        />
       </div>
     </div>
     <div class="row">
@@ -55,6 +55,7 @@
 <script>
 import videoFolders from "@/components/videoFolders";
 import FloatingActionButton from "@/components/UI/FloatingActionButton";
+import Breadcrumbs from "@/components/UI/Breadcrumbs";
 import Tag from "@/components/Playback/Tag";
 
 export default {
@@ -62,6 +63,11 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      testName: "",
+      testPersonName: "",
+      testPersonName: "",
+      testPersonAge: "",
+      testTag: "",
 
       tags: [{ id: 1, title: "MCL" }, { id: 2, title: "Revalidatie" }]
     };
@@ -70,31 +76,28 @@ export default {
     projects() {
       return this.$store.getters["videos/getItemByProjectId"](+this.id);
     },
-    getCompanyById() {
-      return this.$store.getters["companies/getItem"](+this.id);
-    },
     getProjectById() {
       return this.$store.getters["projects/getItem"](+this.id);
     }
   },
   methods: {
     onSubmit() {
-      console.log("hallo?");
       this.$store
         .dispatch("videos/addVideo", {
           name: this.testName
         })
         .then(res => {
           let newVideo = this.$store.getters["videos/getLastItem"];
-          this.$router.push("/live/" + newVideo.id);
           this.$refs.modal.hide();
+          this.$router.push("/live/" + newVideo.id);
         });
     }
   },
   components: {
     videoFolders,
     FloatingActionButton,
-    Tag
+    Tag,
+    Breadcrumbs
   }
 };
 </script>
@@ -108,16 +111,6 @@ export default {
   .row {
     width: 100%;
     max-width: 1100px;
-    .title {
-      width: 100%;
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #424242;
-      margin-bottom: 25px;
-      margin-top: 50px;
-
-      display: flex;
-    }
     .breadcrumb {
       margin-top: 50px;
       font-family: OpenSans;

@@ -2,7 +2,7 @@
   <section class="wrapper">
     <div class="row">
       <div class="col">
-        <div class="title">Folders > {{getCompanyById.name}}</div>
+        <Breadcrumbs :companyId="getCompanyById.id"/>
       </div>
     </div>
     <div class="row">
@@ -42,6 +42,7 @@
 <script>
 import projectFolders from "@/components/projectFolders";
 import FloatingActionButton from "@/components/UI/FloatingActionButton";
+import Breadcrumbs from "@/components/UI/Breadcrumbs";
 
 export default {
   name: "Company",
@@ -63,21 +64,24 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("hallo?");
       this.$store
         .dispatch("projects/addProject", {
-          name: this.companyName
+          name: this.projectName,
+          company_id: this.id,
+          status: 1,
+          last_updated_by: 3
         })
-        .then(res => {
+        .then(() => {
           let newProject = this.$store.getters["projects/getLastItem"];
-          this.$router.push("/project/" + newProject.id);
           this.$refs.modal.hide();
+          this.$router.push("/project/" + newProject.id);
         });
     }
   },
   components: {
     projectFolders,
-    FloatingActionButton
+    FloatingActionButton,
+    Breadcrumbs
   }
 };
 </script>

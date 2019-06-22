@@ -43,6 +43,7 @@
           :members="item.members"
           :lastEdit="item.lastEdit"
           :editBy="item.editBy"
+          @deleteItem="deleteItem($event)"
         />
       </div>
     </div>
@@ -106,6 +107,9 @@ export default {
           this.$router.push("/company/" + newCompany.id);
           this.$refs.modal.hide();
         });
+    },
+    deleteItem(id) {
+      this.$store.dispatch("companies/deleteCompany", id);
     }
   },
   components: {
