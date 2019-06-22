@@ -17,7 +17,7 @@
         <!-- <div class="editby">{{item.editBy}}</div> -->
       </div>
     </nuxt-link>
-    <div class="menu" @click="openDropdown()">
+    <div class="menu">
       <!-- <div class="icon dot-3">b</div> -->
       <b-dropdown variant="link" toggle-class="text-decoration-none" no-caret>
         <template slot="button-content">
@@ -65,10 +65,6 @@ export default {
     };
   },
   methods: {
-    openDropdown(event) {
-      console.log("openend");
-      this.dropdown = !this.dropdown;
-    },
     deleteItem() {
       this.$emit("deleteItem", this.id);
     }

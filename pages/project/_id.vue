@@ -1,13 +1,6 @@
 <template>
   <section class="wrapper">
-    <div class="row">
-      <div class="col">
-        <Breadcrumbs
-          :companyId="getProjectById[0].company_id"
-          :projectName="getProjectById[0].name"
-        />
-      </div>
-    </div>
+    <Breadcrumbs :companyId="getProjectById[0].company_id" :projectName="getProjectById[0].name"/>
     <div class="row">
       <div class="folder">
         <div class="filters">
@@ -18,12 +11,13 @@
           <div>Last edit</div>
         </div>
         <videoFolders
-          v-for="item in projects"
+          v-for="item in videos"
           :key="item.id"
           :id="item.id"
           :name="item.name"
           :status="item.status"
           :lastUpdate="item.updated_at"
+          @deleteItem="deleteItem($event)"
         />
       </div>
     </div>
@@ -37,12 +31,12 @@
           <b-form-input v-model="testPersonName" placeholder="Naam testpersoon" class="testperson"></b-form-input>
           <b-form-input v-model="testPersonAge" placeholder="Leeftijd testpersoon"></b-form-input>
         </b-col>
-        <b-col class="form-row-2">
+        <!-- <b-col class="form-row-2">
           <div class="tags-wrapper-modal">
             <Tag v-for="item in tags" :key="item.id" :title="item.title"/>
           </div>
           <b-form-input v-model="testTag" placeholder="Tag toevoegen"></b-form-input>
-        </b-col>
+        </b-col>-->
         <div class="modal-buttons">
           <b-button type="submit" class="create">Aanmaken</b-button>
           <b-button class="cancel" @click="$bvModal.hide('modal-1')">Annuleren</b-button>
@@ -65,7 +59,6 @@ export default {
       id: this.$route.params.id,
       testName: "",
       testPersonName: "",
-      testPersonName: "",
       testPersonAge: "",
       testTag: "",
 
@@ -73,7 +66,7 @@ export default {
     };
   },
   computed: {
-    projects() {
+    videos() {
       return this.$store.getters["videos/getItemByProjectId"](+this.id);
     },
     getProjectById() {
@@ -84,13 +77,20 @@ export default {
     onSubmit() {
       this.$store
         .dispatch("videos/addVideo", {
-          name: this.testName
+          name: this.testName,
+          project_id: this.id,
+          name: this.testName,
+          link: "www.google.nl",
+          test_person: this.testPersonName
         })
         .then(res => {
           let newVideo = this.$store.getters["videos/getLastItem"];
           this.$refs.modal.hide();
           this.$router.push("/live/" + newVideo.id);
         });
+    },
+    deleteItem(id) {
+      this.$store.dispatch("videos/deleteVideo", id);
     }
   },
   components: {

@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="breadcrumb">Alle bestanden ></div>
-      <div class="divider"></div>
-    </div>
+  <div class="wrapper">
+    <Breadcrumbs/>
     <div class="row">
       <div class="col">
         <div class="title">Recente bestanden</div>
@@ -66,6 +63,7 @@
 import RecentFolders from "@/components/RecentFolders";
 import CompanyFolders from "@/components/CompanyFolders";
 import FloatingActionButton from "@/components/UI/FloatingActionButton";
+import Breadcrumbs from "@/components/UI/Breadcrumbs";
 
 export default {
   name: "Dashboard",
@@ -115,7 +113,8 @@ export default {
   components: {
     RecentFolders,
     CompanyFolders,
-    FloatingActionButton
+    FloatingActionButton,
+    Breadcrumbs
   }
 };
 </script>
@@ -137,20 +136,6 @@ export default {
       color: #424242;
       margin-bottom: 25px;
       margin-top: 50px;
-    }
-    .breadcrumb {
-      margin-top: 50px;
-      font-family: OpenSans;
-      font-size: 1em;
-      font-weight: bold;
-      color: #171717;
-      opacity: 0.55;
-    }
-    .divider {
-      width: 100%;
-      border-top: 1px solid #707070;
-      opacity: 0.17;
-      margin: 0px 15px 0px 15px;
     }
   }
   .folder {

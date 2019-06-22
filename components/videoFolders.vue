@@ -1,6 +1,6 @@
 <template>
-  <nuxt-link :to="{ path: '../playback/' + id}" tag="div" class="project-table" exact>
-    <div class="project-folders">
+  <div class="video-table" exact>
+    <nuxt-link :to="{ path: '../playback/' + id}" tag="div" class="project-folders">
       <div>
         <div class="icon play">m</div>
       </div>
@@ -16,13 +16,21 @@
         </div>
       </div>
       <div class="edited">
-        <div>
-          {{lastUpdate}} door
-          <b>Henk</b>
-        </div>
+        <div class="last-update">{{lastUpdate}} door</div>
+        <div class="user">Henk</div>
       </div>
+    </nuxt-link>
+    <div class="menu">
+      <!-- <div class="icon dot-3">b</div> -->
+      <b-dropdown variant="link" toggle-class="text-decoration-none" no-caret>
+        <template slot="button-content">
+          <div class="icon dot-3">b</div>
+        </template>
+        <b-dropdown-item href="#">Edit</b-dropdown-item>
+        <b-dropdown-item href="#" @click="deleteItem">Delete</b-dropdown-item>
+      </b-dropdown>
     </div>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -53,13 +61,19 @@ export default {
         { id: 4, color: "#ff4343", status: 3 }
       ]
     };
+  },
+  methods: {
+    deleteItem() {
+      this.$emit("deleteItem", this.id);
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.project-table {
+.video-table {
   cursor: pointer;
+  display: flex;
 
   .circle-outer {
     display: flex;
@@ -105,11 +119,32 @@ export default {
   .edited {
     display: flex;
     flex-grow: 1.5;
+    justify-content: center;
+    .last-update {
+      width: auto;
+    }
+    .user {
+      font-family: OpenSans-Bold;
+      width: auto;
+      margin-left: 5px;
+    }
   }
-
-  .editby {
-    font-weight: bold;
-    margin-left: 10px;
+  .menu {
+    // display: flex;
+    // justify-content: flex-end;
+    cursor: pointer;
+    margin-left: 30px;
+    width: auto;
+    .dropdown {
+      width: auto;
+      .icon {
+        font-family: "icons";
+        font-size: 20px;
+        transform: rotate(90deg);
+        width: 0;
+        color: black;
+      }
+    }
   }
 }
 </style>

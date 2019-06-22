@@ -80,7 +80,7 @@ export const actions = {
       link: value.link
     };
     return axios
-      .post(process.env.baseUrl + "/update/project" + value.id, requestOptions)
+      .post(process.env.baseUrl + "/update/project/" + value.id, requestOptions)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
@@ -88,7 +88,7 @@ export const actions = {
   },
   async deleteNote(vuexContext, value) {
     return axios
-      .delete(process.env.baseUrl + "/delete/project" + value)
+      .delete(process.env.baseUrl + "/delete/project/" + value)
       .then(() => {
         vuexContext.commit("deleteData", value);
       })

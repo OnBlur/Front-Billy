@@ -26,7 +26,7 @@
       <div class="main">
         <div class="notes">
           <Note
-            v-for="item in allNotes"
+            v-for="item in getNotesByVideoId"
             :key="item.id"
             :timestamp="trimTimestamp(+item.timestamp)"
             :note="item.content"
@@ -67,6 +67,7 @@ export default {
   layout: "playback",
   data() {
     return {
+      id: this.$route.params.id,
       hours: null,
       minutes: null,
       seconds: null,
@@ -83,8 +84,8 @@ export default {
   },
   mounted() {},
   computed: {
-    allNotes() {
-      return this.$store.getters["notes/allData"];
+    getNotesByVideoId() {
+      return this.$store.getters["notes/getItemsByVideoId"](+this.id);
     },
     timestamp() {
       return this.minutes + "." + this.seconds;
@@ -98,44 +99,36 @@ export default {
           timestamp: this.timestamp,
           content: this.inputNote,
           type: this.noteType,
-          video_id: 1
+          video_id: +this.id
         });
         this.offlineData.push({
           timestamp: this.timestamp,
           content: this.inputNote,
           type: this.noteType,
-          video_id: 1
+          video_id: +this.id
         });
         console.log("saved locally", this.offlineData);
       }
       // Save the note when online
       else {
-        this.$store
-          .dispatch("notes/addNote", {
-            timestamp: this.timestamp,
-            content: this.inputNote,
-            type: this.noteType,
-            video_id: 1
-          })
-          .then(() => {
-            this.$router.push("/live");
-          });
+        this.$store.dispatch("notes/addNote", {
+          timestamp: this.timestamp,
+          content: this.inputNote,
+          type: this.noteType,
+          video_id: +this.id
+        });
       }
 
       this.inputNote = "";
     },
     editNote(noteId, text) {
-      this.$store
-        .dispatch("notes/editNote", {
-          id: noteId,
-          timestamp: this.timestamp,
-          content: text,
-          type: this.noteType,
-          video_id: 1
-        })
-        .then(() => {
-          this.$router.push("/live");
-        });
+      this.$store.dispatch("notes/editNote", {
+        id: noteId,
+        timestamp: this.timestamp,
+        content: text,
+        type: this.noteType,
+        video_id: +this.id
+      });
     },
     isOnline() {
       this.connected = window.navigator.onLine;
@@ -147,15 +140,13 @@ export default {
         this.$store.dispatch("notes/addNote", this.offlineData[i]).then(() => {
           this.offlineData.splice(i, 1);
           this.$store.dispatch("notes/getAllInit");
-          this.$router.push("/live");
+          // this.$store.commit("notes/deleteData", id);
+          // this.$store.getters["notes/getItemsByVideoId"];
         });
       }
     }
   },
   watch: {
-    allNotes() {
-      console.log("Something has been changed in store: AllNotes");
-    },
     seconds: function(newQuestion, oldQuestion) {
       if (this.connected === true && this.offlineData.length > 0) {
         console.log(this.offlineData);

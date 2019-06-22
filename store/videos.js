@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const state = () => ({
-  data: [{
+  data: [
+    {
       id: 1,
       project_id: 1,
       name: "1e Video in project id 1",
@@ -120,7 +121,7 @@ export const getters = {
     return state.data;
   },
   getItem: state => id => {
-    return state.data.filter(item => item.id === id);
+    return state.data.find(item => item.id === id);
   },
   getLastItem(state) {
     return state.data.slice(-1)[0];

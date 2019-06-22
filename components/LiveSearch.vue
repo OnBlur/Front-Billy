@@ -5,7 +5,7 @@
         type="text"
         v-model="searchWord"
         class="search-box"
-        placeholder="Zoek voor bedrijven, testresultaten of tags"
+        placeholder="Search for folders, testresults and tags"
         list="insights"
       >
     </div>

@@ -1,10 +1,6 @@
 <template>
   <section class="wrapper">
-    <div class="row">
-      <div class="col">
-        <Breadcrumbs :companyId="getCompanyById.id"/>
-      </div>
-    </div>
+    <Breadcrumbs :companyId="getCompanyById.id"/>
     <div class="row">
       <div class="folder">
         <div class="filters">
@@ -21,6 +17,7 @@
           :name="item.name"
           :status="item.status"
           :lastUpdate="item.updated_at"
+          @deleteItem="deleteItem($event)"
         />
       </div>
     </div>
@@ -76,6 +73,9 @@ export default {
           this.$refs.modal.hide();
           this.$router.push("/project/" + newProject.id);
         });
+    },
+    deleteItem(id) {
+      this.$store.dispatch("projects/deleteProject", id);
     }
   },
   components: {

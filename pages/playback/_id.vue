@@ -2,10 +2,10 @@
   <b-row align-h="between">
     <!-- LEFT -->
     <b-col md="5">
-      <div class="header">
+      <nuxt-link tag="div" class="header" :to="{ path: '/project/' + videoInfo.project_id}">
         <div class="icon arrow-left">o</div>
         <div class="back-text">Terug</div>
-      </div>
+      </nuxt-link>
       <div class="divider"></div>
       <div class="video-player">
         <video class="video" width="100%" ref="myVideo" controls>
@@ -101,6 +101,9 @@ export default {
     };
   },
   computed: {
+    videoInfo() {
+      return this.$store.getters["videos/getItem"](+this.id);
+    },
     allVideoNotes() {
       return this.$store.getters["notes/getItemsByVideoId"](+this.id);
     },
@@ -187,6 +190,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+  cursor: pointer;
   display: flex;
   align-items: center;
   .icon {
