@@ -72,21 +72,15 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  async editNote(vuexContext, value) {
-    const requestOptions = {
-      // method: "PATCH",
-      project_id: value.project_id,
-      name: value.name,
-      link: value.link
-    };
+  async editProject(vuexContext, value) {
     return axios
-      .post(process.env.baseUrl + "/update/project/" + value.id, requestOptions)
+      .post(process.env.baseUrl + "/update/project/" + value.id, value)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
       .catch(e => console.log(e));
   },
-  async deleteNote(vuexContext, value) {
+  async deleteProject(vuexContext, value) {
     return axios
       .delete(process.env.baseUrl + "/delete/project/" + value)
       .then(() => {
@@ -101,7 +95,7 @@ export const getters = {
     return state.data;
   },
   getItem: state => id => {
-    return state.data.filter(item => item.id === id);
+    return state.data.find(item => item.id === id);
   },
   getLastItem(state) {
     return state.data.slice(-1)[0];

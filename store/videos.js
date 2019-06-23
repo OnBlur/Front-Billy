@@ -62,7 +62,6 @@ export const mutations = {
   },
   editData(state, value) {
     const index = state.data.findIndex(item => item.id === value.id);
-    console.log(value, "mutation");
     state.data[index] = value;
   },
   deleteData(state, value) {
@@ -93,15 +92,9 @@ export const actions = {
       .catch(e => console.log(e));
   },
   async editVideo(vuexContext, value) {
-    const requestOptions = {
-      // method: "PATCH",
-      video_id: 1,
-      ...value
-    };
     return axios
-      .post(process.env.baseUrl + "/update/video/" + value.id, requestOptions)
+      .post(process.env.baseUrl + "/update/video/" + value.id, value)
       .then(res => {
-        console.log(res.data.data);
         vuexContext.commit("editData", res.data.data);
       })
       .catch(e => console.log(e));

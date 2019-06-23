@@ -40,12 +40,13 @@
           :members="item.members"
           :lastEdit="item.lastEdit"
           :editBy="item.editBy"
+          @editItem="editItem($event)"
           @deleteItem="deleteItem($event)"
         />
       </div>
     </div>
     <FloatingActionButton toolTip="Bedrijfsmap aanmaken" iconClass="folder-add" iconLetter="d"/>
-
+    <!-- Create Modal -->
     <b-modal id="modal-1" ref="modal">
       <h1 class="create-modal-title">Bedrijfsmap aanmaken</h1>
       <b-form v-on:submit.prevent="onSubmit">
@@ -53,6 +54,17 @@
         <div class="modal-buttons">
           <b-button type="submit" class="create">Aanmaken</b-button>
           <b-button class="cancel" @click="$bvModal.hide('modal-1')">Annuleren</b-button>
+        </div>
+      </b-form>
+    </b-modal>
+    <!-- Edit Modal -->
+    <b-modal id="modal-2" ref="modal2">
+      <h1 class="create-modal-title">Bedrijfsmap aanpassen</h1>
+      <b-form v-on:submit.prevent="onEdit">
+        <b-form-input v-model="editItemModal.name" placeholder="Bedrijfsnaam"></b-form-input>
+        <div class="modal-buttons">
+          <b-button type="submit" class="create">Aanpassen</b-button>
+          <b-button class="cancel" @click="$bvModal.hide('modal-2')">Annuleren</b-button>
         </div>
       </b-form>
     </b-modal>
@@ -72,7 +84,8 @@ export default {
     return {
       companyName: "",
       modelStatus: false,
-      modalShown: false
+      modalShown: false,
+      editItemModal: []
     };
   },
   props: {
@@ -92,10 +105,9 @@ export default {
   },
   methods: {
     goToProject(id) {
-      console.log(id);
+      this.$router.push("/company/" + id);
     },
     onSubmit() {
-      console.log("hallo?");
       this.$store
         .dispatch("companies/addCompany", {
           name: this.companyName
@@ -105,6 +117,16 @@ export default {
           this.$router.push("/company/" + newCompany.id);
           this.$refs.modal.hide();
         });
+    },
+    onEdit() {
+      this.$store
+        .dispatch("companies/editCompany", this.editItemModal)
+        .then(() => {
+          this.$refs.modal2.hide();
+        });
+    },
+    editItem(id) {
+      this.editItemModal = this.$store.getters["companies/getItem"](id);
     },
     deleteItem(id) {
       this.$store.dispatch("companies/deleteCompany", id);

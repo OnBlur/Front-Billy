@@ -23,8 +23,8 @@
         <template slot="button-content">
           <div class="icon dot-3">b</div>
         </template>
-        <b-dropdown-item href="#">Edit</b-dropdown-item>
-        <b-dropdown-item href="#" @click="deleteItem">Delete</b-dropdown-item>
+        <b-dropdown-item @click="editItem" v-b-modal.modal-2>Edit</b-dropdown-item>
+        <b-dropdown-item @click="deleteItem">Delete</b-dropdown-item>
       </b-dropdown>
     </div>
   </div>
@@ -65,6 +65,9 @@ export default {
     };
   },
   methods: {
+    editItem() {
+      this.$emit("editItem", this.id);
+    },
     deleteItem() {
       this.$emit("deleteItem", this.id);
     }

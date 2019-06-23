@@ -185,8 +185,6 @@ export const actions = {
       .get(process.env.baseUrl + "/get/company", requestOptions)
       .then(res => {
         vuexContext.commit("setData", res.data.data);
-        // Cookies.set("Companys", res.data.data);
-        // localStorage.setItem("Companys", res.data.data);
       })
       .catch(e => {
         e => console.log(e);
@@ -204,18 +202,12 @@ export const actions = {
       .catch(e => console.log(e));
   },
   async editCompany(vuexContext, value) {
-    const requestOptions = {
-      // method: "PATCH",
-      project_id: value.project_id,
-      name: value.name,
-      link: value.link
-    };
     return axios
-      .post(process.env.baseUrl + "/update/company/" + value.id, requestOptions)
+      .post(process.env.baseUrl + "/update/company/" + value.id, value)
       .then(res => {
         vuexContext.commit("editData", res.data.data);
       })
-      .catch(e => console.log(e.response.data.message));
+      .catch(e => console.log(e));
   },
   async deleteCompany(vuexContext, value) {
     return axios

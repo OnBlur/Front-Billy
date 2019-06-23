@@ -1,6 +1,6 @@
 <template>
   <section class="wrapper">
-    <Breadcrumbs :companyId="getProjectById[0].company_id" :projectName="getProjectById[0].name"/>
+    <Breadcrumbs :companyId="+getProjectById.company_id" :projectName="getProjectById.name"/>
     <div class="row">
       <div class="folder">
         <div class="filters">
@@ -17,12 +17,13 @@
           :name="item.name"
           :status="item.status"
           :lastUpdate="item.updated_at"
+          @editItem="editItem($event)"
           @deleteItem="deleteItem($event)"
         />
       </div>
     </div>
     <FloatingActionButton toolTip="Start een test" iconClass="times" iconLetter="f"/>
-
+    <!-- Create Modal -->
     <b-modal id="modal-1" ref="modal">
       <h1 class="create-modal-title">Start een test</h1>
       <b-form v-on:submit.prevent="onSubmit">
@@ -40,6 +41,31 @@
         <div class="modal-buttons">
           <b-button type="submit" class="create">Aanmaken</b-button>
           <b-button class="cancel" @click="$bvModal.hide('modal-1')">Annuleren</b-button>
+        </div>
+      </b-form>
+    </b-modal>
+    <!-- Edit Modal -->
+    <b-modal id="modal-2" ref="modal2">
+      <h1 class="create-modal-title">Start een test</h1>
+      <b-form v-on:submit.prevent="onEdit">
+        <b-form-input v-model="editItemModal.name" placeholder="Naam test"></b-form-input>
+        <b-col class="form-row-2">
+          <b-form-input
+            v-model="editItemModal.test_person"
+            placeholder="Naam testpersoon"
+            class="testperson"
+          ></b-form-input>
+          <b-form-input v-model="editItemModal.link" placeholder="Leeftijd testpersoon"></b-form-input>
+        </b-col>
+        <!-- <b-col class="form-row-2">
+          <div class="tags-wrapper-modal">
+            <Tag v-for="item in tags" :key="item.id" :title="item.title"/>
+          </div>
+          <b-form-input v-model="testTag" placeholder="Tag toevoegen"></b-form-input>
+        </b-col>-->
+        <div class="modal-buttons">
+          <b-button type="submit" class="create">Wijzigen</b-button>
+          <b-button class="cancel" @click="$bvModal.hide('modal-2')">Annuleren</b-button>
         </div>
       </b-form>
     </b-modal>
@@ -61,6 +87,7 @@ export default {
       testPersonName: "",
       testPersonAge: "",
       testTag: "",
+      editItemModal: [],
 
       tags: [{ id: 1, title: "MCL" }, { id: 2, title: "Revalidatie" }]
     };
@@ -88,6 +115,14 @@ export default {
           this.$refs.modal.hide();
           this.$router.push("/live/" + newVideo.id);
         });
+    },
+    onEdit() {
+      this.$store.dispatch("videos/editVideo", this.editItemModal).then(() => {
+        this.$refs.modal2.hide();
+      });
+    },
+    editItem(id) {
+      this.editItemModal = this.$store.getters["videos/getItem"](id);
     },
     deleteItem(id) {
       this.$store.dispatch("videos/deleteVideo", id);

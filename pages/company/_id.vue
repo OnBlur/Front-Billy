@@ -17,12 +17,13 @@
           :name="item.name"
           :status="item.status"
           :lastUpdate="item.updated_at"
+          @editItem="editItem($event)"
           @deleteItem="deleteItem($event)"
         />
       </div>
     </div>
     <FloatingActionButton toolTip="Projectmap toevoegen" iconClass="folder-add" iconLetter="d"/>
-
+    <!-- Create Modal -->
     <b-modal id="modal-1" ref="modal">
       <h1 class="create-modal-title">Projectmap toevoegen</h1>
       <b-form v-on:submit.prevent="onSubmit">
@@ -30,6 +31,17 @@
         <div class="modal-buttons">
           <b-button type="submit" class="create">Aanmaken</b-button>
           <b-button class="cancel" @click="$bvModal.hide('modal-1')">Annuleren</b-button>
+        </div>
+      </b-form>
+    </b-modal>
+    <!-- Edit Modal -->
+    <b-modal id="modal-2" ref="modal2">
+      <h1 class="create-modal-title">Projectmap wijzigen</h1>
+      <b-form v-on:submit.prevent="onEdit">
+        <b-form-input v-model="editItemModal.name" placeholder="Projectnaam"></b-form-input>
+        <div class="modal-buttons">
+          <b-button type="submit" class="create">Wijzigen</b-button>
+          <b-button class="cancel" @click="$bvModal.hide('modal-2')">Annuleren</b-button>
         </div>
       </b-form>
     </b-modal>
@@ -48,7 +60,8 @@ export default {
       id: this.$route.params.id,
       projectName: "",
       modelStatus: false,
-      modalShown: false
+      modalShown: false,
+      editItemModal: {}
     };
   },
   computed: {
@@ -73,6 +86,17 @@ export default {
           this.$refs.modal.hide();
           this.$router.push("/project/" + newProject.id);
         });
+    },
+    onEdit() {
+      this.$store
+        .dispatch("projects/editProject", this.editItemModal)
+        .then(() => {
+          this.$refs.modal2.hide();
+        });
+    },
+    editItem(id) {
+      this.editItemModal = this.$store.getters["projects/getItem"](id);
+      console.log(this.editItemModal);
     },
     deleteItem(id) {
       this.$store.dispatch("projects/deleteProject", id);
