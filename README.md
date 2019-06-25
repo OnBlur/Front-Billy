@@ -15,6 +15,8 @@ $ npm run dev
 $ npm run build
 $ npm start
 
+# Install CORS Extension on chrome and activate it
+
 # generate static project
 $ npm run generate
 ```
