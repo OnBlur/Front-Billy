@@ -120,24 +120,16 @@ export default {
   methods: {
     // Save timestamp and note onsubmit, clear the input field and resume the video
     addNote() {
-      this.$store
-        .dispatch("notes/addNote", {
-          timestamp: this.$refs.myVideo.currentTime,
-          note: this.inputNote
-        })
-        .then(() => {
-          this.$router.push("/playback");
-        });
+      this.$store.dispatch("notes/addNote", {
+        timestamp: this.$refs.myVideo.currentTime,
+        note: this.inputNote
+      });
 
       this.inputNote = "";
       this.playVideo();
     },
-    editNote(noteId, item) {
-      this.$store
-        .dispatch("notes/editNote", { ...item, id: noteId })
-        .then(() => {
-          this.$router.push("/playback");
-        });
+    editNote(item) {
+      this.$store.dispatch("notes/editNote", item);
     },
     deleteNote(id) {
       this.$store.dispatch("notes/deleteNote", id);

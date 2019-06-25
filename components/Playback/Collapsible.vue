@@ -109,7 +109,7 @@ export default {
       this.$emit("gotoTimestamp", item.timestamp);
     },
     editNote(id, content) {
-      this.$emit("editNote", id, content);
+      this.$emit("editNote", { ...content, id: id });
     },
     deleteNote(id) {
       this.$emit("deleteNote", id);

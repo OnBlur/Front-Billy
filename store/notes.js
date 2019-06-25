@@ -105,10 +105,7 @@ export const actions = {
       ...value
     };
     return axios
-      .post(
-        process.env.baseUrl + "/update/video-note/" + value.id,
-        requestOptions
-      )
+      .post(process.env.baseUrl + "/update/video-note/" + value.id, value)
       .then(res => {
         console.log(res.data.data);
         vuexContext.commit("editData", res.data.data);
