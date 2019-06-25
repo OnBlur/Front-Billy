@@ -42,7 +42,7 @@ export default {
   cursor: pointer;
   width: 35px;
   height: 35px;
-  background-color: #ffffff;
+  background-color: $white;
   border-radius: 50%;
 
   display: flex;

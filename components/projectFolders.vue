@@ -94,15 +94,15 @@ export default {
 
     .check {
       font-family: "icons";
-      color: #fff;
+      color: $white;
     }
   }
 
   .project-folders {
     width: 100%;
-    color: #424242;
+    color: $dark-grey;
     display: flex;
-    background-color: white;
+    background-color: $white;
     margin-bottom: 10px;
     padding: 15px;
     border-radius: 10px;
@@ -143,14 +143,14 @@ export default {
       padding: 5px;
       border-radius: 50%;
       &:hover {
-        background-color: #ececec;
+        background-color: $bg-color;
       }
       .icon {
         font-family: "icons";
         font-size: 20px;
         transform: rotate(90deg);
         width: 0;
-        color: black;
+        color: $black;
       }
       .dots {
         margin-top: -20px;

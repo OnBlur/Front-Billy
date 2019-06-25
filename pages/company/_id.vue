@@ -123,7 +123,7 @@ export default {
       width: 100%;
       font-size: 1.2em;
       font-weight: bold;
-      color: #424242;
+      color: $dark-grey;
       margin-bottom: 25px;
       margin-top: 50px;
     }
@@ -132,12 +132,12 @@ export default {
       font-family: OpenSans;
       font-size: 1em;
       font-weight: bold;
-      color: #171717;
+      color: $black;
       opacity: 0.55;
     }
     .divider {
       width: 100%;
-      border-top: 1px solid #707070;
+      border-top: 1px solid $secondary;
       opacity: 0.17;
       margin: 0px 15px 0px 15px;
     }
@@ -149,7 +149,7 @@ export default {
   }
   .filters {
     width: 100%;
-    color: #424242;
+    color: $dark-grey;
     display: flex;
     margin-bottom: 10px;
     padding: 15px;

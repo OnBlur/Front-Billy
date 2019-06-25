@@ -60,7 +60,6 @@ export default {
     return {
       dropdown: false,
       edit: false,
-
       timestampInput: this.timestamp,
       noteInput: this.note,
       noteType: this.noteProperty
@@ -130,9 +129,9 @@ export default {
       padding-left: 2px;
       margin-right: 10px;
       margin-left: 10px;
-      background-color: #daedf5;
+      background-color: $note-divider;
       &.active {
-        background-color: #bdebff;
+        background-color: $note-divider-active;
       }
     }
     .note-text {
@@ -173,17 +172,17 @@ export default {
       margin-right: 20px;
 
       cursor: pointer;
-      background-color: white;
+      background-color: $white;
       padding: 15px 25px 15px 25px;
       margin-right: 10px;
       border-radius: 10px;
-      background-color: #424242;
-      color: white;
+      background-color: $dark-grey;
+      color: $white;
       border: none;
     }
     .cancel {
       cursor: pointer;
-      background-color: white;
+      background-color: $white;
       padding: 15px 25px 15px 25px;
       margin-right: 10px;
       border-radius: 10px;

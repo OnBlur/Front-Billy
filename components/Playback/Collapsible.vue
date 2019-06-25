@@ -131,7 +131,7 @@ export default {
   .notes-wrapper {
     // Notes Header
     .notes-header {
-      background-color: white;
+      background-color: $white;
       padding: 25px;
       padding-top: 20px;
       padding-bottom: 20px;
@@ -157,7 +157,7 @@ export default {
         }
         .header-info-text {
           font-family: "OpenSans-Bold";
-          color: #424242;
+          color: $dark-grey;
           font-size: 16px;
         }
       }
@@ -176,11 +176,11 @@ export default {
         width: 6px;
       }
       &::-webkit-scrollbar-thumb {
-        background: #424242;
+        background: $dark-grey;
         border-radius: 0px;
       }
       .active {
-        background-color: white;
+        background-color: $white;
         box-shadow: 0px 10px 9px #f7f7f7, 0px -10px 5px #f7f7f7;
       }
     }

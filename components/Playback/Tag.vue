@@ -40,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 .tag {
   cursor: pointer;
-  background-color: white;
+  background-color: $white;
   margin-right: 10px;
   border-radius: 10px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
@@ -60,7 +60,7 @@ export default {
     button {
       height: 100%;
       border: none;
-      background-color: white;
+      background-color: $white;
       &.edit-button {
         width: 60px;
         font-size: 13px;
@@ -69,18 +69,18 @@ export default {
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         &:hover {
-          background-color: #f7f7f7;
+          background-color: $lines;
         }
       }
       &.delete-button {
         width: 70px;
         font-size: 13px;
         line-height: 1.88;
-        color: #ed5153;
+        color: $red;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         &:hover {
-          background-color: #f7f7f7;
+          background-color: $lines;
         }
       }
     }

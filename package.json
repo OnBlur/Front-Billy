@@ -24,6 +24,7 @@
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^0.1.2",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
     "sass-loader": "^7.1.0"

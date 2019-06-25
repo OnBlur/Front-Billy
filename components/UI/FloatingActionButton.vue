@@ -47,12 +47,12 @@ export default {
 .buttons {
   font-family: "icons";
   transition-delay: 25ms;
-  background-color: #424242;
+  background-color: $dark-grey;
   background-size: contain;
 }
 
 .folder-add {
-  color: #ffffff;
+  color: $white;
   text-align: center;
   padding-top: 10px;
   font-size: 2em;
@@ -63,7 +63,7 @@ export default {
 }
 
 .times {
-  color: #ffffff;
+  color: $white;
   text-align: center;
   padding-top: 10px;
   font-size: 2em;
@@ -76,8 +76,8 @@ export default {
     font-family: arial;
     font-weight: 600;
     border-radius: 2px;
-    background-color: #424242;
-    color: #ffffff;
+    background-color: $dark-grey;
+    color: $white;
     content: attr(tooltip);
     font-size: 12px;
     visibility: hidden;

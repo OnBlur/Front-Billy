@@ -38,7 +38,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ["@/assets/css/index.scss"],
+  css: ["~/assets/css/index.scss"],
 
   /*
    ** Plugins to load before mounting the App
@@ -65,8 +65,13 @@ export default {
     // Doc: https://bootstrap-vue.js.org/docs/
     "bootstrap-vue/nuxt",
     "nuxt-fontawesome",
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
+    "@nuxtjs/style-resources"
   ],
+
+  styleResources: {
+    scss: ["~assets/css/default/colors.scss"]
+  },
   /*
    ** Axios module configuration
    */

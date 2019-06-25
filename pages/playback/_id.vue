@@ -202,18 +202,18 @@ export default {
     margin-left: 10px;
     font-size: 16px;
     font-weight: bold;
-    color: #424242;
+    color: $dark-grey;
   }
 }
 .divider {
   height: 2px;
-  background-color: #e7e7e7;
+  background-color: $lightgrey;
   margin-top: 20px;
 }
 .video-player {
   margin-top: 30px;
   max-width: 826px;
-  background-color: white;
+  background-color: $white;
   background-color: transparent;
   box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.06);
   .video {
@@ -225,7 +225,7 @@ export default {
     position: relative;
     margin-top: -5px;
     height: 50px;
-    background-color: #424242;
+    background-color: $dark-grey;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
@@ -235,7 +235,7 @@ export default {
     align-items: center;
     .progress {
       height: 50px;
-      background-color: #808080;
+      background-color: $progress;
       // position: absolute;
       // left: 0;
       // width: 157px;
@@ -249,7 +249,7 @@ export default {
       cursor: pointer;
       width: 35px;
       height: 35px;
-      background-color: #ffffff;
+      background-color: $white;
       border-radius: 50%;
 
       display: flex;
@@ -270,11 +270,11 @@ export default {
   .title {
     font-size: 16px;
     font-weight: bold;
-    color: #424242;
+    color: $dark-grey;
   }
   .date {
     font-size: 16px;
-    color: #424242;
+    color: $dark-grey;
   }
 }
 .tags-wrapper {
@@ -288,12 +288,12 @@ export default {
     display: flex;
     .custom {
       cursor: pointer;
-      background-color: white;
+      background-color: $white;
       padding: 15px 25px 15px 25px;
       margin-right: 10px;
       border-radius: 10px;
-      background-color: #424242;
-      color: white;
+      background-color: $dark-grey;
+      color: $white;
     }
   }
 }
@@ -326,7 +326,7 @@ export default {
 .text-input-divider {
   margin-top: 15px;
   height: 2px;
-  background-color: #bfbfbf;
+  background-color: $input-divider;
 }
 .emojis {
   font-family: "icons";

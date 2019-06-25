@@ -52,7 +52,7 @@ export default {
   position: absolute;
   // width: 300px;
   // height: 100px;
-  background-color: white;
+  background-color: $white;
   right: 15%;
   // top: 200px;
   border-radius: 10px;
@@ -60,7 +60,7 @@ export default {
   margin-top: 75px;
   .edit {
     font-size: 16px;
-    color: #424242;
+    color: $dark-grey;
 
     height: 50px;
     display: flex;
@@ -68,7 +68,7 @@ export default {
     align-items: center;
     border-bottom: 1px solid #f2f2f2;
     &:hover {
-      background-color: #f7f7f7;
+      background-color: $lines;
     }
   }
   .note-type {
@@ -77,7 +77,7 @@ export default {
       width: 70px;
       height: 70px;
       &:hover {
-        background-color: #f7f7f7;
+        background-color: $lines;
       }
 
       &.active {
@@ -86,7 +86,7 @@ export default {
 
       &.note {
         font-size: 16px;
-        color: #424242;
+        color: $dark-grey;
 
         display: flex;
         justify-content: center;
@@ -95,7 +95,7 @@ export default {
       }
       &.finding {
         font-size: 18px;
-        color: #424242;
+        color: $dark-grey;
 
         display: flex;
         justify-content: center;
@@ -109,7 +109,7 @@ export default {
       }
       &.quote {
         font-size: 18px;
-        color: #424242;
+        color: $dark-grey;
 
         display: flex;
         justify-content: center;
@@ -120,7 +120,7 @@ export default {
   }
   .delete {
     font-size: 16px;
-    color: #ed5153;
+    color: $red;
     height: 50px;
 
     display: flex;
@@ -129,7 +129,7 @@ export default {
     border-top: 1px solid #f2f2f2;
     // background-color: red;
     &:hover {
-      background-color: #f7f7f7;
+      background-color: $lines;
     }
   }
 }

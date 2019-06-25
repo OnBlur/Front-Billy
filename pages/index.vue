@@ -155,7 +155,7 @@ export default {
       width: 100%;
       font-size: 1.2em;
       font-weight: bold;
-      color: #424242;
+      color: $dark-grey;
       margin-bottom: 25px;
       margin-top: 50px;
     }
@@ -167,7 +167,7 @@ export default {
   }
   .filters {
     width: 100%;
-    color: #424242;
+    color: $dark-grey;
     display: flex;
     margin-bottom: 10px;
     padding: 15px;
