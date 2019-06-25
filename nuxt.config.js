@@ -8,8 +8,7 @@ export default {
    */
   head: {
     title: pkg.name,
-    meta: [
-      {
+    meta: [{
         charset: "utf-8"
       },
       {
@@ -22,13 +21,11 @@ export default {
         content: pkg.description
       }
     ],
-    link: [
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/favicon.ico"
-      }
-    ]
+    link: [{
+      rel: "icon",
+      type: "image/x-icon",
+      href: "/favicon.ico"
+    }]
   },
 
   /*
@@ -41,12 +38,15 @@ export default {
   /*
    ** Global CSS
    */
-  css: ["~/assets/css/index.scss"],
+  css: ["@/assets/css/index.scss"],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "~/plugins/localStorage.js", ssr: false }],
+  plugins: [{
+    src: "~/plugins/localStorage.js",
+    ssr: false
+  }],
 
   manifest: {
     name: "Front Billy",
@@ -75,8 +75,7 @@ export default {
   },
 
   env: {
-    baseUrl:
-      process.env.BASE_URL || "https://hidden-taiga-86718.herokuapp.com/api"
+    baseUrl: process.env.BASE_URL || "https://hidden-taiga-86718.herokuapp.com/api"
   },
 
   render: {

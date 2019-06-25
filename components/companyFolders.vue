@@ -16,17 +16,17 @@
         </div>
         <!-- <div class="editby">{{item.editBy}}</div> -->
       </div>
+      <div class="menu">
+        <!-- <div class="icon dot-3">b</div> -->
+        <b-dropdown variant="link" toggle-class="text-decoration-none" no-caret>
+          <template slot="button-content">
+            <div class="icon dot-3 dots">b</div>
+          </template>
+          <b-dropdown-item @click="editItem" v-b-modal.modal-2>Edit</b-dropdown-item>
+          <b-dropdown-item @click="deleteItem">Delete</b-dropdown-item>
+        </b-dropdown>
+      </div>
     </nuxt-link>
-    <div class="menu">
-      <!-- <div class="icon dot-3">b</div> -->
-      <b-dropdown variant="link" toggle-class="text-decoration-none" no-caret>
-        <template slot="button-content">
-          <div class="icon dot-3">b</div>
-        </template>
-        <b-dropdown-item @click="editItem" v-b-modal.modal-2>Edit</b-dropdown-item>
-        <b-dropdown-item @click="deleteItem">Delete</b-dropdown-item>
-      </b-dropdown>
-    </div>
   </div>
 </template>
 
@@ -52,11 +52,11 @@ export default {
     },
     lastEdit: {
       type: String,
-      default: "Sometime"
+      default: "Ooit"
     },
     editBy: {
       type: String,
-      default: "Misha"
+      default: "Ruurd"
     }
   },
   data() {
@@ -108,14 +108,23 @@ export default {
     cursor: pointer;
     margin-left: 30px;
     width: auto;
+
     .dropdown {
       width: auto;
+      padding: 5px;
+      border-radius: 50%;
+      &:hover {
+        background-color: #ececec;
+      }
       .icon {
         font-family: "icons";
         font-size: 20px;
         transform: rotate(90deg);
         width: 0;
         color: black;
+      }
+      .dots {
+        margin-top: -20px;
       }
     }
   }
