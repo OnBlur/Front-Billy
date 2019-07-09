@@ -19,6 +19,8 @@ $ npm start
 
 # generate static project
 $ npm run generate
+
+# Clear localStorage when creating items or disable persistedState in store index and nuxt.config.js plugins
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
