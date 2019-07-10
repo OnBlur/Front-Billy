@@ -1,6 +1,13 @@
 # Front-Billy
 
-> My excellent Nuxt.js project
+> Het concept draait om het stroomlijnen van de workflow bij de testsessies en de documentatie
+ervan in de Billy bus. Een centrale omgeving voor alle testresultaten en aanbevelingen moet de
+warboel van documenten omzetten naar een georganiseerde structuur. Dit concept maakt het
+mogelijk om per testsessie alle notities te bundelen, zodat dit makkelijker terug te vinden is. Ook
+wordt het mogelijk gemaakt om deze informatie terug te vinden en her te gebruiken. Een
+koppeling door middel van een timestamp tussen de opname en de gemaakte notities maakt het
+gemakkelijk de context van de notities te snappen. Op deze manier wordt de workflow van de test
+geoptimaliseerd.
 
 ## Build Setup
 
