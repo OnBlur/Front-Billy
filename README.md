@@ -31,3 +31,5 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+For detailed explanation about specific end-points, checkout [Postman doc](https://documenter.getpostman.com/view/7525719/S1TYUbGc?version=latest#c5482f7b-8d76-44ca-8980-63fbfc529471).
+The API url can be visited [here](https://hidden-taiga-86718.herokuapp.com/api/get/project).
